@@ -1,0 +1,35 @@
+{% set name = "nava" %}
+{% set version = "0.1" %}
+
+package:
+    name: {{ name|lower }}
+    version: {{ version }}
+source:
+    git_url: https://github.com/openscilab/nava
+    git_rev: v{{ version }}
+build:
+    noarch: python
+    number: 0
+    script: {{ PYTHON }} -m pip install . -vv
+requirements:
+    host:
+        - pip
+        - setuptools
+        - python >=3.6
+    run:
+        - art >=1.8
+        - python >=3.6
+about:
+    home: https://github.com/openscilab/nava
+    license: MIT
+    license_family: MIT
+    summary: A Python library for playing sound everywhere natively and securely.
+    description: |
+        A Python library for playing sound everywhere natively and securely.
+
+        Website: https://openscilab.com/
+
+        Repo: https://github.com/openscilab/nava
+extra:
+    recipe-maintainers:
+        - sadrasabouri
