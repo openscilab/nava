@@ -38,7 +38,7 @@ setup(
     # author_email='info@pycm.io',
     url='https://github.com/openscilab/nava',
     download_url='https://github.com/openscilab/nava/tarball/v0.1',
-    keywords="sound",
+    keywords="sound wav music mp3 player audio",
     project_urls={
         'Webpage': 'https://openscilab.com/',
         'Source': 'https://github.com/openscilab/nava',
