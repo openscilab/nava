@@ -34,7 +34,7 @@ Example:
 
         :param x: first input to be summed
         :type x: int
-		:param y: second input to be summed
+        :param y: second input to be summed
         :type y: int
         :return: sum of x and y as int
         """
