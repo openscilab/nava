@@ -1,10 +1,10 @@
 # Authors #
 
 ----------
-- Sepand Haghighi - Sharif University of Technology ([Github](https://github.com/sepandhaghighi)) **
-- Sadra Sabouri - Sharif University of Technology ([Github](https://github.com/sadrasabouri)) **
-- Amirhossein Rostami - Sharif University of Technology ([Github](https://github.com/AHReccese)) **
-- Alireza Zolanvari  - University of Groningen ([Github](https://github.com/AlirezaZolanvari)) **
+- Sepand Haghighi - Open Science Laboratory ([Github](https://github.com/sepandhaghighi))
+- Sadra Sabouri - Open Science Laboratory ([Github](https://github.com/sadrasabouri)) **
+- Amirhossein Rostami - Open Science Laboratory ([Github](https://github.com/AHReccese))
+- Alireza Zolanvari  - Open Science Laboratory ([Github](https://github.com/AlirezaZolanvari))
 
 ** **Maintainer**
 
