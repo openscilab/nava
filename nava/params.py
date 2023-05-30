@@ -8,4 +8,4 @@ A Python library for playing sound everywhere natively and securely.
 
 """
 
-SOUND_ERROR_MESSAGE = "[Error] Sound can not play in"
+SOUND_ERROR_MESSAGE = "Sound can not play due to some issues."
