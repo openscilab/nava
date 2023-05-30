@@ -31,7 +31,7 @@ Example:
     def sum(x, y):
         """
         Calculate sum of two given input.
-    
+
         :param x: first input to be summed
         :type x: int
 		:param y: second input to be summed
