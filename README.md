@@ -22,6 +22,7 @@
    * [Authors](https://github.com/openscilab/nava/blob/main/AUTHORS.md)
    * [License](https://github.com/openscilab/nava/blob/main/LICENSE)
    * [Changelog](https://github.com/openscilab/nava/blob/main/CHANGELOG.md)
+   * [Code of Conduct](https://github.com/sepandhaghighi/pycm/blob/master/.github/CODE_OF_CONDUCT.md)
 
 ## Overview
 
