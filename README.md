@@ -5,7 +5,7 @@
         <img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"/>
     </a>
     <a href="https://codecov.io/gh/openscilab/nava">
-        <img src="https://codecov.io/gh/openscilab/nava/branch/master/graph/badge.svg"/>
+        <img src="https://codecov.io/gh/openscilab/nava/branch/main/graph/badge.svg"/>
     </a>
     <a href="https://badge.fury.io/py/nava">
         <img src="https://badge.fury.io/py/nava.svg" alt="PyPI version" height="18">
@@ -18,10 +18,10 @@
 ## Table of contents
    * [Overview](https://github.com/openscilab/nava#overview)
    * [Installation](https://github.com/openscilab/nava#installation)
-   * [Contribution](https://github.com/openscilab/nava/blob/master/.github/CONTRIBUTING.md)
-   * [Authors](https://github.com/openscilab/nava/blob/master/AUTHORS.md)
-   * [License](https://github.com/openscilab/nava/blob/master/LICENSE)
-   * [Changelog](https://github.com/openscilab/nava/blob/master/CHANGELOG.md)
+   * [Contribution](https://github.com/openscilab/nava/blob/main/.github/CONTRIBUTING.md)
+   * [Authors](https://github.com/openscilab/nava/blob/main/AUTHORS.md)
+   * [License](https://github.com/openscilab/nava/blob/main/LICENSE)
+   * [Changelog](https://github.com/openscilab/nava/blob/main/CHANGELOG.md)
 
 ## Overview
 
@@ -61,12 +61,12 @@ A Python library for playing sound everywhere natively and securely.
 <table>
 	<tr> 
 		<td align="center">Branch</td>
-		<td align="center">master</td>
+		<td align="center">main</td>
 		<td align="center">dev</td>
 	</tr>
     <tr>
 		<td align="center">CI</td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/CI/badge.svg?branch=master"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/CI/badge.svg?branch=main"></td>
 		<td align="center"><img src="https://github.com/openscilab/nava/workflows/CI/badge.svg?branch=dev"></td>
 	</tr>
 </table>
