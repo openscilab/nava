@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Parameters and constants."""
+"""Nava parameters."""
 
 NAVA_VERSION = "0.1"
 

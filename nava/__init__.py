@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""nava modules."""
+"""Nava modules."""
 from .params import NAVA_VERSION
 from .functions import play
 

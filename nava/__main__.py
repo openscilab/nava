@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""nava main."""
+"""Nava main."""
 
 import sys
 from art import tprint

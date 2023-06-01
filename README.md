@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>nava</h1>
+    <h1>Nava</h1>
     <br/>
     <a href="https://www.python.org/">
         <img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"/>
