@@ -39,7 +39,7 @@ jobs:
     - name: Other tests
       run: |
           python -m vulture nava/ others/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
-          python -m bandit -r nava -s B311
+          python -m bandit -r nava -s B404,B603,B605,B607
           python -m pydocstyle -v --match-dir=nava
       if: matrix.python-version == env.TEST_PYTHON_VERSION
     - name: Version check
