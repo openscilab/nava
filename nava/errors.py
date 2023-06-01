@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-"""nava errors."""
+"""Nava errors."""
 
 
 class NavaBaseError(Exception):
-    """nava base error class."""
+    """Nava base error class."""
 
     pass
