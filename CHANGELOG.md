@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.1] - 2023-05-28
 ### Added
 - `README.md`
+- `play` function
 
 [Unreleased]: https://github.com/openscilab/nava/compare/v0.1...dev
 [0.1]: https://github.com/openscilab/nava/compare/bd789cc...v0.1

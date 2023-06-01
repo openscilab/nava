@@ -28,6 +28,20 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         python setup.py install
+    - name: First test
+      run: |
+        nava
+    - name: Test requirements Installation
+      run: |
+        python others/requirements-splitter.py
+        pip install --upgrade --upgrade-strategy=only-if-needed -r test-requirements.txt
+      if: matrix.python-version == env.TEST_PYTHON_VERSION
+    - name: Other tests
+      run: |
+          python -m vulture nava/ others/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
+          python -m bandit -r nava -s B404,B603,B605,B607
+          python -m pydocstyle -v --match-dir=nava
+      if: matrix.python-version == env.TEST_PYTHON_VERSION
     - name: Version check
       run: |
         python others/version_check.py
