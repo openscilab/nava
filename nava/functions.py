@@ -29,6 +29,7 @@ def __play_win(sound_path):
     import winsound
     winsound.PlaySound(sound_path, winsound.SND_FILENAME)
 
+
 def __play_linux(sound_path):
     """
     Play sound in Linux.
@@ -43,6 +44,7 @@ def __play_linux(sound_path):
                               stderr=subprocess.PIPE,
                               stdin=subprocess.PIPE,
                               stdout=subprocess.PIPE)
+
 
 def __play_mac(sound_path):
     """
