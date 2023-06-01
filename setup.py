@@ -70,5 +70,4 @@ setup(
     entry_points={
         'console_scripts': [
             'nava = nava.__main__:main',
-        ]}
-)
+        ]})

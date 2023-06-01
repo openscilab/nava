@@ -17,5 +17,7 @@ def main():
     tprint("nava")
     tprint("V:" + NAVA_VERSION)
     nava_help()
+
+
 if __name__ == "__main__":
     main()
