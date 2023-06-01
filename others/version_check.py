@@ -17,12 +17,6 @@ CHANGELOG_ITEMS = [
     "## [{0}]",
     "https://github.com/openscilab/nava/compare/v{0}...dev",
     "[{0}]:"]
-DOCUMENT_ITEMS = [
-    "### Version : {0}",
-    "[Version {0}](https://github.com/openscilab/nava/archive/v{0}.zip)",
-    "pip install nava=={0}",
-    "pip3 install nava=={0}"]
-HTML_ITEMS = ["Version {0}"]
 PARAMS_ITEMS = ['NAVA_VERSION = "{0}"']
 META_ITEMS = ['% set version = "{0}" %']
 
