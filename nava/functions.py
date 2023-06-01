@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Nava functions"""
+"""Nava functions."""
 import sys
 import subprocess
 
