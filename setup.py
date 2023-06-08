@@ -24,7 +24,9 @@ def read_description():
         return description
     except Exception:
         return '''
-   A Python library for playing sound everywhere natively and securely.'''
+   Nava is a Python library that allows users to play sound in Python without any dependencies or platform restrictions.
+   It is a cross-platform solution that runs on any operating system, including Windows, macOS, and Linux.
+   Its lightweight and easy-to-use design makes Nava an ideal choice for developers looking to add sound functionality to their Python programs.'''
 
 
 setup(
@@ -42,7 +44,7 @@ setup(
     project_urls={
         'Webpage': 'https://openscilab.com/',
         'Source': 'https://github.com/openscilab/nava',
-        'Discord': 'https://discord.gg/mtuMS8AjDS',
+        'Discord': 'https://discord.gg/MCbPKCFBs3',
     },
     install_requires=get_requires(),
     python_requires='>=3.6',
