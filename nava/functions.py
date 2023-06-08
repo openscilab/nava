@@ -38,7 +38,7 @@ def quote(func):
         """
         sound_path = args[0]
         sound_path = shlex.quote(sound_path)
-        args = [sound_path]
+        args[0] = sound_path
         return func(*args, **kwargs)
     return inner_function
 
@@ -91,7 +91,7 @@ def __play_mac(sound_path):
 
 def path_check(func):
     """
-    Check the given path to be both string and valid file directory.
+    Check the given path to be a string and a valid file directory.
 
     :return: inner function
     """
@@ -128,7 +128,7 @@ def play(sound_path):
         sys_platform = sys.platform
         if sys_platform == "win32":
             __play_win(sound_path)
-        elif (sys_platform == "darwin"):
+        elif sys_platform == "darwin":
             __play_mac(sound_path)
         else:
             __play_linux(sound_path)
