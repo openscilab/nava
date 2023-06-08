@@ -2,8 +2,10 @@
 """Nava functions."""
 import sys
 import subprocess
+import os
+import shlex
 
-from .params import OVERVIEW, SOUND_ERROR_MESSAGE
+from .params import OVERVIEW, SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, SOUND_FILE_PATH_TYPE_ERROR
 from .errors import NavaBaseError
 
 
@@ -18,6 +20,29 @@ def nava_help():
     print("Webpage : https://openscilab.com/")
 
 
+def quote(func):
+    """
+    Quote the given shell string.
+
+    :return: inner function
+    """
+    def inner_function(*args, **kwargs):
+        """
+        Inner function.
+
+        :param args: non-keyword arguments
+        :type args: list
+        :param kwargs: keyword arguments
+        :type kwargs: dict
+        :return: modified function result
+        """
+        sound_path = args[0]
+        sound_path = shlex.quote(sound_path)
+        args[0] = sound_path
+        return func(*args, **kwargs)
+    return inner_function
+
+
 def __play_win(sound_path):
     """
     Play sound in Windows.
@@ -30,6 +55,7 @@ def __play_win(sound_path):
     winsound.PlaySound(sound_path, winsound.SND_FILENAME)
 
 
+@quote
 def __play_linux(sound_path):
     """
     Play sound in Linux.
@@ -46,6 +72,7 @@ def __play_linux(sound_path):
                               stdout=subprocess.PIPE)
 
 
+@quote
 def __play_mac(sound_path):
     """
     Play sound in macOS.
@@ -62,6 +89,33 @@ def __play_mac(sound_path):
                               stdout=subprocess.PIPE)
 
 
+def path_check(func):
+    """
+    Check the given path to be a string and a valid file directory.
+
+    :return: inner function
+    """
+    def inner_function(*args, **kwargs):
+        """
+        Inner function.
+
+        :param args: non-keyword arguments
+        :type args: list
+        :param kwargs: keyword arguments
+        :type kwargs: dict
+        :return: modified function result
+        """
+        sound_path = args[0]
+        if not (isinstance(sound_path, str)):
+            raise NavaBaseError(SOUND_FILE_PATH_TYPE_ERROR)
+        # check sound file existance
+        if not (os.path.isfile(sound_path)):
+            raise NavaBaseError(SOUND_FILE_EXIST_ERROR)
+        return func(*args, **kwargs)
+    return inner_function
+
+
+@path_check
 def play(sound_path):
     """
     Play sound.
@@ -79,4 +133,4 @@ def play(sound_path):
         else:
             __play_linux(sound_path)
     except Exception:
-        raise NavaBaseError(SOUND_ERROR_MESSAGE)
+        raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
