@@ -82,3 +82,20 @@ Nava is a Python library that allows users to play sound in Python without any d
 ### Source code
 - Download [Version 0.1](https://github.com/openscilab/nava/archive/v0.1.zip) or [Latest Source](https://github.com/openscilab/nava/archive/dev.zip)
 - Run `pip install .`
+
+## Usage
+
+
+## Issues & bug reports			
+
+Just fill an issue and describe it. We'll check it ASAP! or send an email to [info@openscilab.com](mailto:info@openscilab.com "info@openscilab.com"). 
+
+- Please complete the issue template
+ 
+You can also join our discord server
+
+<a href="https://discord.gg/mtuMS8AjDS">
+  <img src="https://img.shields.io/discord/1064533716615049236.svg?style=for-the-badge" alt="Discord Channel">
+</a>
+
+
