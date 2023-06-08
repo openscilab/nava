@@ -77,6 +77,23 @@ Nava is a Python library that allows users to play sound in Python without any d
 
 ## Usage
 
+### Basic
+```python
+from nava import play
+play("alarm.wav")
+```
+
+### Error
+
+```python
+from nava import play, NavaBaseError
+
+try:
+    play("alarm.wav")
+except NavaBaseError as e:
+    print(str(e))
+```
+
 
 ## Issues & bug reports			
 
