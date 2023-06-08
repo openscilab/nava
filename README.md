@@ -4,9 +4,6 @@
     <a href="https://www.python.org/">
         <img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"/>
     </a>
-    <a href="https://codecov.io/gh/openscilab/nava">
-        <img src="https://codecov.io/gh/openscilab/nava/branch/main/graph/badge.svg"/>
-    </a>
     <a href="https://badge.fury.io/py/nava">
         <img src="https://badge.fury.io/py/nava.svg" alt="PyPI version" height="18">
     </a>
@@ -34,14 +31,6 @@ Nava is a Python library that allows users to play sound in Python without any d
 </p>
 
 <table>
-	<tr>
-		<td align="center">Open Hub</td>
-		<td align="center">
-            <a href="https://www.openhub.net/p/nava">
-                <img src="https://www.openhub.net/p/nava/widgets/project_thin_badge.gif">
-            </a>
-        </td>
-	</tr>
 	<tr>
 		<td align="center">PyPI Counter</td>
 		<td align="center">
