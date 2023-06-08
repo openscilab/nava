@@ -44,7 +44,7 @@ setup(
     project_urls={
         'Webpage': 'https://openscilab.com/',
         'Source': 'https://github.com/openscilab/nava',
-        'Discord': 'https://discord.gg/mtuMS8AjDS',
+        'Discord': 'https://discord.gg/MCbPKCFBs3',
     },
     install_requires=get_requires(),
     python_requires='>=3.6',

@@ -10,7 +10,7 @@
     <a href="https://badge.fury.io/py/nava">
         <img src="https://badge.fury.io/py/nava.svg" alt="PyPI version" height="18">
     </a>
-    <a href="https://discord.gg/mtuMS8AjDS">
+    <a href="https://discord.gg/MCbPKCFBs3">
         <img src="https://img.shields.io/discord/1064533716615049236.svg" alt="Discord Channel">
     </a>
 </div>
@@ -97,7 +97,7 @@ Just fill an issue and describe it. We'll check it ASAP! or send an email to [in
  
 You can also join our discord server
 
-<a href="https://discord.gg/mtuMS8AjDS">
+<a href="https://discord.gg/MCbPKCFBs3">
   <img src="https://img.shields.io/discord/1064533716615049236.svg?style=for-the-badge" alt="Discord Channel">
 </a>
 
