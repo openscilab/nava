@@ -95,9 +95,9 @@ except NavaBaseError as e:
 ```
 
 
-## Issues & bug reports			
+## Issues & bug reports
 
-Just fill an issue and describe it. We'll check it ASAP! or send an email to [info@openscilab.com](mailto:info@openscilab.com "info@openscilab.com"). 
+Just fill an issue and describe it. We'll check it ASAP! or send an email to [info@openscilab.com](mailto:info@openscilab.com "info@openscilab.com").
 
 - Please complete the issue template
  
@@ -108,15 +108,13 @@ You can also join our discord server
 </a>
 
 ## Show your support
-								
-<h3>Star this repo</h3>					
+
+<h3>Star this repo</h3>
 
 Give a ⭐️ if this project helped you!
 
-<h3>Donate to our project</h3>	
+<h3>Donate to our project</h3>
 
-If you do like our project and we hope that you do, can you please support us? Our project is not and is never going to be working for profit. We need the money just so we can continue doing what we do ;-) .			
+If you do like our project and we hope that you do, can you please support us? Our project is not and is never going to be working for profit. We need the money just so we can continue doing what we do ;-) .
 
-<a href="https://openscilab.com/#donation" target="_blank"><img src="https://github.com/openscilab/static-assets/raw/main/buttons/donation.jpg" height="90px" width="270px" alt="Nava Donation"></a>
-
-
+<a href="https://openscilab.com/#donation" target="_blank"><img src="https://github.com/openscilab/nava/raw/main/others/donation.png" height="90px" width="270px" alt="Nava Donation"></a>
