@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://github.com/openscilab/nava/raw/main/others/logo.png" width=400 height=400>
+    <img src="https://github.com/openscilab/nava/raw/main/others/logo.png" width="400" height="400">
     <br/>
     <h1>Nava</h1>
     <br/>
