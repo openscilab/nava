@@ -1,6 +1,5 @@
 <div align="center">
-    <img src="https://github.com/openscilab/nava/raw/main/others/logo.png" width="400" height="400">
-    <br/>
+    <img src="https://github.com/openscilab/nava/raw/main/others/logo.png" width="300" height="300">
     <h1>Nava</h1>
     <br/>
     <a href="https://www.python.org/">
