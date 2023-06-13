@@ -1,5 +1,7 @@
-# Nava Release
--------------------
+
+# Nava Release Instructions
+
+#### Last Update: 2023-06-13
 
 1. Create the `release` branch under `dev`
 2. Update all version tags
@@ -22,11 +24,11 @@
 	3. `git push origin main`
 	4. Wait for all CI pass
 6. Create a new release
-	- Target branch: `main`
-	- Tag: `vx.x` (Example: `v0.1`)
-	- Title: `Version x.x` (Example: `Version 0.1`)
-	- Copy changelogs
-	- Tag all related issues
+	1. Target branch: `main`
+	2. Tag: `vx.x` (Example: `v0.1`)
+	3. Title: `Version x.x` (Example: `Version 0.1`)
+	4. Copy changelogs
+	5. Tag all related issues
 7. Bump!!
 8. Close this version issues
 9. Close milestone
