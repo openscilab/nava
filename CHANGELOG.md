@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Logo
 ### Changed
-- `quote` decorator updated
+- `quote` decorator bug fixed
 ## [0.1] - 2023-06-10
 ### Added
 - `README.md`
