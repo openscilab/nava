@@ -38,7 +38,7 @@ def quote(func):
         """
         sound_path = args[0]
         sound_path = shlex.quote(sound_path)
-        args[0] = sound_path
+        args = (sound_path, *args[1:])
         return func(*args, **kwargs)
     return inner_function
 
