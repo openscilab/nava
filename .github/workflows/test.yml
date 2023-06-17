@@ -35,7 +35,6 @@ jobs:
       run: |
         python others/requirements-splitter.py
         pip install --upgrade --upgrade-strategy=only-if-needed -r test-requirements.txt
-      if: matrix.python-version == env.TEST_PYTHON_VERSION
     - name: Other tests
       run: |
           python -m vulture nava/ others/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
