@@ -5,7 +5,7 @@ import subprocess
 import os
 import shlex
 
-from .params import OVERVIEW, SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, SOUND_FILE_PATH_TYPE_ERROR, SOUND_FILE_PATH_NOT_GIVEN
+from .params import OVERVIEW, SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, SOUND_FILE_PATH_TYPE_ERROR, SOUND_FILE_PATH_PARAM_ERROR 
 from .errors import NavaBaseError
 
 
@@ -110,7 +110,7 @@ def path_check(func):
         elif len(args) >= 1:
             sound_path = args[0]
         else: 
-            raise NavaBaseError(SOUND_FILE_PATH_NOT_GIVEN)
+            raise NavaBaseError(SOUND_FILE_PATH_PARAM_ERROR )
         
         if not isinstance(sound_path, str):
             raise NavaBaseError(SOUND_FILE_PATH_TYPE_ERROR)
