@@ -105,19 +105,18 @@ def path_check(func):
         :type kwargs: dict
         :return: modified function result
         """
-        if("sound_path" in kwargs.keys()):
+        if "sound_path" in kwargs.keys():
             sound_path = kwargs["sound_path"]
-        elif(len(args) >= 1):
+        elif len(args) >= 1:
             sound_path = args[0]
         else: 
             raise NavaBaseError(SOUND_FILE_PATH_NOT_GIVEN)
         
-        if not (isinstance(sound_path, str)):
+        if not isinstance(sound_path, str):
             raise NavaBaseError(SOUND_FILE_PATH_TYPE_ERROR)
-        
-        print(sound_path)
+
         # check sound file existance
-        if not (os.path.isfile(sound_path)):
+        if not os.path.isfile(sound_path):
             raise NavaBaseError(SOUND_FILE_EXIST_ERROR)
         return func(*args, **kwargs)
     return inner_function
