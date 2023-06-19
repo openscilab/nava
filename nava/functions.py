@@ -26,10 +26,12 @@ def quote(func):
 
     :return: inner function
     """
-    def inner_function(sound_path, *args, **kwargs):
+    def quoter(sound_path, *args, **kwargs):
         """
         Inner function.
 
+        :param sound_path: the path to the sound path
+        :type sound_path: str
         :param args: non-keyword arguments
         :type args: list
         :param kwargs: keyword arguments
@@ -39,7 +41,7 @@ def quote(func):
         sound_path = shlex.quote(sound_path)
         args = (sound_path, *args[1:])
         return func(sound_path, *args, **kwargs)
-    return inner_function
+    return quoter
 
 
 def __play_win(sound_path):
@@ -94,10 +96,12 @@ def path_check(func):
 
     :return: inner function
     """
-    def inner_function(sound_path, *args, **kwargs):
+    def path_checker(sound_path, *args, **kwargs):
         """
         Inner function.
 
+        :param sound_path: the path to the sound path
+        :type sound_path: str
         :param args: non-keyword arguments
         :type args: list
         :param kwargs: keyword arguments
@@ -110,7 +114,7 @@ def path_check(func):
         if not os.path.isfile(sound_path):
             raise NavaBaseError(SOUND_FILE_EXIST_ERROR)
         return func(sound_path, *args, **kwargs)
-    return inner_function
+    return path_checker
 
 
 @path_check
