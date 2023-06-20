@@ -5,7 +5,7 @@ import subprocess
 import os
 import shlex
 
-from .params import OVERVIEW, SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, SOUND_FILE_PATH_TYPE_ERROR 
+from .params import OVERVIEW, SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, SOUND_FILE_PATH_TYPE_ERROR
 from .errors import NavaBaseError
 
 
@@ -30,7 +30,7 @@ def quote(func):
         """
         Inner function.
 
-        :param sound_path: the path to the sound path
+        :param sound_path: sound path
         :type sound_path: str
         :param args: non-keyword arguments
         :type args: list
@@ -100,7 +100,7 @@ def path_check(func):
         """
         Inner function.
 
-        :param sound_path: the path to the sound path
+        :param sound_path: sound path
         :type sound_path: str
         :param args: non-keyword arguments
         :type args: list
