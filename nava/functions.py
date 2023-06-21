@@ -26,21 +26,22 @@ def quote(func):
 
     :return: inner function
     """
-    def inner_function(*args, **kwargs):
+    def quoter(sound_path, *args, **kwargs):
         """
         Inner function.
 
+        :param sound_path: sound path
+        :type sound_path: str
         :param args: non-keyword arguments
         :type args: list
         :param kwargs: keyword arguments
         :type kwargs: dict
         :return: modified function result
         """
-        sound_path = args[0]
         sound_path = shlex.quote(sound_path)
         args = (sound_path, *args[1:])
-        return func(*args, **kwargs)
-    return inner_function
+        return func(sound_path, *args, **kwargs)
+    return quoter
 
 
 def __play_win(sound_path):
@@ -95,24 +96,25 @@ def path_check(func):
 
     :return: inner function
     """
-    def inner_function(*args, **kwargs):
+    def path_checker(sound_path, *args, **kwargs):
         """
         Inner function.
 
+        :param sound_path: sound path
+        :type sound_path: str
         :param args: non-keyword arguments
         :type args: list
         :param kwargs: keyword arguments
         :type kwargs: dict
         :return: modified function result
         """
-        sound_path = args[0]
-        if not (isinstance(sound_path, str)):
+        if not isinstance(sound_path, str):
             raise NavaBaseError(SOUND_FILE_PATH_TYPE_ERROR)
         # check sound file existance
-        if not (os.path.isfile(sound_path)):
+        if not os.path.isfile(sound_path):
             raise NavaBaseError(SOUND_FILE_EXIST_ERROR)
-        return func(*args, **kwargs)
-    return inner_function
+        return func(sound_path, *args, **kwargs)
+    return path_checker
 
 
 @path_check
