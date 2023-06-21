@@ -39,7 +39,6 @@ def quote(func):
         :return: modified function result
         """
         sound_path = shlex.quote(sound_path)
-        args = (sound_path, *args[1:])
         return func(sound_path, *args, **kwargs)
     return quoter
 
