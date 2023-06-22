@@ -4,8 +4,11 @@ import sys
 import subprocess
 import os
 import shlex
+from functools import wraps
 
-from .params import OVERVIEW, SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, SOUND_FILE_PATH_TYPE_ERROR
+from .params import OVERVIEW
+from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
+from .params import SOUND_FILE_PATH_TYPE_ERROR
 from .errors import NavaBaseError
 
 
@@ -26,6 +29,7 @@ def quote(func):
 
     :return: inner function
     """
+    @wraps(func)
     def quoter(sound_path, *args, **kwargs):
         """
         Inner function.
@@ -95,6 +99,7 @@ def path_check(func):
 
     :return: inner function
     """
+    @wraps(func)
     def path_checker(sound_path, *args, **kwargs):
         """
         Inner function.
