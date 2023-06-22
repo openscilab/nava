@@ -6,7 +6,9 @@ import os
 import shlex
 from functools import wraps
 
-from .params import OVERVIEW, SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, SOUND_FILE_PATH_TYPE_ERROR
+from .params import OVERVIEW
+from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
+from .params import SOUND_FILE_PATH_TYPE_ERROR
 from .errors import NavaBaseError
 
 
