@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Logo
+### Changed
+- `quote` decorator bug fixed
+- `path_check` decorator bug fixed
 ## [0.1] - 2023-06-10
 ### Added
 - `README.md`
@@ -16,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `quote` function
 - `path_check` function
 - `play` function
+
 
 [Unreleased]: https://github.com/openscilab/nava/compare/v0.1...dev
 [0.1]: https://github.com/openscilab/nava/compare/bd789cc...v0.1
