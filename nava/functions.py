@@ -5,6 +5,7 @@ import subprocess
 import os
 import shlex
 from functools import wraps
+import asyncio
 
 from .params import OVERVIEW
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
@@ -60,7 +61,7 @@ def __play_win(sound_path):
 
 
 @quote
-def __play_linux(sound_path):
+def __play_linux(sound_path, loop=False, is_async=True):
     """
     Play sound in Linux.
 
@@ -68,12 +69,41 @@ def __play_linux(sound_path):
     :type sound_path: str
     :return: None
     """
+    if is_async:
+        if loop:
+            while True:
+                asyncio.run(__play_async_linx(sound_path))
+        else:
+            asyncio.run(__play_async_linx(sound_path))
+    else:
+        if loop:
+            while True:
+                __play_sync_linux(sound_path)
+        else:
+            __play_sync_linux(sound_path)
+
+def __play_sync_linux(sound_path):
+    """
+    Play sound synch in Linux
+    """
     _ = subprocess.check_call(["aplay",
-                               sound_path],
-                              shell=False,
-                              stderr=subprocess.PIPE,
-                              stdin=subprocess.PIPE,
-                              stdout=subprocess.PIPE)
+                            sound_path],
+                            shell=False,
+                            stderr=subprocess.PIPE,
+                            stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE)
+
+async def __play_async_linx(sound_path):
+    """
+    Play sound async in Linux
+    """
+    play_cmd = f"aplay {sound_path}"
+    proc = await asyncio.subprocess.create_subprocess_shell(
+        play_cmd,
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE
+    )
+    stdout, stderr = await proc.communicate()
 
 
 @quote
@@ -122,12 +152,16 @@ def path_check(func):
 
 
 @path_check
-def play(sound_path):
+def play(sound_path, loop=False, is_async=True):
     """
     Play sound.
 
     :param sound_path: sound path
     :type sound_path: str
+    :param loop: play sound on loop (False by default)
+    :type loop: bool
+    :param is_async: play synchronously or asynchronously (True by default)
+    :type is_async: bool
     :return: None
     """
     try:
@@ -137,6 +171,6 @@ def play(sound_path):
         elif sys_platform == "darwin":
             __play_mac(sound_path)
         else:
-            __play_linux(sound_path)
+            __play_linux(sound_path, loop, is_async)
     except Exception:
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
