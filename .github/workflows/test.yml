@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, windows-latest, macOS-latest]
+        os: [ubuntu-20.04, windows-2022, macOS-12]
         python-version: [3.6, 3.7, 3.8, 3.9, 3.10.0, 3.11.0]
     steps:
     - uses: actions/checkout@v2
@@ -31,6 +31,33 @@ jobs:
     - name: First test
       run: |
         nava
+    - name: Install Scream (Windows)
+      shell: powershell
+      run: |
+        Start-Service audio*
+        Invoke-WebRequest https://github.com/duncanthrax/scream/releases/download/3.6/Scream3.6.zip -OutFile C:\Scream3.6.zip
+        Extract-7Zip -Path C:\Scream3.6.zip -DestinationPath C:\Scream
+        $cert = (Get-AuthenticodeSignature C:\Scream\Install\driver\Scream.sys).SignerCertificate
+        $store = [System.Security.Cryptography.X509Certificates.X509Store]::new("TrustedPublisher", "LocalMachine")
+        $store.Open("ReadWrite")
+        $store.Add($cert)
+        $store.Close()
+        cd C:\Scream\Install\driver
+        C:\Scream\Install\helpers\devcon install Scream.inf *Scream
+      if: matrix.os == 'windows-2022'
+    - name: Install ALSA (Linux)
+      run: |
+        sudo apt-get install alsa-utils
+        sudo apt-get install alsa-tools
+        sudo apt-get install alsa-firmware-loaders
+        sudo apt-get install -y software-properties-common
+        sudo apt-get install libasound2 
+        sudo apt-get install alsa-oss
+        sudo apt-get install -y ffmpeg
+        sudo apt-get install -y lame
+        sudo apt-get install linux-modules-extra-$(uname -r)
+        sudo modprobe snd-dummy
+      if: matrix.os == 'ubuntu-20.04'
     - name: Test requirements Installation
       run: |
         python others/requirements-splitter.py
