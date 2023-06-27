@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: CI
+name: Windows CI
 
 on: [push, pull_request]
 
@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, windows-2022, macOS-12]
+        os: [windows-2022]
         python-version: [3.6, 3.7, 3.8, 3.9, 3.10.0, 3.11.0]
     steps:
     - uses: actions/checkout@v2
@@ -44,47 +44,16 @@ jobs:
         $store.Close()
         cd C:\Scream\Install\driver
         C:\Scream\Install\helpers\devcon install Scream.inf *Scream
-      if: matrix.os == 'windows-2022'
-    - name: Install ALSA (Linux)
-      run: |
-        sudo apt-get install alsa-utils
-        sudo apt-get install alsa-tools
-        sudo apt-get install alsa-firmware-loaders
-        sudo apt-get install -y software-properties-common
-        sudo apt-get install libasound2 
-        sudo apt-get install alsa-oss
-        sudo apt-get install -y ffmpeg
-        sudo apt-get install -y lame
-        sudo apt-get install linux-modules-extra-$(uname -r)
-        sudo modprobe snd-dummy
-      if: matrix.os == 'ubuntu-20.04'
     - name: Test requirements Installation
       run: |
         python others/requirements-splitter.py
         pip install --upgrade --upgrade-strategy=only-if-needed -r test-requirements.txt
-    - name: Test requirements Installation (Linux)
-      run: |
-        sudo python -m pip install --upgrade pip
-        sudo pip install -r requirements.txt
-        sudo python setup.py install
-        sudo python others/requirements-splitter.py
-        sudo pip install --upgrade --upgrade-strategy=only-if-needed -r test-requirements.txt
-      if: matrix.os == 'ubuntu-20.04'
-    - name: Test with pytest (Windows/macOS)
+    - name: Test with pytest
       run: |
         python -m pytest --cov=nava --cov-report=term
-      if: matrix.os != 'ubuntu-20.04'
-    - name: Test with pytest (Linux)
-      run: |
-        sudo python -m pytest --cov=nava --cov-report=term
-      if: matrix.os == 'ubuntu-20.04'
     - name: Other tests
       run: |
           python -m vulture nava/ others/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
           python -m bandit -r nava -s B404,B603,B605,B607
           python -m pydocstyle -v --match-dir=nava
-      if: matrix.python-version == env.TEST_PYTHON_VERSION
-    - name: Version check
-      run: |
-        python others/version_check.py
       if: matrix.python-version == env.TEST_PYTHON_VERSION
