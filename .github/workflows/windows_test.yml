@@ -57,3 +57,8 @@ jobs:
           python -m bandit -r nava -s B404,B603,B605,B607
           python -m pydocstyle -v --match-dir=nava
       if: matrix.python-version == env.TEST_PYTHON_VERSION
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+          fail_ci_if_error: false
+      if: matrix.python-version == env.TEST_PYTHON_VERSION
