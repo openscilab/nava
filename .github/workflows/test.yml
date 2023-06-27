@@ -65,9 +65,11 @@ jobs:
     - name: Test with pytest (Windows/macOS)
       run: |
         python -m pytest --cov=nava --cov-report=term
+      if: matrix.os != 'ubuntu-20.04'
     - name: Test with pytest (Linux)
       run: |
         sudo python -m pytest --cov=nava --cov-report=term
+      if: matrix.os == 'ubuntu-20.04'
     - name: Other tests
       run: |
           python -m vulture nava/ others/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
