@@ -62,9 +62,12 @@ jobs:
       run: |
         python others/requirements-splitter.py
         pip install --upgrade --upgrade-strategy=only-if-needed -r test-requirements.txt
-    - name: Test with pytest
+    - name: Test with pytest (Windows/macOS)
       run: |
         python -m pytest --cov=nava --cov-report=term
+    - name: Test with pytest (Linux)
+      run: |
+        sudo python -m pytest --cov=nava --cov-report=term
     - name: Other tests
       run: |
           python -m vulture nava/ others/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
