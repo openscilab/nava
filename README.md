@@ -59,9 +59,19 @@ Nava is a Python library that allows users to play sound in Python without any d
 		<td align="center">dev</td>
 	</tr>
     <tr>
-		<td align="center">CI</td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/CI/badge.svg?branch=main"></td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/CI/badge.svg?branch=dev"></td>
+		<td align="center">Linux CI</td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Linux/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Linux/badge.svg?branch=dev"></td>
+	</tr>
+	<tr>
+		<td align="center">Windows CI</td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Windows/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Windows/badge.svg?branch=dev"></td>
+	</tr>
+	<tr>
+		<td align="center">macOS CI</td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/macOS/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/macOS/badge.svg?branch=dev"></td>
 	</tr>
 </table>
 
