@@ -9,7 +9,7 @@
         <img src="https://badge.fury.io/py/nava.svg" alt="PyPI version" height="18">
     </a>
 	<a href="https://codecov.io/gh/openscilab/nava">
-		<img src="https://codecov.io/gh/openscilab/nava/branch/main/graph/badge.svg">
+		<img src="https://codecov.io/gh/openscilab/nava/branch/main/graph/badge.svg" alt="Codecov">
 	</a>
     <a href="https://discord.gg/MCbPKCFBs3">
         <img src="https://img.shields.io/discord/1064533716615049236.svg" alt="Discord Channel">
