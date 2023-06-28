@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - `quote` decorator bug fixed
 - `path_check` decorator bug fixed
+- Test system modified
 ## [0.1] - 2023-06-10
 ### Added
 - `README.md`
