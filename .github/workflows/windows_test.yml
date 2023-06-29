@@ -30,7 +30,7 @@ jobs:
     - name: First test
       run: |
         nava
-    - name: Install Scream (Windows)
+    - name: Install Scream
       shell: powershell
       run: |
         Start-Service audio*
