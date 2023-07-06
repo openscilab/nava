@@ -8,6 +8,9 @@
     <a href="https://badge.fury.io/py/nava">
         <img src="https://badge.fury.io/py/nava.svg" alt="PyPI version" height="18">
     </a>
+	<a href="https://codecov.io/gh/openscilab/nava">
+		<img src="https://codecov.io/gh/openscilab/nava/branch/main/graph/badge.svg" alt="Codecov">
+	</a>
     <a href="https://discord.gg/MCbPKCFBs3">
         <img src="https://img.shields.io/discord/1064533716615049236.svg" alt="Discord Channel">
     </a>
@@ -59,9 +62,19 @@ Nava is a Python library that allows users to play sound in Python without any d
 		<td align="center">dev</td>
 	</tr>
     <tr>
-		<td align="center">CI</td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/CI/badge.svg?branch=main"></td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/CI/badge.svg?branch=dev"></td>
+		<td align="center">Linux CI</td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Linux/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Linux/badge.svg?branch=dev"></td>
+	</tr>
+	<tr>
+		<td align="center">Windows CI</td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Windows/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Windows/badge.svg?branch=dev"></td>
+	</tr>
+	<tr>
+		<td align="center">macOS CI</td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/macOS/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/workflows/macOS/badge.svg?branch=dev"></td>
 	</tr>
 </table>
 

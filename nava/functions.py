@@ -138,5 +138,5 @@ def play(sound_path):
             __play_mac(sound_path)
         else:
             __play_linux(sound_path)
-    except Exception:
+    except Exception: # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
