@@ -83,11 +83,17 @@ Nava is a Python library that allows users to play sound in Python without any d
 ### PyPI
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install nava==0.1` (Need root access)
+- Run `pip install nava==0.1`
 
 ### Source code
 - Download [Version 0.1](https://github.com/openscilab/nava/archive/v0.1.zip) or [Latest Source](https://github.com/openscilab/nava/archive/dev.zip)
 - Run `pip install .`
+
+### Conda
+
+- Check [Conda Managing Package](https://conda.io/)
+- Update Conda using `conda update conda`
+- Run `conda install -c openscilab nava`
 
 ## Usage
 
