@@ -32,14 +32,14 @@ def read_description():
 setup(
     name='nava',
     packages=['nava'],
-    version='0.1',
+    version='0.2',
     description='A Python library for playing sound everywhere natively and securely. ',
     long_description=read_description(),
     long_description_content_type='text/markdown',
     author='OpenSciLab Development Team',
     author_email='info@openscilab.com',
     url='https://github.com/openscilab/nava',
-    download_url='https://github.com/openscilab/nava/tarball/v0.1',
+    download_url='https://github.com/openscilab/nava/tarball/v0.2',
     keywords="sound wav music mp3 player audio",
     project_urls={
         'Webpage': 'https://openscilab.com/',
