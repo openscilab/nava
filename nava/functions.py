@@ -81,6 +81,7 @@ async def __play_linux(sound_path, is_async=True):
 def __play_sync_linux(sound_path):
     """
     Play sound synchronously in Linux
+
     :param sound_path: sound path to be played
     :type sound_path: str
     :return: None
@@ -96,6 +97,7 @@ def __play_sync_linux(sound_path):
 async def __play_async_linux(sound_path):
     """
     Play sound asynchronously in Linux
+    
     :param sound_path: sound path to be played
     :type sound_path: str
     :return: None
