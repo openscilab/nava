@@ -60,55 +60,51 @@ def __play_win(sound_path):
     winsound.PlaySound(sound_path, winsound.SND_FILENAME)
 
 
+async def __play_win_async(sound_path):
+    """
+    Play sound in asynchronously Windows.
+
+    :param sound_path: sound path
+    :type sound_path: str
+    :return: None
+    """
+    import winsound
+    await winsound.PlaySound(sound_path, winsound.SND_FILENAME | winsound.SND_ASYNC)
+
+
 @quote
-async def __play_linux(sound_path, is_async=True):
+def __play_linux(sound_path):
     """
     Play sound in Linux.
 
-    :param sound_path: sound path to be played
-    :type sound_path: str
-    :param is_async: play async or not
-    :type is_async: bool
-    :return: None
-    """
-    if is_async:
-        task = asyncio.create_task(__play_async_linux(sound_path))
-        await task
-    else:
-        __play_sync_linux(sound_path)
-
-
-def __play_sync_linux(sound_path):
-    """
-    Play sound synchronously in Linux.
-
-    :param sound_path: sound path to be played
+    :param sound_path: sound path
     :type sound_path: str
     :return: None
     """
     _ = subprocess.check_call(["aplay",
-                            sound_path],
-                            shell=False,
-                            stderr=subprocess.PIPE,
-                            stdin=subprocess.PIPE,
-                            stdout=subprocess.PIPE)
+                               sound_path],
+                              shell=False,
+                              stderr=subprocess.PIPE,
+                              stdin=subprocess.PIPE,
+                              stdout=subprocess.PIPE)
 
 
-async def __play_async_linux(sound_path):
+@quote
+async def __play_linux_async(sound_path):
     """
     Play sound asynchronously in Linux.
 
-    :param sound_path: sound path to be played
+    :param sound_path: sound path
     :type sound_path: str
     :return: None
     """
-    play_cmd = f"aplay {sound_path}"
-    proc = await asyncio.subprocess.create_subprocess_shell(
-        play_cmd,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE
-    )
-    stdout, stderr = await proc.communicate()
+    proc = await asyncio.subprocess.create_subprocess_exec("aplay",
+                                                           sound_path,
+                                                           shell=False,
+                                                           stderr=asyncio.subprocess.PIPE,
+                                                           stdin=asyncio.subprocess.PIPE,
+                                                           stdout=asyncio.subprocess.PIPE)
+    await proc.communicate()
 
 
 @quote
@@ -126,6 +122,24 @@ def __play_mac(sound_path):
                               stderr=subprocess.PIPE,
                               stdin=subprocess.PIPE,
                               stdout=subprocess.PIPE)
+
+
+@quote
+async def __play_mac_async(sound_path):
+    """
+    Play sound asynchronously in macOS.
+
+    :param sound_path: sound path
+    :type sound_path: str
+    :return: None
+    """
+    proc = await asyncio.subprocess.create_subprocess_exec("afplay",
+                                                           sound_path,
+                                                           shell=False,
+                                                           stderr=asyncio.subprocess.PIPE,
+                                                           stdin=asyncio.subprocess.PIPE,
+                                                           stdout=asyncio.subprocess.PIPE)
+    await proc.communicate()
 
 
 def path_check(func):
@@ -157,14 +171,34 @@ def path_check(func):
 
 
 @path_check
-async def play(sound_path, is_async=True):
+async def play_async(sound_path):
     """
     Play sound.
 
     :param sound_path: sound path
     :type sound_path: str
-    :param is_async: play synchronously or asynchronously (async by default)
-    :type is_async: bool
+    :return: None
+    """
+    try:
+        sys_platform = sys.platform
+        if sys_platform == "win32":
+            task = asyncio.create_task(__play_win_async(sound_path))
+        elif sys_platform == "darwin":
+            task = asyncio.create_task(__play_mac_async(sound_path))
+        else:
+            task = asyncio.create_task(__play_linux_async(sound_path))
+        await task
+    except Exception:  # pragma: no cover
+        raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
+
+
+@path_check
+def play(sound_path):
+    """
+    Play sound.
+
+    :param sound_path: sound path
+    :type sound_path: str
     :return: None
     """
     try:
@@ -174,7 +208,6 @@ async def play(sound_path, is_async=True):
         elif sys_platform == "darwin":
             __play_mac(sound_path)
         else:
-            task = asyncio.create_task(__play_linux(sound_path, is_async))
-            await task
-    except Exception: # pragma: no cover
+            __play_linux(sound_path)
+    except Exception:  # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
