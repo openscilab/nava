@@ -1,0 +1,50 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: macOS
+
+on: [push, pull_request]
+
+env:
+  TEST_PYTHON_VERSION: 3.9
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macOS-12, macOS-11]
+        python-version: [3.6, 3.7, 3.8, 3.9, 3.10.0, 3.11.0]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Installation
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        python setup.py install
+    - name: First test
+      run: |
+        nava
+    - name: Test requirements Installation
+      run: |
+        python others/requirements-splitter.py
+        pip install --upgrade --upgrade-strategy=only-if-needed -r test-requirements.txt
+    - name: Test with pytest
+      run: |
+        python -m pytest --cov=nava --cov-report=term
+    - name: Other tests
+      run: |
+          python -m vulture nava/ others/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
+          python -m bandit -r nava -s B404,B603,B605,B607
+          python -m pydocstyle -v --match-dir=nava
+      if: matrix.python-version == env.TEST_PYTHON_VERSION
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+          fail_ci_if_error: false
+      if: matrix.python-version == env.TEST_PYTHON_VERSION

@@ -174,5 +174,5 @@ async def play(sound_path, is_async=True):
         else:
             task = asyncio.create_task(__play_linux(sound_path, is_async))
             await task
-    except Exception:
+    except Exception: # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
