@@ -60,7 +60,7 @@ def __play_win(sound_path):
     winsound.PlaySound(sound_path, winsound.SND_FILENAME)
 
 
-async def __play_win_async(sound_path):
+def __play_win_async(sound_path):
     """
     Play sound in asynchronously Windows.
 
@@ -69,7 +69,7 @@ async def __play_win_async(sound_path):
     :return: None
     """
     import winsound
-    await winsound.PlaySound(sound_path, winsound.SND_FILENAME | winsound.SND_ASYNC)
+    winsound.PlaySound(sound_path, winsound.SND_FILENAME | winsound.SND_ASYNC)
 
 
 @quote
@@ -182,12 +182,11 @@ async def play_async(sound_path):
     try:
         sys_platform = sys.platform
         if sys_platform == "win32":
-            task = asyncio.create_task(__play_win_async(sound_path))
+            __play_win_async(sound_path)
         elif sys_platform == "darwin":
-            task = asyncio.create_task(__play_mac_async(sound_path))
+            await asyncio.create_task(__play_mac_async(sound_path))
         else:
-            task = asyncio.create_task(__play_linux_async(sound_path))
-        await task
+            await asyncio.create_task(__play_linux_async(sound_path))
     except Exception:  # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
