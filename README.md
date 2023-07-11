@@ -103,6 +103,22 @@ from nava import play
 play("alarm.wav")
 ```
 
+### Async
+```python
+import asyncio
+from nava import play_async
+
+async def my_task():
+    # the task you wanted to run it asynchronously while sound is playing.
+    pass
+
+async def main():
+    asyncio.create_task(my_task())
+    await asyncio.create_task(play_async("alarm.wav"))
+
+asyncio.run(main())
+```
+
 ### Error
 
 ```python
