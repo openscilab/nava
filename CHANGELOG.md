@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `__play_win_async` function
 - `__play_linux_async` function
 - `__play_mac_async` function
+### Changed
+- Python 3.6 support dropped.
 ## [0.2] - 2023-07-10
 ### Added
 - Logo
