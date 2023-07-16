@@ -5,12 +5,17 @@ import subprocess
 import os
 import shlex
 from functools import wraps
-import asyncio
+import threading
 
 from .params import OVERVIEW
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR
 from .errors import NavaBaseError
+
+"""
+List of all aplay processes
+"""
+play_processes = []
 
 
 def nava_help():
@@ -48,6 +53,17 @@ def quote(func):
     return quoter
 
 
+def __cleanup_processes():
+    """
+    Cleanup undead play processes after module exit.
+
+    :return: None
+    """
+    for proc in play_processes:
+        proc.terminate()
+        proc.kill()
+
+
 def __play_win(sound_path):
     """
     Play sound in Windows.
@@ -61,7 +77,7 @@ def __play_win(sound_path):
 
 
 @quote
-async def __play_linux(sound_path, is_async=True):
+def __play_linux(sound_path, is_async=True):
     """
     Play sound in Linux.
 
@@ -69,13 +85,12 @@ async def __play_linux(sound_path, is_async=True):
     :type sound_path: str
     :param is_async: play async or not
     :type is_async: bool
-    :return: None
+    :return: None or sound thread
     """
     if is_async:
-        task = asyncio.create_task(__play_async_linux(sound_path))
-        await task
+        return __play_async_linux(sound_path)
     else:
-        __play_sync_linux(sound_path)
+        return __play_sync_linux(sound_path)
 
 
 def __play_sync_linux(sound_path):
@@ -92,23 +107,31 @@ def __play_sync_linux(sound_path):
                             stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE)
+    return None
 
 
-async def __play_async_linux(sound_path):
+def __play_non_blocking_linux(sound_path):
+    proc = subprocess.Popen(["aplay",
+                            sound_path],
+                            stderr=subprocess.PIPE,
+                            stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE)
+    play_processes.append(proc)
+
+
+def __play_async_linux(sound_path):
     """
     Play sound asynchronously in Linux.
 
     :param sound_path: sound path to be played
     :type sound_path: str
-    :return: None
+    :return: sound thread for further handalings
     """
-    play_cmd = f"aplay {sound_path}"
-    proc = await asyncio.subprocess.create_subprocess_shell(
-        play_cmd,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE
-    )
-    stdout, stderr = await proc.communicate()
+    sound_thread = threading.Thread(target=__play_non_blocking_linux,
+                                    args=(sound_path,),
+                                    daemon=True)
+    sound_thread.start()
+    return sound_thread
 
 
 @quote
@@ -157,7 +180,7 @@ def path_check(func):
 
 
 @path_check
-async def play(sound_path, is_async=True):
+def play(sound_path, is_async=True):
     """
     Play sound.
 
@@ -165,7 +188,7 @@ async def play(sound_path, is_async=True):
     :type sound_path: str
     :param is_async: play synchronously or asynchronously (async by default)
     :type is_async: bool
-    :return: None
+    :return: None or sound thread for futher handlings
     """
     try:
         sys_platform = sys.platform
@@ -174,6 +197,6 @@ async def play(sound_path, is_async=True):
         elif sys_platform == "darwin":
             __play_mac(sound_path)
         else:
-            __play_linux(sound_path)
+            return __play_linux(sound_path, is_async)
     except Exception: # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
