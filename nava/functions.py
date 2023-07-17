@@ -111,6 +111,13 @@ def __play_sync_linux(sound_path):
 
 
 def __play_non_blocking_linux(sound_path):
+    """
+    Non-blocking sound playing.
+
+    :param sound_path: sound path to be played
+    :type sound_path: str
+    :return: None
+    """
     proc = subprocess.Popen(["aplay",
                             sound_path],
                             stderr=subprocess.PIPE,
