@@ -64,16 +64,20 @@ def cleanup_processes():
         proc.terminate()
 
 
-def __play_win(sound_path):
+def __play_win(sound_path, is_async):
     """
     Play sound in Windows.
 
     :param sound_path: sound path
     :type sound_path: str
+    :param is_async: play async or not
+    :type is_async: bool
     :return: None
     """
     import winsound
-    winsound.PlaySound(sound_path, winsound.SND_FILENAME)
+    # If is_async is ture, play async
+    play_flags = winsound.SND_FILENAME | (is_async & winsound.SND_ASYNC)
+    winsound.PlaySound(sound_path, play_flags)
 
 
 @quote
@@ -188,7 +192,7 @@ def play(sound_path, is_async=True):
     try:
         sys_platform = sys.platform
         if sys_platform == "win32":
-            __play_win(sound_path)
+            __play_win(sound_path, is_async)
         elif sys_platform == "darwin":
             __play_mac(sound_path)
         else:
