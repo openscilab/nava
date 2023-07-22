@@ -53,15 +53,15 @@ def quote(func):
     return quoter
 
 
-def __cleanup_processes():
+def cleanup_processes():
     """
     Cleanup undead play processes after module exit.
 
     :return: None
     """
     for proc in play_processes:
-        proc.terminate()
         proc.kill()
+        proc.terminate()
 
 
 def __play_win(sound_path):
@@ -85,12 +85,16 @@ def __play_linux(sound_path, is_async=True):
     :type sound_path: str
     :param is_async: play async or not
     :type is_async: bool
-    :return: None or sound thread
+    :return: None or sound thread (depending on async flag)
     """
     if is_async:
-        return __play_async_linux(sound_path)
+        sound_thread = threading.Thread(target=__play_async_linux,
+                                        args=(sound_path,),
+                                        daemon=True)
+        sound_thread.start()
+        return sound_thread
     else:
-        return __play_sync_linux(sound_path)
+        __play_sync_linux(sound_path)
 
 
 def __play_sync_linux(sound_path):
@@ -107,12 +111,11 @@ def __play_sync_linux(sound_path):
                             stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE)
-    return None
+    
 
-
-def __play_non_blocking_linux(sound_path):
+def __play_async_linux(sound_path):
     """
-    Non-blocking sound playing.
+    Play sound asynchronously in Linux.
 
     :param sound_path: sound path to be played
     :type sound_path: str
@@ -124,21 +127,6 @@ def __play_non_blocking_linux(sound_path):
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE)
     play_processes.append(proc)
-
-
-def __play_async_linux(sound_path):
-    """
-    Play sound asynchronously in Linux.
-
-    :param sound_path: sound path to be played
-    :type sound_path: str
-    :return: sound thread for further handalings
-    """
-    sound_thread = threading.Thread(target=__play_non_blocking_linux,
-                                    args=(sound_path,),
-                                    daemon=True)
-    sound_thread.start()
-    return sound_thread
 
 
 @quote
