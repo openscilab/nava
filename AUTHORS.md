@@ -11,3 +11,4 @@
 # Other Contributors #
 ----------
 - Zahra Mobasher ([Instagram](https://www.instagram.com/littleblackoyster/?hl=en))
+- Nima Samadi ([Github](https://github.com/NimaSamadi007))
