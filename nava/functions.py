@@ -12,6 +12,7 @@ from .params import SOUND_FILE_PATH_TYPE_ERROR
 from .errors import NavaBaseError
 from . import params
 
+
 def stop(sound_id):
     """
     Stop sound.
@@ -22,6 +23,7 @@ def stop(sound_id):
     """
     params._play_threads_map[sound_id].stop()
 
+
 def stop_all():
     """
     Stop all sounds.
@@ -31,15 +33,17 @@ def stop_all():
     for thread in params._play_threads_map.values():
         thread.stop()
 
+
 def sound_id_gen():
     """
     Sound id generator.
 
     :return: sound id as int
     """
-    params._play_threads_counter +=1
+    params._play_threads_counter += 1
     sound_id = params._play_threads_counter + 1000
     return sound_id
+
 
 def nava_help():
     """
@@ -74,6 +78,7 @@ def quote(func):
         sound_path = shlex.quote(sound_path)
         return func(sound_path, *args, **kwargs)
     return quoter
+
 
 def __play_win(sound_path, async_mode=True):
     """
@@ -125,8 +130,8 @@ def __play_linux(sound_path, async_mode=True):
     """
     if async_mode:
         sound_thread = NavaThread(target=__play_sync_linux,
-                                        args=(sound_path,),
-                                        daemon=True)
+                                  args=(sound_path,),
+                                  daemon=True)
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
@@ -144,13 +149,12 @@ def __play_sync_linux(sound_path):
     :return: process
     """
     proc = subprocess.Popen(["aplay",
-                            sound_path],
+                             sound_path],
                             shell=False,
                             stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE)
     return proc
-
 
 
 @quote
@@ -166,8 +170,8 @@ def __play_mac(sound_path, async_mode=True):
     """
     if async_mode:
         sound_thread = NavaThread(target=__play_sync_mac,
-                                        args=(sound_path,),
-                                        daemon=True)
+                                  args=(sound_path,),
+                                  daemon=True)
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
@@ -185,11 +189,11 @@ def __play_sync_mac(sound_path):
     :return: process
     """
     proc = subprocess.Popen(["afplay",
-                               sound_path],
-                              shell=False,
-                              stderr=subprocess.PIPE,
-                              stdin=subprocess.PIPE,
-                              stdout=subprocess.PIPE)
+                             sound_path],
+                            shell=False,
+                            stderr=subprocess.PIPE,
+                            stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE)
     return proc
 
 
@@ -240,5 +244,5 @@ def play(sound_path, async_mode=True):
             return __play_mac(sound_path, async_mode)
         else:
             return __play_linux(sound_path, async_mode)
-    except Exception: # pragma: no cover
+    except Exception:  # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)

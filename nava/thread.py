@@ -9,6 +9,7 @@ class NavaThread(threading.Thread):
     """
     Nava custom thread.
     """
+
     def __init__(self, *args, **kwargs):
         """
         Init method.
