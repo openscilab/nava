@@ -12,11 +12,8 @@ from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR
 from .errors import NavaBaseError
 
-"""
-List of all aplay processes
-"""
-play_processes = []
-
+def sound_id_gen():
+    pass
 
 def nava_help():
     """
@@ -76,7 +73,28 @@ def __play_win(sound_path, is_async=True):
     """
     import winsound
     play_flags = winsound.SND_FILENAME | (is_async & winsound.SND_ASYNC)
-    winsound.PlaySound(sound_path, play_flags)
+
+    if is_async:
+        sound_thread = threading.Thread(target=__play_win_by_flags,
+                                        args=(sound_path, play_flags),
+                                        daemon=True)
+        sound_thread.start()
+    else:
+        winsound.PlaySound(sound_path, play_flags)
+
+
+def __play_win_by_flags(sound_path, flags):
+    """
+    Play sound in Windows.
+
+    :param sound_path: sound path
+    :type sound_path: str
+    :param flags: different mode flags
+    :type flags: winsound flags
+    :return: None
+    """
+    import winsound
+    winsound.PlaySound(sound_path, flags)
 
 
 @quote
