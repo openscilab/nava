@@ -6,9 +6,7 @@ import threading
 
 
 class NavaThread(threading.Thread):
-    """
-    Nava custom thread.
-    """
+    """Nava custom thread."""
 
     def __init__(self, *args, **kwargs):
         """
