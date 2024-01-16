@@ -106,6 +106,8 @@ play("alarm.wav")
 
 ### Async mode
 
+⚠️ The `async_mode` parameter has a default value of `False`
+
 ```python
 import time
 from nava import play, stop
