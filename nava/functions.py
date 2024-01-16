@@ -81,7 +81,7 @@ def __play_win(sound_path, async_mode=True):
 
     :param sound_path: sound path
     :type sound_path: str
-    :param async_mode: play async or not
+    :param async_mode: async mode flag
     :type async_mode: bool
     :return: None or sound id
     """
@@ -119,7 +119,7 @@ def __play_linux(sound_path, async_mode=True):
 
     :param sound_path: sound path to be played
     :type sound_path: str
-    :param async_mode: play async or not
+    :param async_mode: async mode flag
     :type async_mode: bool
     :return: None or sound id
     """
@@ -160,7 +160,7 @@ def __play_mac(sound_path, async_mode=True):
 
     :param sound_path: sound path
     :type sound_path: str
-    :param async_mode: play sound in async mode
+    :param async_mode: async mode flag
     :type async_mode: bool
     :return: None or sound id
     """
@@ -228,7 +228,7 @@ def play(sound_path, async_mode=True):
 
     :param sound_path: sound path
     :type sound_path: str
-    :param async_mode: play synchronously or asynchronously (async by default)
+    :param async_mode: async mode flag
     :type async_mode: bool
     :return: None or sound id
     """
