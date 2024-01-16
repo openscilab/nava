@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
->>> from nava import play
+>>> from nava import play, stop
 >>> play("test.wav")
 Traceback (most recent call last):
     ...
@@ -9,4 +9,8 @@ nava.errors.NavaBaseError: Given sound file doesn't exist.
 Traceback (most recent call last):
     ...
 nava.errors.NavaBaseError: Sound file's path should be a string.
+>>> stop(222222)
+Traceback (most recent call last):
+    ...
+nava.errors.NavaBaseError: Given sound id doesn't exist.
 """
