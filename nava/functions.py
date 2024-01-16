@@ -232,7 +232,7 @@ def play(sound_path, is_async=True):
     try:
         sys_platform = sys.platform
         if sys_platform == "win32":
-            __play_win(sound_path, is_async)
+            return __play_win(sound_path, is_async)
         elif sys_platform == "darwin":
             return __play_mac(sound_path, is_async)
         else:
