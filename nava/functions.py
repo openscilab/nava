@@ -5,7 +5,7 @@ import subprocess
 import os
 import shlex
 from functools import wraps
-import threading
+from .thread import NavaThread
 from .params import OVERVIEW
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR
@@ -18,7 +18,7 @@ def stop(sound_id):
 def stop_all():
     for thread in params._play_threads_map.values():
         thread.stop()
-        
+
 def sound_id_gen():
     params._play_threads_counter +=1
     sound_id = params._play_threads_counter + 1000
@@ -84,7 +84,7 @@ def __play_win(sound_path, is_async=True):
     play_flags = winsound.SND_FILENAME | (is_async & winsound.SND_ASYNC)
 
     if is_async:
-        sound_thread = threading.Thread(target=__play_win_by_flags,
+        sound_thread = NavaThread(target=__play_win_by_flags,
                                         args=(sound_path, play_flags),
                                         daemon=True)
         sound_thread.start()
@@ -121,7 +121,7 @@ def __play_linux(sound_path, is_async=True):
     :return: None or sound thread (depending on async flag)
     """
     if is_async:
-        sound_thread = threading.Thread(target=__play_sync_linux,
+        sound_thread = NavaThread(target=__play_sync_linux,
                                         args=(sound_path,),
                                         daemon=True)
         sound_thread.start()
@@ -162,7 +162,7 @@ def __play_mac(sound_path, is_async=True):
     :return: None or sound thread, depending on the flag
     """
     if is_async:
-        sound_thread = threading.Thread(target=__play_sync_mac,
+        sound_thread = NavaThread(target=__play_sync_mac,
                                         args=(sound_path,),
                                         daemon=True)
         sound_thread.start()
