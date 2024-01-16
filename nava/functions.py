@@ -75,7 +75,6 @@ def __play_win(sound_path, is_async=True):
     :return: None
     """
     import winsound
-    # If is_async is ture, play async
     play_flags = winsound.SND_FILENAME | (is_async & winsound.SND_ASYNC)
     winsound.PlaySound(sound_path, play_flags)
 
@@ -92,7 +91,7 @@ def __play_linux(sound_path, is_async=True):
     :return: None or sound thread (depending on async flag)
     """
     if is_async:
-        sound_thread = threading.Thread(target=__play_async_linux,
+        sound_thread = threading.Thread(target=__play_sync_linux,
                                         args=(sound_path,),
                                         daemon=True)
         sound_thread.start()
@@ -107,30 +106,16 @@ def __play_sync_linux(sound_path):
 
     :param sound_path: sound path to be played
     :type sound_path: str
-    :return: None
+    :return: process
     """
-    _ = subprocess.check_call(["aplay",
+    proc = subprocess.check_call(["aplay",
                             sound_path],
                             shell=False,
                             stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE)
-    
+    return proc
 
-def __play_async_linux(sound_path):
-    """
-    Play sound asynchronously in Linux.
-
-    :param sound_path: sound path to be played
-    :type sound_path: str
-    :return: None
-    """
-    proc = subprocess.Popen(["aplay",
-                            sound_path],
-                            stderr=subprocess.PIPE,
-                            stdin=subprocess.PIPE,
-                            stdout=subprocess.PIPE)
-    play_processes.append(proc)
 
 
 @quote
@@ -145,7 +130,7 @@ def __play_mac(sound_path, is_async=True):
     :return: None or sound thread, depending on the flag
     """
     if is_async:
-        sound_thread = threading.Thread(target=__play_async_mac,
+        sound_thread = threading.Thread(target=__play_sync_mac,
                                         args=(sound_path,),
                                         daemon=True)
         sound_thread.start()
@@ -162,28 +147,13 @@ def __play_sync_mac(sound_path):
     :type sound_path: str
     :return: None
     """
-    _ = subprocess.check_call(["afplay",
+    proc = subprocess.check_call(["afplay",
                                sound_path],
                               shell=False,
                               stderr=subprocess.PIPE,
                               stdin=subprocess.PIPE,
                               stdout=subprocess.PIPE)
-
-
-def __play_async_mac(sound_path):
-    """
-    Play sound asynchronously in macOS.
-
-    :param sound_path: sound path to be played
-    :type sound_path: str
-    :return: None
-    """
-    proc = subprocess.Popen(["afplay",
-                            sound_path],
-                            stderr=subprocess.PIPE,
-                            stdin=subprocess.PIPE,
-                            stdout=subprocess.PIPE)
-    play_processes.append(proc)
+    return proc
 
 
 def path_check(func):
