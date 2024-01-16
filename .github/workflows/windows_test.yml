@@ -33,6 +33,8 @@ jobs:
     - name: Install Scream
       shell: powershell
       run: |
+        Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+        Install-Module -Name 7Zip4PowerShell -Force
         Start-Service audio*
         Invoke-WebRequest https://github.com/duncanthrax/scream/releases/download/3.6/Scream3.6.zip -OutFile C:\Scream3.6.zip
         Extract-7Zip -Path C:\Scream3.6.zip -DestinationPath C:\Scream
