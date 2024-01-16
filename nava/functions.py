@@ -58,18 +58,6 @@ def quote(func):
         return func(sound_path, *args, **kwargs)
     return quoter
 
-
-def cleanup_processes():
-    """
-    Cleanup undead play processes after module exit.
-
-    :return: None
-    """
-    for proc in play_processes:
-        proc.kill()
-        proc.terminate()
-
-
 def __play_win(sound_path, is_async=True):
     """
     Play sound in Windows.
