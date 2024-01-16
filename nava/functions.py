@@ -6,14 +6,16 @@ import os
 import shlex
 from functools import wraps
 import threading
-
 from .params import OVERVIEW
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR
 from .errors import NavaBaseError
+from . import params
 
 def sound_id_gen():
-    pass
+    params._play_threads_counter +=1
+    sound_id = params._play_threads_counter + 1000
+    return sound_id
 
 def nava_help():
     """
@@ -79,6 +81,9 @@ def __play_win(sound_path, is_async=True):
                                         args=(sound_path, play_flags),
                                         daemon=True)
         sound_thread.start()
+        sound_id = sound_id_gen()
+        params._play_threads_map[sound_id] = sound_thread
+        return sound_id
     else:
         winsound.PlaySound(sound_path, play_flags)
 
@@ -113,7 +118,9 @@ def __play_linux(sound_path, is_async=True):
                                         args=(sound_path,),
                                         daemon=True)
         sound_thread.start()
-        return sound_thread
+        sound_id = sound_id_gen()
+        params._play_threads_map[sound_id] = sound_thread
+        return sound_id
     else:
         __play_sync_linux(sound_path)
 
@@ -152,7 +159,9 @@ def __play_mac(sound_path, is_async=True):
                                         args=(sound_path,),
                                         daemon=True)
         sound_thread.start()
-        return sound_thread
+        sound_id = sound_id_gen()
+        params._play_threads_map[sound_id] = sound_thread
+        return sound_id
     else:
         __play_sync_mac(sound_path)
 
