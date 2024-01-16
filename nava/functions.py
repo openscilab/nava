@@ -128,7 +128,7 @@ def __play_sync_linux(sound_path):
     :type sound_path: str
     :return: process
     """
-    proc = subprocess.check_call(["aplay",
+    proc = subprocess.Popen(["aplay",
                             sound_path],
                             shell=False,
                             stderr=subprocess.PIPE,
@@ -169,7 +169,7 @@ def __play_sync_mac(sound_path):
     :type sound_path: str
     :return: None
     """
-    proc = subprocess.check_call(["afplay",
+    proc = subprocess.Popen(["afplay",
                                sound_path],
                               shell=False,
                               stderr=subprocess.PIPE,
