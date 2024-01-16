@@ -12,6 +12,13 @@ from .params import SOUND_FILE_PATH_TYPE_ERROR
 from .errors import NavaBaseError
 from . import params
 
+def stop(sound_id):
+    params._play_threads_map[sound_id].stop()
+
+def stop_all():
+    for thread in params._play_threads_map.values():
+        thread.stop()
+        
 def sound_id_gen():
     params._play_threads_counter +=1
     sound_id = params._play_threads_counter + 1000
