@@ -2,7 +2,7 @@
 """
 >>> import os
 >>> from nava import play
->>> play(os.path.join("others", "test.wav"))
+>>> sound_id = play(os.path.join("others", "test.wav"))
 >>> from nava.functions import nava_help
 >>> nava_help()
 <BLANKLINE>
