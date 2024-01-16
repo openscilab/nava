@@ -13,13 +13,30 @@ from .errors import NavaBaseError
 from . import params
 
 def stop(sound_id):
+    """
+    Stop sound.
+
+    :param sound_id: sound id
+    :type sound_id: int
+    :return: None
+    """
     params._play_threads_map[sound_id].stop()
 
 def stop_all():
+    """
+    Stop all sounds.
+
+    :return: None
+    """
     for thread in params._play_threads_map.values():
         thread.stop()
 
 def sound_id_gen():
+    """
+    Sound id generator.
+
+    :return: sound id as int
+    """
     params._play_threads_counter +=1
     sound_id = params._play_threads_counter + 1000
     return sound_id
