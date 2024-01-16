@@ -83,15 +83,13 @@ def __play_win(sound_path, is_async=True):
     :type sound_path: str
     :param is_async: play async or not
     :type is_async: bool
-    :return: None
+    :return: None or sound id
     """
     import winsound
     play_flags = winsound.SND_FILENAME | (is_async & winsound.SND_ASYNC)
 
     if is_async:
-        sound_thread = NavaThread(target=__play_win_by_flags,
-                                        args=(sound_path, play_flags),
-                                        daemon=True)
+        sound_thread = NavaThread(target=__play_win_by_flags, args=(sound_path, play_flags), daemon=True)
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
@@ -123,7 +121,7 @@ def __play_linux(sound_path, is_async=True):
     :type sound_path: str
     :param is_async: play async or not
     :type is_async: bool
-    :return: None or sound thread (depending on async flag)
+    :return: None or sound id
     """
     if is_async:
         sound_thread = NavaThread(target=__play_sync_linux,
@@ -164,7 +162,7 @@ def __play_mac(sound_path, is_async=True):
     :type sound_path: str
     :param is_async: play sound in async mode
     :type is_async: bool
-    :return: None or sound thread, depending on the flag
+    :return: None or sound id
     """
     if is_async:
         sound_thread = NavaThread(target=__play_sync_mac,
@@ -184,7 +182,7 @@ def __play_sync_mac(sound_path):
 
     :param sound_path: sound path to be played
     :type sound_path: str
-    :return: None
+    :return: process
     """
     proc = subprocess.Popen(["afplay",
                                sound_path],
@@ -232,7 +230,7 @@ def play(sound_path, is_async=True):
     :type sound_path: str
     :param is_async: play synchronously or asynchronously (async by default)
     :type is_async: bool
-    :return: None or sound thread for futher handlings
+    :return: None or sound id
     """
     try:
         sys_platform = sys.platform
