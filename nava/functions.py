@@ -89,7 +89,7 @@ def __play_win(sound_path, is_async=True):
     play_flags = winsound.SND_FILENAME | (is_async & winsound.SND_ASYNC)
 
     if is_async:
-        sound_thread = NavaThread(target=__play_win_by_flags, args=(sound_path, play_flags), daemon=True)
+        sound_thread = NavaThread(target=__play_win_flags, args=(sound_path, play_flags), daemon=True)
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
@@ -98,9 +98,9 @@ def __play_win(sound_path, is_async=True):
         winsound.PlaySound(sound_path, play_flags)
 
 
-def __play_win_by_flags(sound_path, flags):
+def __play_win_flags(sound_path, flags):
     """
-    Play sound in Windows.
+    Play sound in Windows using different flags.
 
     :param sound_path: sound path
     :type sound_path: str
