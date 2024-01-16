@@ -82,7 +82,7 @@ def quote(func):
     return quoter
 
 
-def __play_win(sound_path, async_mode=True):
+def __play_win(sound_path, async_mode=False):
     """
     Play sound in Windows.
 
@@ -120,7 +120,7 @@ def __play_win_flags(sound_path, flags):
 
 
 @quote
-def __play_linux(sound_path, async_mode=True):
+def __play_linux(sound_path, async_mode=False):
     """
     Play sound in Linux.
 
@@ -160,7 +160,7 @@ def __play_sync_linux(sound_path):
 
 
 @quote
-def __play_mac(sound_path, async_mode=True):
+def __play_mac(sound_path, async_mode=False):
     """
     Play sound in macOS.
 
@@ -228,7 +228,7 @@ def path_check(func):
 
 
 @path_check
-def play(sound_path, async_mode=True):
+def play(sound_path, async_mode=False):
     """
     Play sound.
 
