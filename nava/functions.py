@@ -75,20 +75,20 @@ def quote(func):
         return func(sound_path, *args, **kwargs)
     return quoter
 
-def __play_win(sound_path, is_async=True):
+def __play_win(sound_path, async_mode=True):
     """
     Play sound in Windows.
 
     :param sound_path: sound path
     :type sound_path: str
-    :param is_async: play async or not
-    :type is_async: bool
+    :param async_mode: play async or not
+    :type async_mode: bool
     :return: None or sound id
     """
     import winsound
-    play_flags = winsound.SND_FILENAME | (is_async & winsound.SND_ASYNC)
+    play_flags = winsound.SND_FILENAME | (async_mode & winsound.SND_ASYNC)
 
-    if is_async:
+    if async_mode:
         sound_thread = NavaThread(target=__play_win_flags, args=(sound_path, play_flags), daemon=True)
         sound_thread.start()
         sound_id = sound_id_gen()
@@ -113,17 +113,17 @@ def __play_win_flags(sound_path, flags):
 
 
 @quote
-def __play_linux(sound_path, is_async=True):
+def __play_linux(sound_path, async_mode=True):
     """
     Play sound in Linux.
 
     :param sound_path: sound path to be played
     :type sound_path: str
-    :param is_async: play async or not
-    :type is_async: bool
+    :param async_mode: play async or not
+    :type async_mode: bool
     :return: None or sound id
     """
-    if is_async:
+    if async_mode:
         sound_thread = NavaThread(target=__play_sync_linux,
                                         args=(sound_path,),
                                         daemon=True)
@@ -154,17 +154,17 @@ def __play_sync_linux(sound_path):
 
 
 @quote
-def __play_mac(sound_path, is_async=True):
+def __play_mac(sound_path, async_mode=True):
     """
     Play sound in macOS.
 
     :param sound_path: sound path
     :type sound_path: str
-    :param is_async: play sound in async mode
-    :type is_async: bool
+    :param async_mode: play sound in async mode
+    :type async_mode: bool
     :return: None or sound id
     """
-    if is_async:
+    if async_mode:
         sound_thread = NavaThread(target=__play_sync_mac,
                                         args=(sound_path,),
                                         daemon=True)
@@ -222,23 +222,23 @@ def path_check(func):
 
 
 @path_check
-def play(sound_path, is_async=True):
+def play(sound_path, async_mode=True):
     """
     Play sound.
 
     :param sound_path: sound path
     :type sound_path: str
-    :param is_async: play synchronously or asynchronously (async by default)
-    :type is_async: bool
+    :param async_mode: play synchronously or asynchronously (async by default)
+    :type async_mode: bool
     :return: None or sound id
     """
     try:
         sys_platform = sys.platform
         if sys_platform == "win32":
-            return __play_win(sound_path, is_async)
+            return __play_win(sound_path, async_mode)
         elif sys_platform == "darwin":
-            return __play_mac(sound_path, is_async)
+            return __play_mac(sound_path, async_mode)
         else:
-            return __play_linux(sound_path, is_async)
+            return __play_linux(sound_path, async_mode)
     except Exception: # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
