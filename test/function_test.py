@@ -2,7 +2,7 @@
 """
 >>> import os
 >>> from nava import play, stop, stop_all
->>> play(os.path.join("others", "test.wav"), async_mode=False)
+>>> play(os.path.join("others", "test.wav"))
 >>> sound_id_1 = play(os.path.join("others", "test.wav"), async_mode=True)
 >>> sound_id_1 == 1001
 True
