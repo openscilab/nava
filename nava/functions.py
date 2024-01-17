@@ -131,7 +131,7 @@ def __play_linux(sound_path, async_mode=False):
     :return: None or sound id
     """
     if async_mode:
-        sound_thread = NavaThread(target=__play_sync_linux,
+        sound_thread = NavaThread(target=__play_proc_linux,
                                   args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
@@ -139,12 +139,13 @@ def __play_linux(sound_path, async_mode=False):
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        __play_sync_linux(sound_path)
+        proc = __play_proc_linux(sound_path)
+        proc.wait()
 
 
-def __play_sync_linux(sound_path):
+def __play_proc_linux(sound_path):
     """
-    Play sound synchronously in Linux.
+    Create sound playing process in Linux.
 
     :param sound_path: sound path to be played
     :type sound_path: str
@@ -171,7 +172,7 @@ def __play_mac(sound_path, async_mode=False):
     :return: None or sound id
     """
     if async_mode:
-        sound_thread = NavaThread(target=__play_sync_mac,
+        sound_thread = NavaThread(target=__play_proc_mac,
                                   args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
@@ -179,12 +180,13 @@ def __play_mac(sound_path, async_mode=False):
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        __play_sync_mac(sound_path)
+        proc = __play_proc_mac(sound_path)
+        proc.wait()
 
 
-def __play_sync_mac(sound_path):
+def __play_proc_mac(sound_path):
     """
-    Play sound synchronously in macOS.
+    Create sound playing process in macOS.
 
     :param sound_path: sound path to be played
     :type sound_path: str
