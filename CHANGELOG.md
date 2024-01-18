@@ -6,10 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Async mode
 - `NavaThread` class
 - `stop` function
 - `stop_all` function
+### Changed
+- `async_mode` parameter added to `play` function
 ## [0.2] - 2023-07-10
 ### Added
 - Logo
