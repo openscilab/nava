@@ -96,7 +96,8 @@ def __play_win(sound_path, async_mode=False):
     play_flags = winsound.SND_FILENAME | (async_mode & winsound.SND_ASYNC)
 
     if async_mode:
-        sound_thread = NavaThread(target=__play_win_flags, args=(sound_path, play_flags), daemon=True)
+        sound_thread = NavaThread(target=__play_win_flags,
+                                  args=(sound_path, play_flags), daemon=True)
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
