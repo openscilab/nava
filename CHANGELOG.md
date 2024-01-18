@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `stop_all` function
 ### Changed
 - `async_mode` parameter added to `play` function
+- Test system modified
+- `Python 3.12` added to `linux_test.yml`, `macOS_test.yml` and `windows_test.yml`
 ## [0.2] - 2023-07-10
 ### Added
 - Logo
