@@ -98,9 +98,22 @@ Nava is a Python library that allows users to play sound in Python without any d
 ## Usage
 
 ### Basic
+
 ```python
 from nava import play
 play("alarm.wav")
+```
+
+### Async mode
+
+⚠️ The `async_mode` parameter has a default value of `False`
+
+```python
+import time
+from nava import play, stop
+sound_id = play("alarm.wav", async_mode=True)
+time.sleep(4)
+stop(sound_id)
 ```
 
 ### Error

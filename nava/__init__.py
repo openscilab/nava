@@ -2,10 +2,9 @@
 """Nava modules."""
 from .params import NAVA_VERSION
 from .errors import NavaBaseError
-from .functions import play, cleanup_processes
-
+from .functions import play, stop, stop_all
 import atexit
-# Async play processes clean up 
-atexit.register(cleanup_processes)
+
+atexit.register(stop_all)
 
 __version__ = NAVA_VERSION
