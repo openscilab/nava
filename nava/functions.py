@@ -248,7 +248,7 @@ def path_check(func):
 
 
 @path_check
-def play(sound_path, async_mode=False):
+def play(sound_path, async_mode=False, loop=False):
     """
     Play sound.
 
@@ -256,15 +256,17 @@ def play(sound_path, async_mode=False):
     :type sound_path: str
     :param async_mode: async mode flag
     :type async_mode: bool
+    :param loop: sound loop flag
+    :type loop: bool
     :return: None or sound id
     """
     try:
         sys_platform = sys.platform
         if sys_platform == "win32":
-            return __play_win(sound_path, async_mode)
+            return __play_win(sound_path, async_mode, loop)
         elif sys_platform == "darwin":
-            return __play_mac(sound_path, async_mode)
+            return __play_mac(sound_path, async_mode, loop)
         else:
-            return __play_linux(sound_path, async_mode)
+            return __play_linux(sound_path, async_mode, loop)
     except Exception:  # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
