@@ -104,6 +104,15 @@ from nava import play
 play("alarm.wav")
 ```
 
+### Loop mode
+
+⚠️ The `loop` parameter has a default value of `False`
+
+```python
+from nava import play, stop
+play("alarm.wav", loop=True)
+```
+
 ### Async mode
 
 ⚠️ The `async_mode` parameter has a default value of `False`
