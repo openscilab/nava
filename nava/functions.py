@@ -150,21 +150,26 @@ def __play_linux(sound_path, async_mode=False, loop=False):
         __play_proc_linux(sound_path, loop)
 
 
-def __play_proc_linux(sound_path):
+def __play_proc_linux(sound_path, loop):
     """
     Create sound playing process in Linux.
 
     :param sound_path: sound path to be played
     :type sound_path: str
-    :return: process
+    :param loop: sound loop flag
+    :type loop: bool
+    :return: None
     """
-    proc = subprocess.Popen(["aplay",
-                             sound_path],
-                            shell=False,
-                            stderr=subprocess.PIPE,
-                            stdin=subprocess.PIPE,
-                            stdout=subprocess.PIPE)
-    return proc
+    played_once = False
+    while not played_once or loop:
+        proc = subprocess.Popen(["aplay",
+                                sound_path],
+                                shell=False,
+                                stderr=subprocess.PIPE,
+                                stdin=subprocess.PIPE,
+                                stdout=subprocess.PIPE)
+        proc.wait()
+        played_once = True
 
 
 @quote
