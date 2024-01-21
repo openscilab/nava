@@ -172,7 +172,7 @@ def __play_proc_linux(sound_path, loop):
                                     stdout=subprocess.PIPE)
             proc.wait()
             played_once = True
-    except (KeyboardInterrupt, EOFError):
+    except (KeyboardInterrupt, EOFError):  # pragma: no cover
         raise NavaBaseError(SOUND_KEYBOARD_INTERRUPT_ERROR)
 
 
@@ -222,7 +222,7 @@ def __play_proc_mac(sound_path, loop):
                                     stdout=subprocess.PIPE)
             proc.wait()
             played_once = True
-    except (KeyboardInterrupt, EOFError):
+    except (KeyboardInterrupt, EOFError):  # pragma: no cover
         raise NavaBaseError(SOUND_KEYBOARD_INTERRUPT_ERROR)
 
 
