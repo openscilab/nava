@@ -103,7 +103,7 @@ def __play_win(sound_path, async_mode=False):
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        winsound.PlaySound(sound_path, play_flags)
+        __play_win_flags(sound_path, play_flags)
 
 
 def __play_win_flags(sound_path, flags):
