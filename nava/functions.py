@@ -126,7 +126,7 @@ def __play_win_flags(sound_path, flags):
 
 
 @quote
-def __play_linux(sound_path, async_mode=False):
+def __play_linux(sound_path, async_mode=False, loop=False):
     """
     Play sound in Linux.
 
@@ -134,19 +134,20 @@ def __play_linux(sound_path, async_mode=False):
     :type sound_path: str
     :param async_mode: async mode flag
     :type async_mode: bool
+    :param loop: sound loop flag
+    :type loop: bool
     :return: None or sound id
     """
     if async_mode:
         sound_thread = NavaThread(target=__play_proc_linux,
-                                  args=(sound_path,),
+                                  args=(sound_path, loop),
                                   daemon=True)
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        proc = __play_proc_linux(sound_path)
-        proc.wait()
+        __play_proc_linux(sound_path, loop)
 
 
 def __play_proc_linux(sound_path):
