@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `stop` function
 - `stop_all` function
 ### Changed
+- `loop` parameter added to `play` function
 - `async_mode` parameter added to `play` function
 - Test system modified
 - `Python 3.12` added to `linux_test.yml`, `macOS_test.yml` and `windows_test.yml`
