@@ -78,6 +78,15 @@ Nava is a Python library that allows users to play sound in Python without any d
 	</tr>
 </table>
 
+<table>
+	<tr> 
+		<td align="center">Code Quality</td>
+		<td align="center"><a href="https://app.codacy.com/gh/openscilab/nava/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade"><img src="https://app.codacy.com/project/badge/Grade/9c384b4e400340ae94772c1d7e1842d0"></a></td>
+		<td align="center"><a href="https://www.codefactor.io/repository/github/openscilab/nava"><img src="https://www.codefactor.io/repository/github/openscilab/nava/badge" alt="CodeFactor"></a></td>
+		<td align="center"><a href="https://codebeat.co/projects/github-com-openscilab-nava-dev"><img alt="codebeat badge" src="https://codebeat.co/badges/75df9d9c-af95-4038-8a1d-9f3618856871"></a></td>
+	</tr>
+</table>
+
 ## Installation
 
 ### PyPI
