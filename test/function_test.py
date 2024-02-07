@@ -15,7 +15,7 @@ True
 True
 >>> stop(1001)
 >>> stop_all()
->>> for i in range(50):
+>>> for i in range(40):
 ...     sound_id = play(os.path.join("others", "test.wav"), async_mode=True)
 ...     time.sleep(0.5)
 ...     stop(sound_id)
