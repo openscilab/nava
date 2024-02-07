@@ -2,6 +2,7 @@
 """
 >>> import os
 >>> import time
+>>> os.environ["PYTHONTRACEMALLOC"] = 200
 >>> from nava import play, stop, stop_all
 >>> play(os.path.join("others", "test.wav"))
 >>> sound_id_1 = play(os.path.join("others", "test.wav"), async_mode=True)
