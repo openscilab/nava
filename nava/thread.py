@@ -41,5 +41,9 @@ class NavaThread(threading.Thread):
             winsound.PlaySound(None, winsound.SND_PURGE)
         else:
             if self.play_process is not None:
+                self.play_process.stdout.close()
+                self.play_process.stdin.close()
+                self.play_process.stderr.close()
                 self.play_process.kill()
                 self.play_process.terminate()
+                self.play_process.wait()
