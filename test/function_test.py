@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 >>> import os
+>>> import time
 >>> from nava import play, stop, stop_all
 >>> play(os.path.join("others", "test.wav"))
 >>> sound_id_1 = play(os.path.join("others", "test.wav"), async_mode=True)
@@ -13,6 +14,9 @@ True
 >>> sound_id_3 == 1003
 True
 >>> stop(1001)
+>>> for i in range(40):
+...     sound_id = play(os.path.join("others", "test.wav"), async_mode=True)
+>>> time.sleep(3)
 >>> stop_all()
 >>> from nava.functions import nava_help
 >>> nava_help()
