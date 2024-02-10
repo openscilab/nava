@@ -53,22 +53,21 @@ sid1 = nava.play(TEST_FILE_PATH, async_mode=True)
 print("If you see this text immediately after 'test2' begins, it means that the async mode is working properly.")
 wait()
 
-#Test3
+# Test3
 print_line()
 print("3. Stop")
 nava.stop(sid1)
 wait()
 
-#Test4
+# Test4
 print_line()
 print("4. Play two sounds simultaneously (macOS/Linux)")
 sid2 = nava.play(TEST_FILE_PATH, async_mode=True)
 sid3 = nava.play(TEST_FILE_PATH, async_mode=True)
 wait()
 
-#Test5
+# Test5
 print_line()
 print("5. Stop all sounds")
 nava.stop_all()
 print("End!")
-
