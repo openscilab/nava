@@ -63,6 +63,7 @@ wait()
 print_line()
 print("4. Play two sounds simultaneously (macOS/Linux)")
 sid2 = nava.play(TEST_FILE_PATH, async_mode=True)
+time.sleep(3)
 sid3 = nava.play(TEST_FILE_PATH, async_mode=True)
 wait()
 
