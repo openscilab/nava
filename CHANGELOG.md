@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Bug report template modified
 - `NavaThread.stop` method bug fixed
+- Test system modified
 ## [0.3] - 2024-01-31
 ### Added
 - `NavaThread` class
