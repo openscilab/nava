@@ -1,7 +1,7 @@
 
 # Nava Release Instructions
 
-#### Last Update: 2024-02-06
+#### Last Update: 2024-02-12
 
 1. Create the `release` branch under `dev`
 2. Update all version tags
@@ -21,7 +21,7 @@
 	5. Wait for all CI pass
 	6. Need review
 6. Merge `dev` branch into `main`
-	1. Checkout to `main`
+	1. `git checkout main`
 	2. `git merge dev`
 	3. `git push origin main`
 	4. Wait for all CI pass
