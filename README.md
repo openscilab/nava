@@ -20,6 +20,7 @@
    * [Overview](https://github.com/openscilab/nava#overview)
    * [Installation](https://github.com/openscilab/nava#installation)
    * [Usage](https://github.com/openscilab/nava#usage)
+   * [Engine](https://github.com/openscilab/nava#engine)
    * [Issues & Bug Reports](https://github.com/openscilab/nava#issues--bug-reports)
    * [Contribution](https://github.com/openscilab/nava/blob/main/.github/CONTRIBUTING.md)
    * [Authors](https://github.com/openscilab/nava/blob/main/AUTHORS.md)
@@ -63,18 +64,18 @@ Nava is a Python library that allows users to play sound in Python without any d
 	</tr>
     <tr>
 		<td align="center">Linux CI</td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Linux/badge.svg?branch=main"></td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Linux/badge.svg?branch=dev"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/linux_test.yml/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/linux_test.yml/badge.svg?branch=dev"></td>
 	</tr>
 	<tr>
 		<td align="center">Windows CI</td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Windows/badge.svg?branch=main"></td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Windows/badge.svg?branch=dev"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/windows_test.yml/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/windows_test.yml/badge.svg?branch=dev"></td>
 	</tr>
 	<tr>
 		<td align="center">macOS CI</td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/macOS/badge.svg?branch=main"></td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/macOS/badge.svg?branch=dev"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/macOS_test.yml/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/macOS_test.yml/badge.svg?branch=dev"></td>
 	</tr>
 </table>
 
@@ -135,6 +136,33 @@ try:
 except NavaBaseError as e:
     print(str(e))
 ```
+
+## Engine
+
+List of different platforms and the corresponding engines that are used for sound playing.
+
+<table>
+	<tr> 
+		<th align="center">Platform</th>
+		<th align="center">Engine</th>
+		<th align="center">Supported Formats</th>
+	</tr>
+    <tr>
+		<td align="center">Linux</td>
+		<td align="center"><a href="https://www.alsa-project.org/wiki/Main_Page">Advanced Linux Sound Architecture</a></td>
+		<td align="center"><code>.wav</code></td>
+	</tr>
+    <tr>
+		<td align="center">Windows</td>
+		<td align="center"><a href="https://docs.python.org/3/library/winsound.html">Winsound</a></td>
+		<td align="center"><code>.wav</code></td>
+	</tr>
+    <tr>
+		<td align="center">macOS</td>
+		<td align="center"><a href="https://ss64.com/mac/afplay.html">Audio File Play</a></td>
+		<td align="center"><code>.wav</code>,<code>.mp3</code></td>
+	</tr>
+</table>
 
 
 ## Issues & bug reports
