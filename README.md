@@ -64,18 +64,18 @@ Nava is a Python library that allows users to play sound in Python without any d
 	</tr>
     <tr>
 		<td align="center">Linux CI</td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Linux/badge.svg?branch=main"></td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Linux/badge.svg?branch=dev"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/linux_test.yml/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/linux_test.yml/badge.svg?branch=dev"></td>
 	</tr>
 	<tr>
 		<td align="center">Windows CI</td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Windows/badge.svg?branch=main"></td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Windows/badge.svg?branch=dev"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/windows_test.yml/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/windows_test.yml/badge.svg?branch=dev"></td>
 	</tr>
 	<tr>
 		<td align="center">macOS CI</td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/macOS/badge.svg?branch=main"></td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/macOS/badge.svg?branch=dev"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/macOS_test.yml/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/macOS_test.yml/badge.svg?branch=dev"></td>
 	</tr>
 </table>
 
