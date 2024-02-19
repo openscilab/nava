@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Nava parameters."""
 
-NAVA_VERSION = "0.3"
+NAVA_VERSION = "0.4"
 
 OVERVIEW = """
 A Python library for playing sound everywhere natively and securely.
