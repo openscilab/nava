@@ -1,4 +1,4 @@
-art==5.9
+art==6.1
 pytest>=4.3.1
 pytest-cov>=2.6.1
 setuptools>=40.8.0
