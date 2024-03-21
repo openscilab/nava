@@ -4,7 +4,7 @@ import os
 import sys
 import codecs
 Failed = 0
-NAVA_VERSION = "0.2"
+NAVA_VERSION = "0.4"
 
 
 SETUP_ITEMS = [
@@ -19,6 +19,7 @@ CHANGELOG_ITEMS = [
     "[{0}]:"]
 PARAMS_ITEMS = ['NAVA_VERSION = "{0}"']
 META_ITEMS = ['% set version = "{0}" %']
+ISSUE_TEMPLATE_ITEMS = ["- Nava {0}"]
 
 FILES = {
     os.path.join("others", "meta.yaml"): META_ITEMS,
@@ -26,6 +27,7 @@ FILES = {
     "README.md": README_ITEMS,
     "CHANGELOG.md": CHANGELOG_ITEMS,
     os.path.join("nava", "params.py"): PARAMS_ITEMS,
+    os.path.join(".github", "ISSUE_TEMPLATE", "bug_report.yml"): ISSUE_TEMPLATE_ITEMS,
 }
 
 TEST_NUMBER = len(FILES.keys())

@@ -20,6 +20,7 @@
    * [Overview](https://github.com/openscilab/nava#overview)
    * [Installation](https://github.com/openscilab/nava#installation)
    * [Usage](https://github.com/openscilab/nava#usage)
+   * [Engine](https://github.com/openscilab/nava#engine)
    * [Issues & Bug Reports](https://github.com/openscilab/nava#issues--bug-reports)
    * [Contribution](https://github.com/openscilab/nava/blob/main/.github/CONTRIBUTING.md)
    * [Authors](https://github.com/openscilab/nava/blob/main/AUTHORS.md)
@@ -63,18 +64,27 @@ Nava is a Python library that allows users to play sound in Python without any d
 	</tr>
     <tr>
 		<td align="center">Linux CI</td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Linux/badge.svg?branch=main"></td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Linux/badge.svg?branch=dev"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/linux_test.yml/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/linux_test.yml/badge.svg?branch=dev"></td>
 	</tr>
 	<tr>
 		<td align="center">Windows CI</td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Windows/badge.svg?branch=main"></td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/Windows/badge.svg?branch=dev"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/windows_test.yml/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/windows_test.yml/badge.svg?branch=dev"></td>
 	</tr>
 	<tr>
 		<td align="center">macOS CI</td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/macOS/badge.svg?branch=main"></td>
-		<td align="center"><img src="https://github.com/openscilab/nava/workflows/macOS/badge.svg?branch=dev"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/macOS_test.yml/badge.svg?branch=main"></td>
+		<td align="center"><img src="https://github.com/openscilab/nava/actions/workflows/macOS_test.yml/badge.svg?branch=dev"></td>
+	</tr>
+</table>
+
+<table>
+	<tr> 
+		<td align="center">Code Quality</td>
+		<td align="center"><a href="https://app.codacy.com/gh/openscilab/nava/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade"><img src="https://app.codacy.com/project/badge/Grade/9c384b4e400340ae94772c1d7e1842d0"></a></td>
+		<td align="center"><a href="https://www.codefactor.io/repository/github/openscilab/nava"><img src="https://www.codefactor.io/repository/github/openscilab/nava/badge" alt="CodeFactor"></a></td>
+		<td align="center"><a href="https://codebeat.co/projects/github-com-openscilab-nava-dev"><img alt="codebeat badge" src="https://codebeat.co/badges/75df9d9c-af95-4038-8a1d-9f3618856871"></a></td>
 	</tr>
 </table>
 
@@ -83,10 +93,10 @@ Nava is a Python library that allows users to play sound in Python without any d
 ### PyPI
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install nava==0.2`
+- Run `pip install nava==0.4`
 
 ### Source code
-- Download [Version 0.2](https://github.com/openscilab/nava/archive/v0.2.zip) or [Latest Source](https://github.com/openscilab/nava/archive/dev.zip)
+- Download [Version 0.4](https://github.com/openscilab/nava/archive/v0.4.zip) or [Latest Source](https://github.com/openscilab/nava/archive/dev.zip)
 - Run `pip install .`
 
 ### Conda
@@ -135,6 +145,33 @@ try:
 except NavaBaseError as e:
     print(str(e))
 ```
+
+## Engine
+
+List of different platforms and the corresponding engines that are used for sound playing.
+
+<table>
+	<tr> 
+		<th align="center">Platform</th>
+		<th align="center">Engine</th>
+		<th align="center">Supported Formats</th>
+	</tr>
+    <tr>
+		<td align="center">Linux</td>
+		<td align="center"><a href="https://www.alsa-project.org/wiki/Main_Page">Advanced Linux Sound Architecture</a></td>
+		<td align="center"><code>.wav</code></td>
+	</tr>
+    <tr>
+		<td align="center">Windows</td>
+		<td align="center"><a href="https://docs.python.org/3/library/winsound.html">Winsound</a></td>
+		<td align="center"><code>.wav</code></td>
+	</tr>
+    <tr>
+		<td align="center">macOS</td>
+		<td align="center"><a href="https://ss64.com/mac/afplay.html">Audio File Play</a></td>
+		<td align="center"><code>.wav</code>,<code>.mp3</code></td>
+	</tr>
+</table>
 
 
 ## Issues & bug reports
