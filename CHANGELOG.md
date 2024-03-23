@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- `loop` parameter added to `play` function
 ## [0.4] - 2024-02-19
 ### Added
 - `feature_request.yml` template
@@ -20,7 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `stop` function
 - `stop_all` function
 ### Changed
-- `loop` parameter added to `play` function
 - `async_mode` parameter added to `play` function
 - Test system modified
 - `README.md` modified 
