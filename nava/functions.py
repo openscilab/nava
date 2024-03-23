@@ -9,7 +9,6 @@ from .thread import NavaThread
 from .params import OVERVIEW
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR
-from .params import SOUND_KEYBOARD_INTERRUPT_ERROR
 from .errors import NavaBaseError
 from . import params
 
@@ -148,7 +147,8 @@ def __play_linux(sound_path, async_mode=False, loop=False):
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        __play_proc_linux(sound_path, loop)
+        proc = __play_proc_linux(sound_path, loop)
+        proc.wait() 
 
 
 def __play_proc_linux(sound_path, loop):
@@ -161,19 +161,13 @@ def __play_proc_linux(sound_path, loop):
     :type loop: bool
     :return: None
     """
-    played_once = False
-    try:
-        while not played_once or loop:
-            proc = subprocess.Popen(["aplay",
-                                    sound_path],
-                                    shell=False,
-                                    stderr=subprocess.PIPE,
-                                    stdin=subprocess.PIPE,
-                                    stdout=subprocess.PIPE)
-            proc.wait()
-            played_once = True
-    except (KeyboardInterrupt, EOFError):  # pragma: no cover
-        raise NavaBaseError(SOUND_KEYBOARD_INTERRUPT_ERROR)
+    proc = subprocess.Popen(["aplay",
+                            sound_path],
+                            shell=False,
+                            stderr=subprocess.PIPE,
+                            stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE)
+    return proc
 
 
 @quote
@@ -198,7 +192,8 @@ def __play_mac(sound_path, async_mode=False, loop=False):
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        __play_proc_mac(sound_path, loop)
+        proc = __play_proc_mac(sound_path, loop)
+        proc.wait()
 
 
 def __play_proc_mac(sound_path, loop):
@@ -211,19 +206,13 @@ def __play_proc_mac(sound_path, loop):
     :type loop: bool
     :return: None
     """
-    played_once = False
-    try:
-        while not played_once or loop:
-            proc = subprocess.Popen(["afplay",
-                                    sound_path],
-                                    shell=False,
-                                    stderr=subprocess.PIPE,
-                                    stdin=subprocess.PIPE,
-                                    stdout=subprocess.PIPE)
-            proc.wait()
-            played_once = True
-    except (KeyboardInterrupt, EOFError):  # pragma: no cover
-        raise NavaBaseError(SOUND_KEYBOARD_INTERRUPT_ERROR)
+    proc = subprocess.Popen(["afplay",
+                            sound_path],
+                            shell=False,
+                            stderr=subprocess.PIPE,
+                            stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE)
+    return proc
 
 
 def path_check(func):
