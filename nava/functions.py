@@ -148,7 +148,7 @@ def __play_linux(sound_path, async_mode=False, loop=False):
         return sound_id
     else:
         proc = __play_proc_linux(sound_path, loop)
-        proc.wait() 
+        proc.wait()
 
 
 def __play_proc_linux(sound_path, loop):
@@ -162,7 +162,7 @@ def __play_proc_linux(sound_path, loop):
     :return: None
     """
     proc = subprocess.Popen(["aplay",
-                            sound_path],
+                             sound_path],
                             shell=False,
                             stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE,
@@ -207,7 +207,7 @@ def __play_proc_mac(sound_path, loop):
     :return: None
     """
     proc = subprocess.Popen(["afplay",
-                            sound_path],
+                             sound_path],
                             shell=False,
                             stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE,
