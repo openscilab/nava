@@ -29,7 +29,7 @@ class NavaThread(threading.Thread):
         :return: None
         """
         if self._target is not None:
-            if self.sys_platform != "win32":
+            if self.sys_platform == "win32":
                 self.play_process = self._target(*self._args, **self._kwargs)
             else:
                 while True:

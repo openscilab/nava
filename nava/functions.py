@@ -102,7 +102,8 @@ def __play_win(sound_path, async_mode=False, loop=False):
 
     if async_mode:
         sound_thread = NavaThread(target=__play_win_flags,
-                                  args=(sound_path, play_flags), daemon=True, loop=loop)
+                                  args=(sound_path, play_flags), daemon=True)
+        sound_thread.loop = loop
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
@@ -141,8 +142,8 @@ def __play_linux(sound_path, async_mode=False, loop=False):
     if async_mode:
         sound_thread = NavaThread(target=__play_proc_linux,
                                   args=(sound_path,),
-                                  daemon=True,
-                                  loop=loop)
+                                  daemon=True)
+        sound_thread.loop = loop
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
@@ -188,8 +189,8 @@ def __play_mac(sound_path, async_mode=False, loop=False):
     if async_mode:
         sound_thread = NavaThread(target=__play_proc_mac,
                                   args=(sound_path,),
-                                  daemon=True,
-                                  loop=loop)
+                                  daemon=True)
+        sound_thread.loop = loop
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
