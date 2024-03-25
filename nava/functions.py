@@ -140,26 +140,24 @@ def __play_linux(sound_path, async_mode=False, loop=False):
     """
     if async_mode:
         sound_thread = NavaThread(target=__play_proc_linux,
-                                  args=(sound_path, loop),
+                                  args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        proc = __play_proc_linux(sound_path, loop)
+        proc = __play_proc_linux(sound_path)
         proc.wait()
 
 
-def __play_proc_linux(sound_path, loop):
+def __play_proc_linux(sound_path):
     """
     Create sound playing process in Linux.
 
     :param sound_path: sound path to be played
     :type sound_path: str
-    :param loop: sound loop flag
-    :type loop: bool
-    :return: None
+    :return: process
     """
     proc = subprocess.Popen(["aplay",
                              sound_path],
@@ -185,26 +183,24 @@ def __play_mac(sound_path, async_mode=False, loop=False):
     """
     if async_mode:
         sound_thread = NavaThread(target=__play_proc_mac,
-                                  args=(sound_path, loop),
+                                  args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        proc = __play_proc_mac(sound_path, loop)
+        proc = __play_proc_mac(sound_path)
         proc.wait()
 
 
-def __play_proc_mac(sound_path, loop):
+def __play_proc_mac(sound_path):
     """
     Create sound playing process in macOS.
 
     :param sound_path: sound path to be played
     :type sound_path: str
-    :param loop: sound loop flag
-    :type loop: bool
-    :return: None
+    :return: process
     """
     proc = subprocess.Popen(["afplay",
                              sound_path],
