@@ -17,6 +17,7 @@ True
 >>> for i in range(40):
 ...     sound_id = nava.play(os.path.join("others", "test.wav"), async_mode=True)
 ...     time.sleep(0.2)
+>>> time.sleep(1)
 >>> nava.stop_all()
 >>> len(nava.params._play_threads_map) == 43
 True
