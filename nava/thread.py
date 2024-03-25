@@ -20,7 +20,7 @@ class NavaThread(threading.Thread):
         super(NavaThread, self).__init__(*args, **kwargs)
         self.sys_platform = sys.platform
         self.play_process = None
-        self.loop = kwargs["loop"]
+        self.loop = False
 
     def run(self):
         """
