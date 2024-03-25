@@ -193,8 +193,11 @@ def __play_mac(sound_path, async_mode=False, loop=False):
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        proc = __play_proc_mac(sound_path)
-        proc.wait()
+        while True:
+            proc = __play_proc_mac(sound_path)
+            proc.wait()
+            if not loop:
+                break
 
 
 def __play_proc_mac(sound_path):
