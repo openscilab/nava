@@ -97,8 +97,9 @@ def __play_win(sound_path, async_mode=False, loop=False):
     import winsound
     play_flags = \
         winsound.SND_FILENAME | \
-        (async_mode & winsound.SND_ASYNC) | \
-        (loop & winsound.SND_LOOP)
+        (async_mode & winsound.SND_ASYNC)
+    if loop:
+        play_flags = play_flags | winsound.SND_LOOP
 
     if async_mode:
         sound_thread = NavaThread(target=__play_win_flags,
