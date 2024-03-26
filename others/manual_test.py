@@ -69,13 +69,14 @@ wait()
 
 # Test5
 print_line()
-print("5. 'loop = True'")
-sid1 = nava.play(TEST_FILE_PATH, async_mode=True, loop=True)
-print("You should hear this sound repeatedly.")
-wait(120)
+print("5. Stop all sounds")
+nava.stop_all()
 
 # Test6
 print_line()
-print("6. Stop all sounds")
-nava.stop_all()
+print("6. 'loop = True'")
+sid1 = nava.play(TEST_FILE_PATH, async_mode=True, loop=True)
+print("You should hear this sound repeatedly.")
+wait(120)
+nava.stop(sid1)
 print("End!")
