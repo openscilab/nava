@@ -13,7 +13,11 @@ True
 >>> sound_id_3 = nava.play(os.path.join("others", "test.wav"), async_mode=True)
 >>> sound_id_3 == 1003
 True
+>>> sound_id_4 = nava.play(os.path.join("others", "test.wav"), async_mode=True, loop=True)
+>>> sound_id_4 == 1004
+True
 >>> nava.stop(sound_id_1)
+>>> nava.stop(sound_id_4)
 >>> for i in range(40):
 ...     sound_id = nava.play(os.path.join("others", "test.wav"), async_mode=True)
 ...     time.sleep(0.2)
