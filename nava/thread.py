@@ -45,6 +45,7 @@ class NavaThread(threading.Thread):
 
         :return: None
         """
+        self.loop = False
         if self.sys_platform == "win32":
             import winsound
             winsound.PlaySound(None, winsound.SND_PURGE)
