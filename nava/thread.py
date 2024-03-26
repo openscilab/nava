@@ -57,7 +57,7 @@ class NavaThread(threading.Thread):
                     self.play_process.kill()
                     self.play_process.terminate()
                 except Exception:
-                    pass
+                    _ = 2
                 finally:
                     self.play_process.wait()
 
