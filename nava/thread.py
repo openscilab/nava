@@ -38,7 +38,6 @@ class NavaThread(threading.Thread):
                     if not self.loop:
                         break
 
-
     def stop(self):
         """
         Stop sound.
@@ -61,4 +60,3 @@ class NavaThread(threading.Thread):
                     _ = 2
                 finally:
                     self.play_process.wait()
-
