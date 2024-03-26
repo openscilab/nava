@@ -23,9 +23,9 @@ True
 ...     time.sleep(0.2)
 >>> time.sleep(1)
 >>> nava.stop_all()
->>> len(nava.params._play_threads_map) == 43
+>>> len(nava.params._play_threads_map) == 44
 True
->>> nava.params._play_threads_counter == 43
+>>> nava.params._play_threads_counter == 44
 True
 >>> nava.functions.nava_help()
 <BLANKLINE>
