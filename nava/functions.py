@@ -8,7 +8,7 @@ from functools import wraps
 from .thread import NavaThread
 from .params import OVERVIEW
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
-from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR
+from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR, LOOP_ASYNC_ERROR
 from .errors import NavaBaseError
 from . import params
 
@@ -262,6 +262,8 @@ def play(sound_path, async_mode=False, loop=False):
     :type loop: bool
     :return: None or sound id
     """
+    if loop and not async_mode:
+        raise NavaBaseError(LOOP_ASYNC_ERROR)
     try:
         sys_platform = sys.platform
         if sys_platform == "win32":
