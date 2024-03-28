@@ -102,9 +102,10 @@ def __play_win(sound_path, async_mode=False, loop=False):
         play_flags = play_flags | winsound.SND_LOOP
 
     if async_mode:
-        sound_thread = NavaThread(target=__play_win_flags,
-                                  args=(sound_path, play_flags), daemon=True)
-        sound_thread.loop = loop
+        sound_thread = NavaThread(loop,
+                                  target=__play_win_flags,
+                                  args=(sound_path, play_flags),
+                                  daemon=True)
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
@@ -141,10 +142,10 @@ def __play_linux(sound_path, async_mode=False, loop=False):
     :return: None or sound id
     """
     if async_mode:
-        sound_thread = NavaThread(target=__play_proc_linux,
+        sound_thread = NavaThread(loop,
+                                  target=__play_proc_linux,
                                   args=(sound_path,),
                                   daemon=True)
-        sound_thread.loop = loop
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
@@ -188,10 +189,10 @@ def __play_mac(sound_path, async_mode=False, loop=False):
     :return: None or sound id
     """
     if async_mode:
-        sound_thread = NavaThread(target=__play_proc_mac,
+        sound_thread = NavaThread(loop,
+                                  target=__play_proc_mac,
                                   args=(sound_path,),
                                   daemon=True)
-        sound_thread.loop = loop
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
@@ -262,6 +263,7 @@ def play(sound_path, async_mode=False, loop=False):
     :type loop: bool
     :return: None or sound id
     """
+    print("sound_path: ", sound_path)
     if loop and not async_mode:
         raise NavaBaseError(LOOP_ASYNC_ERROR)
     try:

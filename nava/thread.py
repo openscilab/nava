@@ -8,10 +8,12 @@ import threading
 class NavaThread(threading.Thread):
     """Nava custom thread."""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, loop, *args, **kwargs):
         """
         Init method.
 
+        :param loop: sound thread loop flag
+        :type loop: bool
         :param args: arguments
         :type args: list
         :param kwargs: keyword arguments
@@ -20,7 +22,7 @@ class NavaThread(threading.Thread):
         super(NavaThread, self).__init__(*args, **kwargs)
         self.sys_platform = sys.platform
         self.play_process = None
-        self.loop = False
+        self.loop = loop
 
     def run(self):
         """
