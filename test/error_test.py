@@ -17,5 +17,5 @@ nava.errors.NavaBaseError: Given sound id doesn't exist.
 >>> play(os.path.join("others", "test.wav"), async_mode=False, loop=True)
 Traceback (most recent call last):
     ...
-nava.errors.NavaBaseError: The loop option can only be used in async mode.
+nava.errors.NavaBaseError: `loop` can not be set True when `async_mode` is False.
 """
