@@ -8,7 +8,7 @@ from functools import wraps
 from .thread import NavaThread
 from .params import OVERVIEW
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
-from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR
+from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR, LOOP_ASYNC_ERROR
 from .errors import NavaBaseError
 from . import params
 
@@ -82,7 +82,7 @@ def quote(func):
     return quoter
 
 
-def __play_win(sound_path, async_mode=False):
+def __play_win(sound_path, async_mode=False, loop=False):
     """
     Play sound in Windows.
 
@@ -90,20 +90,28 @@ def __play_win(sound_path, async_mode=False):
     :type sound_path: str
     :param async_mode: async mode flag
     :type async_mode: bool
+    :param loop: sound loop flag
+    :type loop: bool
     :return: None or sound id
     """
     import winsound
-    play_flags = winsound.SND_FILENAME | (async_mode & winsound.SND_ASYNC)
+    play_flags = \
+        winsound.SND_FILENAME | \
+        (async_mode & winsound.SND_ASYNC)
+    if loop:
+        play_flags = play_flags | winsound.SND_LOOP
 
     if async_mode:
-        sound_thread = NavaThread(target=__play_win_flags,
-                                  args=(sound_path, play_flags), daemon=True)
+        sound_thread = NavaThread(loop,
+                                  target=__play_win_flags,
+                                  args=(sound_path, play_flags),
+                                  daemon=True)
         sound_thread.start()
         sound_id = sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        winsound.PlaySound(sound_path, play_flags)
+        __play_win_flags(sound_path, play_flags)
 
 
 def __play_win_flags(sound_path, flags):
@@ -121,7 +129,7 @@ def __play_win_flags(sound_path, flags):
 
 
 @quote
-def __play_linux(sound_path, async_mode=False):
+def __play_linux(sound_path, async_mode=False, loop=False):
     """
     Play sound in Linux.
 
@@ -129,10 +137,13 @@ def __play_linux(sound_path, async_mode=False):
     :type sound_path: str
     :param async_mode: async mode flag
     :type async_mode: bool
+    :param loop: sound loop flag
+    :type loop: bool
     :return: None or sound id
     """
     if async_mode:
-        sound_thread = NavaThread(target=__play_proc_linux,
+        sound_thread = NavaThread(loop,
+                                  target=__play_proc_linux,
                                   args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
@@ -140,8 +151,11 @@ def __play_linux(sound_path, async_mode=False):
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        proc = __play_proc_linux(sound_path)
-        proc.wait()
+        while True:
+            proc = __play_proc_linux(sound_path)
+            proc.wait()
+            if not loop:
+                break
 
 
 def __play_proc_linux(sound_path):
@@ -162,7 +176,7 @@ def __play_proc_linux(sound_path):
 
 
 @quote
-def __play_mac(sound_path, async_mode=False):
+def __play_mac(sound_path, async_mode=False, loop=False):
     """
     Play sound in macOS.
 
@@ -170,10 +184,13 @@ def __play_mac(sound_path, async_mode=False):
     :type sound_path: str
     :param async_mode: async mode flag
     :type async_mode: bool
+    :param loop: sound loop flag
+    :type loop: bool
     :return: None or sound id
     """
     if async_mode:
-        sound_thread = NavaThread(target=__play_proc_mac,
+        sound_thread = NavaThread(loop,
+                                  target=__play_proc_mac,
                                   args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
@@ -181,8 +198,11 @@ def __play_mac(sound_path, async_mode=False):
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        proc = __play_proc_mac(sound_path)
-        proc.wait()
+        while True:
+            proc = __play_proc_mac(sound_path)
+            proc.wait()
+            if not loop:
+                break
 
 
 def __play_proc_mac(sound_path):
@@ -231,7 +251,7 @@ def path_check(func):
 
 
 @path_check
-def play(sound_path, async_mode=False):
+def play(sound_path, async_mode=False, loop=False):
     """
     Play sound.
 
@@ -239,15 +259,19 @@ def play(sound_path, async_mode=False):
     :type sound_path: str
     :param async_mode: async mode flag
     :type async_mode: bool
+    :param loop: sound loop flag
+    :type loop: bool
     :return: None or sound id
     """
+    if loop and not async_mode:
+        raise NavaBaseError(LOOP_ASYNC_ERROR)
     try:
         sys_platform = sys.platform
         if sys_platform == "win32":
-            return __play_win(sound_path, async_mode)
+            return __play_win(sound_path, async_mode, loop)
         elif sys_platform == "darwin":
-            return __play_mac(sound_path, async_mode)
+            return __play_mac(sound_path, async_mode, loop)
         else:
-            return __play_linux(sound_path, async_mode)
+            return __play_linux(sound_path, async_mode, loop)
     except Exception:  # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
