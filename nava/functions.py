@@ -263,7 +263,6 @@ def play(sound_path, async_mode=False, loop=False):
     :type loop: bool
     :return: None or sound id
     """
-    print("sound_path: ", sound_path)
     if loop and not async_mode:
         raise NavaBaseError(LOOP_ASYNC_ERROR)
     try:
