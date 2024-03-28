@@ -58,7 +58,7 @@ class NavaThread(threading.Thread):
                     self.play_process.stderr.close()
                     self.play_process.kill()
                     self.play_process.terminate()
-                except Exception:
-                    _ = 2
+                except ProcessLookupError:
+                    pass
                 finally:
                     self.play_process.wait()
