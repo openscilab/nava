@@ -133,7 +133,9 @@ stop(sound_id)
 
 ```python
 from nava import play, stop
-play("alarm.wav", async_mode=True, loop=True)
+sound_id = play("alarm.wav", async_mode=True, loop=True)
+time.sleep(100)
+stop(sound_id)
 ```
 
 ### Error
