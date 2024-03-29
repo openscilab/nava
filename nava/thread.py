@@ -22,7 +22,7 @@ class NavaThread(threading.Thread):
         super(NavaThread, self).__init__(*args, **kwargs)
         self._sys_platform = sys.platform
         self.play_process = None
-        self.loop = loop
+        self._loop = loop
 
     def run(self):
         """
@@ -37,7 +37,7 @@ class NavaThread(threading.Thread):
                 while True:
                     self.play_process = self._target(*self._args, **self._kwargs)
                     self.play_process.wait()
-                    if not self.loop:
+                    if not self._loop:
                         break
 
     def stop(self):
@@ -46,7 +46,7 @@ class NavaThread(threading.Thread):
 
         :return: None
         """
-        self.loop = False
+        self._loop = False
         if self._sys_platform == "win32":
             import winsound
             winsound.PlaySound(None, winsound.SND_PURGE)
