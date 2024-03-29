@@ -126,6 +126,16 @@ time.sleep(4)
 stop(sound_id)
 ```
 
+### Loop mode
+
+⚠️ The `loop` parameter has a default value of `False`
+⚠️ You should always set `async_mode` flag when you are using `loop`
+
+```python
+from nava import play, stop
+play("alarm.wav", async_mode=True, loop=True)
+```
+
 ### Error
 
 ```python
