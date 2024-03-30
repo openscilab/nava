@@ -20,9 +20,9 @@ class NavaThread(threading.Thread):
         :type kwargs: dict
         """
         super(NavaThread, self).__init__(*args, **kwargs)
-        self.sys_platform = sys.platform
-        self.play_process = None
-        self.loop = loop
+        self._sys_platform = sys.platform
+        self._play_process = None
+        self._loop = loop
 
     def run(self):
         """
@@ -31,13 +31,13 @@ class NavaThread(threading.Thread):
         :return: None
         """
         if self._target is not None:
-            if self.sys_platform == "win32":
-                self.play_process = self._target(*self._args, **self._kwargs)
+            if self._sys_platform == "win32":
+                self._play_process = self._target(*self._args, **self._kwargs)
             else:
                 while True:
-                    self.play_process = self._target(*self._args, **self._kwargs)
-                    self.play_process.wait()
-                    if not self.loop:
+                    self._play_process = self._target(*self._args, **self._kwargs)
+                    self._play_process.wait()
+                    if not self._loop:
                         break
 
     def stop(self):
@@ -46,19 +46,19 @@ class NavaThread(threading.Thread):
 
         :return: None
         """
-        self.loop = False
-        if self.sys_platform == "win32":
+        self._loop = False
+        if self._sys_platform == "win32":
             import winsound
             winsound.PlaySound(None, winsound.SND_PURGE)
         else:
-            if self.play_process is not None:
+            if self._play_process is not None:
                 try:
-                    self.play_process.stdout.close()
-                    self.play_process.stdin.close()
-                    self.play_process.stderr.close()
-                    self.play_process.kill()
-                    self.play_process.terminate()
+                    self._play_process.stdout.close()
+                    self._play_process.stdin.close()
+                    self._play_process.stderr.close()
+                    self._play_process.kill()
+                    self._play_process.terminate()
                 except ProcessLookupError:
                     pass
                 finally:
-                    self.play_process.wait()
+                    self._play_process.wait()

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - `loop` parameter added to `play` function
+- `NavaThread` class modified
+- `README.md` modified
 ## [0.4] - 2024-02-19
 ### Added
 - `feature_request.yml` template
