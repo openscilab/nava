@@ -84,6 +84,7 @@ body:
       label: Nava version
       description: Which version of Nava are you using?
       options:
+        - Nava 0.5
         - Nava 0.4
         - Nava 0.3
         - Nava 0.2
