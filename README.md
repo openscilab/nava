@@ -19,19 +19,6 @@
     </a>
 </div>
 
-## Table of contents
-   * [Overview](https://github.com/openscilab/nava#overview)
-   * [Installation](https://github.com/openscilab/nava#installation)
-   * [Usage](https://github.com/openscilab/nava#usage)
-   * [Engine](https://github.com/openscilab/nava#engine)
-   * [Issues & Bug Reports](https://github.com/openscilab/nava#issues--bug-reports)
-   * [Contribution](https://github.com/openscilab/nava/blob/main/.github/CONTRIBUTING.md)
-   * [Authors](https://github.com/openscilab/nava/blob/main/AUTHORS.md)
-   * [License](https://github.com/openscilab/nava/blob/main/LICENSE)
-   * [Show Your Support](https://github.com/openscilab/nava#show-your-support)
-   * [Changelog](https://github.com/openscilab/nava/blob/main/CHANGELOG.md)
-   * [Code of Conduct](https://github.com/openscilab/nava/blob/main/.github/CODE_OF_CONDUCT.md)
-
 ## Overview
 
 <p align="justify">
@@ -96,10 +83,10 @@ Nava is a Python library that allows users to play sound in Python without any d
 ### PyPI
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install nava==0.4`
+- Run `pip install nava==0.5`
 
 ### Source code
-- Download [Version 0.4](https://github.com/openscilab/nava/archive/v0.4.zip) or [Latest Source](https://github.com/openscilab/nava/archive/dev.zip)
+- Download [Version 0.5](https://github.com/openscilab/nava/archive/v0.5.zip) or [Latest Source](https://github.com/openscilab/nava/archive/dev.zip)
 - Run `pip install .`
 
 ### Conda
