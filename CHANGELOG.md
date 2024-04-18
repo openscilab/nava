@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- OSs local check added to pull request template
 ## [0.5] - 2024-04-03
 ### Changed
 - `loop` parameter added to `play` function
