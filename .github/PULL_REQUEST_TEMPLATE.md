@@ -5,6 +5,10 @@
 #### Any other comments?
 
 ## Local tests on OSs
+
 - [ ] MacOS
+    - [ ] Sonoma
 - [ ] Windows
-- [ ] Ubuntu
+    - [ ] Windows 11
+- [ ] Linux
+    - [ ] Ubuntu 20.04
