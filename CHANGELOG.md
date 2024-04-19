@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- OSs local check added to pull request template
+- OSs local checklist added to pull request template
 ## [0.5] - 2024-04-03
 ### Changed
 - `loop` parameter added to `play` function
