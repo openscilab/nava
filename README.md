@@ -2,21 +2,11 @@
     <img src="https://github.com/openscilab/nava/raw/main/others/logo.png" width="300" height="300">
     <h1>Nava</h1>
     <br/>
-    <a href="https://www.python.org/">
-        <img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"/>
-    </a>
-    <a href="https://badge.fury.io/py/nava">
-        <img src="https://badge.fury.io/py/nava.svg" alt="PyPI version" height="18">
-    </a>
-    <a href="https://anaconda.org/openscilab/nava">
-	<img src="https://anaconda.org/openscilab/nava/badges/version.svg">
-    </a>
-    <a href="https://codecov.io/gh/openscilab/nava">
-        <img src="https://codecov.io/gh/openscilab/nava/branch/main/graph/badge.svg" alt="Codecov">
-    </a>
-    <a href="https://discord.gg/MCbPKCFBs3">
-        <img src="https://img.shields.io/discord/1064533716615049236.svg" alt="Discord Channel">
-    </a>
+    <a href="https://www.python.org/"><img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"></a>
+    <a href="https://badge.fury.io/py/nava"><img src="https://badge.fury.io/py/nava.svg" alt="PyPI version" height="18"></a>
+    <a href="https://anaconda.org/openscilab/nava"><img src="https://anaconda.org/openscilab/nava/badges/version.svg"></a>
+    <a href="https://codecov.io/gh/openscilab/nava"><img src="https://codecov.io/gh/openscilab/nava/branch/main/graph/badge.svg" alt="Codecov"></a>
+    <a href="https://discord.gg/MCbPKCFBs3"><img src="https://img.shields.io/discord/1064533716615049236.svg" alt="Discord Channel"></a>
 </div>
 
 ## Overview
@@ -118,7 +108,8 @@ stop(sound_id)
 
 ### Loop mode
 
-⚠️ The `loop` parameter has a default value of `False`
+⚠️ The `loop` parameter has a default value of `False` 
+
 ⚠️ You should always set `async_mode` flag when you are using `loop`
 
 ```python
@@ -169,7 +160,7 @@ List of different platforms and the corresponding engines that are used for soun
 
 ## Issues & bug reports
 
-Just fill an issue and describe it. We'll check it ASAP! or send an email to [info@openscilab.com](mailto:info@openscilab.com "info@openscilab.com").
+Just fill an issue and describe it. We'll check it ASAP! or send an email to [nava@openscilab.com](mailto:nava@openscilab.com "nava@openscilab.com").
 
 - Please complete the issue template
  

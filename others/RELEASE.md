@@ -1,15 +1,16 @@
 
 # Nava Release Instructions
 
-#### Last Update: 2024-02-12
+#### Last Update: 2024-04-20
 
 1. Create the `release` branch under `dev`
 2. Update all version tags
 	1. `setup.py`
 	2. `README.md`
-	3. `others/version_check.py`
-	4. `others/meta.yaml`
-	5. `nava/params.py`
+	3. `SECURITY.md`
+	4. `others/version_check.py`
+	5. `others/meta.yaml`
+	6. `nava/params.py`
 3. Update `CHANGELOG.md`
 4. Update `.github/ISSUE_TEMPLATE/bug_report.yml`
    1. Add new version tag to `Nava version` dropbox options

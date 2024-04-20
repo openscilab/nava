@@ -4,9 +4,9 @@
 
 #### Any other comments?
 
-## Local tests on OSs
+#### Local tests on OSs
 
-- [ ] MacOS
+- [ ] macOS
     - [ ] Sonoma
 - [ ] Windows
     - [ ] Windows 11
