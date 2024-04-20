@@ -160,7 +160,7 @@ List of different platforms and the corresponding engines that are used for soun
 
 ## Issues & bug reports
 
-Just fill an issue and describe it. We'll check it ASAP! or send an email to [info@openscilab.com](mailto:info@openscilab.com "info@openscilab.com").
+Just fill an issue and describe it. We'll check it ASAP! or send an email to [nava@openscilab.com](mailto:nava@openscilab.com "nava@openscilab.com").
 
 - Please complete the issue template
  
