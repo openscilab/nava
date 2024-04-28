@@ -18,11 +18,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--file',
-        nargs = 1,
-        metavar = "audio file name",
+        nargs=1,
+        metavar="audio file name",
         type=str,
         help="name of the audio file",
-        )
+    )
     # parse the arguments from the standard input
     args = parser.parse_args()
     run_nava(args)
