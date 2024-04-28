@@ -275,3 +275,18 @@ def play(sound_path, async_mode=False, loop=False):
             return __play_linux(sound_path, async_mode, loop)
     except Exception:  # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
+
+
+def run_nava(args):
+    """
+    Run nava.
+
+    :param args: input arguments
+    :type args: argparse.Namespace
+    :return: None
+    """
+    print(args)
+    if args.file:
+        play(args.file[0])
+    else:
+        pass
