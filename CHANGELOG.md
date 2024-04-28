@@ -6,8 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `run_nava` in `nava.functions.py`
 - `SECURITY.md`
 ### Changed
+- `main` function in `__main__.py`
 - OSs local checklist added to pull request template
 - `README.md` modified
 ## [0.5] - 2024-04-03
