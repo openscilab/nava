@@ -19,13 +19,19 @@ def main():
     parser.add_argument(
         '--file',
         nargs=1,
-        metavar="audio file name",
+        metavar='audio file name',
         type=str,
-        help="name of the audio file",
+        help='name of the audio file',
     )
-    # parse the arguments from the standard input
-    args = parser.parse_args()
-    run_nava(args)
+    parser.add_argument(
+        'filename', 
+        nargs='?', 
+        metavar='audio file name',
+        type=str,
+        help='name of the audio file'
+    )
+    args = parser.parse_known_args() 
+    run_nava(args[0])
 
 
 if __name__ == "__main__":
