@@ -7,7 +7,7 @@ import shlex
 from functools import wraps
 from .thread import NavaThread
 from .params import OVERVIEW
-from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
+from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, SOUND_FILE_NAME_EXIST_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR, LOOP_ASYNC_ERROR
 from .errors import NavaBaseError
 from . import params
@@ -285,8 +285,9 @@ def run_nava(args):
     :type args: argparse.Namespace
     :return: None
     """
-    print(args)
-    if args.file:
+    if args.filename:
+        play(args.filename)
+    elif args.file:
         play(args.file[0])
     else:
-        pass
+        print(SOUND_FILE_NAME_EXIST_ERROR)
