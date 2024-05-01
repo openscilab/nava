@@ -25,12 +25,12 @@ def main():
     )
     parser.add_argument(
         'filename', 
-        nargs='?', 
+        nargs='?',
         metavar='audio file name',
         type=str,
         help='name of the audio file'
     )
-    args = parser.parse_known_args() 
+    args = parser.parse_known_args()
     run_nava(args[0])
 
 
