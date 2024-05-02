@@ -135,7 +135,7 @@ except NavaBaseError as e:
 $ nava [--file FILE_PATH] [--loop] FILE_PATH
 ```
 
-If you want to play sound syncronously from CLI you can add `&`, like:
+If you want to play sound asyncronously from CLI you can add `&`, like:
 ```bash
 $ nava --loop alarm.wav &
 ```
