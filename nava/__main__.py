@@ -3,7 +3,7 @@
 import argparse
 from art import tprint
 from .params import NAVA_VERSION
-from .functions import nava_help, run_nava
+from .functions import nava_help, play_cli
 
 
 def main():
@@ -12,26 +12,38 @@ def main():
 
     :return: None
     """
-    tprint("nava")
-    tprint("V:" + NAVA_VERSION)
-    nava_help()
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '--file',
-        nargs=1,
-        metavar='audio file name',
-        type=str,
-        help='name of the audio file',
-    )
     parser.add_argument(
         'filename', 
         nargs='?',
-        metavar='audio file name',
         type=str,
-        help='name of the audio file'
+        metavar='FILE_PATH',
+        help='path to audio file'
     )
-    args = parser.parse_known_args()
-    run_nava(args[0])
+    parser.add_argument(
+        '--file',
+        nargs=1,
+        type=str,
+        metavar='FILE_PATH',
+        help='path to audio file',
+    )
+    parser.add_argument('--loop', help='sound play in loop flag', action='store_true', default=False)
+    parser.add_argument('--version', help="version flag", action='store_true', default=False)
+
+    args = parser.parse_known_args()[0]
+    if args.version:
+        print(NAVA_VERSION)
+    elif args.filename or args.file:
+        file_name = args.filename
+        if args.file:
+            file_name = args.file
+        loop = args.loop
+        play_cli(file_name, loop=loop)
+    else:
+        tprint("nava")
+        tprint("V:" + NAVA_VERSION)
+        nava_help()
+        parser.print_help()
 
 
 if __name__ == "__main__":
