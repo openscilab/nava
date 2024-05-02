@@ -56,6 +56,7 @@ def nava_help():
     print(OVERVIEW)
     print("Repo : https://github.com/openscilab/nava")
     print("Webpage : https://openscilab.com/")
+    print()
 
 
 def quote(func):
@@ -277,17 +278,21 @@ def play(sound_path, async_mode=False, loop=False):
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
 
-def run_nava(args):
+def play_cli(sound_path, loop=False):
     """
-    Run nava.
+    Play sound from CLI.
 
-    :param args: input arguments
-    :type args: argparse.Namespace
+    :param sound_path: sound path
+    :type sound_path: str
+    :param loop: sound loop flag
+    :type loop: bool
     :return: None
     """
-    if args.filename:
-        play(args.filename)
-    elif args.file:
-        play(args.file[0])
-    else:
-        print(SOUND_FILE_NAME_EXIST_ERROR)
+    try:
+        while True:
+            play(sound_path)
+            if not loop:
+                break
+    except KeyboardInterrupt:
+        stop_all()
+        sys.exit(0)
