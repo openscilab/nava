@@ -130,6 +130,16 @@ except NavaBaseError as e:
     print(str(e))
 ```
 
+### From Command Line Interface (CLI)
+```bash
+$ nava [--file FILE_PATH] [--loop] FILE_PATH
+```
+
+If you want to play sound syncronously from CLI you can add `&`, like:
+```bash
+$ nava --loop alarm.wav &
+```
+
 ## Engine
 
 List of different platforms and the corresponding engines that are used for sound playing.
