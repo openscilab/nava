@@ -29,6 +29,7 @@ jobs:
     - name: First test
       run: |
         nava
+        nava --version
     - name: Test requirements Installation
       run: |
         python others/requirements-splitter.py
