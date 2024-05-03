@@ -55,8 +55,7 @@ def nava_help():
     """
     print(OVERVIEW)
     print("Repo : https://github.com/openscilab/nava")
-    print("Webpage : https://openscilab.com/")
-    print()
+    print("Webpage : https://openscilab.com/\n")
 
 
 def quote(func):

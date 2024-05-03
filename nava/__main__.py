@@ -27,8 +27,8 @@ def main():
         metavar='FILE_PATH',
         help='path to audio file',
     )
-    parser.add_argument('--loop', help='sound play in loop flag', action='store_true', default=False)
-    parser.add_argument('--version', help="version flag", action='store_true', default=False)
+    parser.add_argument('--loop', help='sound play in loop', action='store_true', default=False)
+    parser.add_argument('--version', help="version", action='store_true', default=False)
 
     args = parser.parse_known_args()[0]
     if args.version:
@@ -40,7 +40,7 @@ def main():
         loop = args.loop
         play_cli(file_name, loop=loop)
     else:
-        tprint("nava")
+        tprint("Nava")
         tprint("V:" + NAVA_VERSION)
         nava_help()
         parser.print_help()
