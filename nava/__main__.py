@@ -29,9 +29,9 @@ def main():
     )
     parser.add_argument('--loop', help='sound play in loop', action='store_true', default=False)
     parser.add_argument('--version', help="version", action='store_true', default=False)
-
+    parser.add_argument('-v', help="version", action='store_true', default=False)
     args = parser.parse_known_args()[0]
-    if args.version:
+    if args.version or args.v:
         print(NAVA_VERSION)
     elif args.filename or args.file:
         file_name = args.filename
