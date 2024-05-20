@@ -14,7 +14,7 @@ def main():
     """
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        'filename', 
+        'filename',
         nargs='?',
         type=str,
         metavar='FILE_PATH',
