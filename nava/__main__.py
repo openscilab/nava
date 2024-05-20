@@ -22,7 +22,7 @@ def main():
     )
     parser.add_argument(
         '--file',
-        nargs=1,
+        nargs='?',
         type=str,
         metavar='FILE_PATH',
         help='path to audio file',
