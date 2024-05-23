@@ -27,6 +27,7 @@ True
 True
 >>> nava.params._play_threads_counter == 44
 True
+>>> nava.functions.play_cli("test.wav")
 >>> nava.functions.nava_help()
 <BLANKLINE>
 A Python library for playing sound everywhere natively and securely.
