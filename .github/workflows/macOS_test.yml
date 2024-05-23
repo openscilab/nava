@@ -13,6 +13,7 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [macOS-12, macOS-11]
         python-version: [3.6, 3.7, 3.8, 3.9, 3.10.0, 3.11.0, 3.12.0]
