@@ -296,4 +296,3 @@ def play_cli(sound_path, loop=False):
         print("Error: {0}".format(e))
     finally:
         stop_all()
-        sys.exit(0)
