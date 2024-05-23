@@ -29,6 +29,7 @@ jobs:
     - name: First test
       run: |
         sudo nava
+        sudo nava --version
     - name: Install ALSA
       run: |
         sudo apt-get update

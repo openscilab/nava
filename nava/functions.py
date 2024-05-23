@@ -55,7 +55,7 @@ def nava_help():
     """
     print(OVERVIEW)
     print("Repo : https://github.com/openscilab/nava")
-    print("Webpage : https://openscilab.com/")
+    print("Webpage : https://openscilab.com/\n")
 
 
 def quote(func):
@@ -275,3 +275,23 @@ def play(sound_path, async_mode=False, loop=False):
             return __play_linux(sound_path, async_mode, loop)
     except Exception:  # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
+
+
+def play_cli(sound_path, loop=False):
+    """
+    Play sound from CLI.
+
+    :param sound_path: sound path
+    :type sound_path: str
+    :param loop: sound loop flag
+    :type loop: bool
+    :return: None
+    """
+    try:
+        while True:
+            play(sound_path)
+            if not loop:
+                break
+    except KeyboardInterrupt:
+        stop_all()
+        sys.exit(0)

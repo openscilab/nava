@@ -130,6 +130,11 @@ except NavaBaseError as e:
     print(str(e))
 ```
 
+### CLI
+```bash
+$ nava [--file FILE_PATH] [--loop] FILE_PATH
+```
+
 ## Engine
 
 List of different platforms and the corresponding engines that are used for sound playing.
