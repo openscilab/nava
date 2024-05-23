@@ -292,6 +292,8 @@ def play_cli(sound_path, loop=False):
             play(sound_path)
             if not loop:
                 break
-    except KeyboardInterrupt:
+    except NavaBaseError as e:
+        print("Error: {0}".format(e))
+    finally:
         stop_all()
         sys.exit(0)
