@@ -1,6 +1,6 @@
 codecov:
   require_ci_to_pass: yes
-notify:
+  notify:
     after_n_builds: 3
     wait_for_ci: yes
 
@@ -14,4 +14,4 @@ coverage:
         enabled: no
     project:
       default:
-        threshold: 2%
+        threshold: 1%
