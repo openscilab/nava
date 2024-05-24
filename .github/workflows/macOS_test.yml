@@ -13,8 +13,9 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [macOS-12, macOS-11]
+        os: [macOS-12, macOS-13]
         python-version: [3.6, 3.7, 3.8, 3.9, 3.10.0, 3.11.0, 3.12.0]
     steps:
     - uses: actions/checkout@v2
@@ -44,7 +45,8 @@ jobs:
           python -m pydocstyle -v --match-dir=nava
       if: matrix.python-version == env.TEST_PYTHON_VERSION
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
-          fail_ci_if_error: false
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
       if: matrix.python-version == env.TEST_PYTHON_VERSION

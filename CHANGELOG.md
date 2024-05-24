@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - `main` function updated
 - OSs local checklist added to pull request template
+- Test system modified
 - `README.md` modified
 ## [0.5] - 2024-04-03
 ### Changed
