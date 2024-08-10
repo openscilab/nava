@@ -129,9 +129,9 @@ def __play_winsound_flags(sound_path, flags):
 
 
 @quote
-def __play_linux(sound_path, async_mode=False, loop=False):
+def __play_alsa(sound_path, async_mode=False, loop=False):
     """
-    Play sound in Linux.
+    Play sound in Linux using ALSA.
 
     :param sound_path: sound path to be played
     :type sound_path: str
@@ -143,7 +143,7 @@ def __play_linux(sound_path, async_mode=False, loop=False):
     """
     if async_mode:
         sound_thread = NavaThread(loop,
-                                  target=__play_proc_linux,
+                                  target=__play_proc_alsa,
                                   args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
@@ -152,15 +152,15 @@ def __play_linux(sound_path, async_mode=False, loop=False):
         return sound_id
     else:
         while True:
-            proc = __play_proc_linux(sound_path)
+            proc = __play_proc_alsa(sound_path)
             proc.wait()
             if not loop:
                 break
 
 
-def __play_proc_linux(sound_path):
+def __play_proc_alsa(sound_path):
     """
-    Create sound playing process in Linux.
+    Create sound playing process in ALSA.
 
     :param sound_path: sound path to be played
     :type sound_path: str
@@ -267,7 +267,7 @@ def __play_auto(sound_path, async_mode=False, loop=False):
     elif sys_platform == "darwin":
         return __play_afplay(sound_path, async_mode, loop)
     else:
-        return __play_linux(sound_path, async_mode, loop)
+        return __play_alsa(sound_path, async_mode, loop)
 
 @path_check
 def play(sound_path, async_mode=False, loop=False, engine=Engine.AUTO):
@@ -293,6 +293,8 @@ def play(sound_path, async_mode=False, loop=False, engine=Engine.AUTO):
             return __play_winsound(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.AFPLAY:
             return __play_afplay(sound_path=sound_path, async_mode=async_mode, loop=loop)
+        elif engine == Engine.ALSA:
+            return __play_alsa(sound_path=sound_path, async_mode=async_mode, loop=loop)
     except Exception:  # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
