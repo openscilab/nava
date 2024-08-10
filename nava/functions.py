@@ -82,9 +82,9 @@ def quote(func):
     return quoter
 
 
-def __play_win(sound_path, async_mode=False, loop=False):
+def __play_winsound(sound_path, async_mode=False, loop=False):
     """
-    Play sound in Windows.
+    Play sound in Windows by using the winsound library.
 
     :param sound_path: sound path
     :type sound_path: str
@@ -103,7 +103,7 @@ def __play_win(sound_path, async_mode=False, loop=False):
 
     if async_mode:
         sound_thread = NavaThread(loop,
-                                  target=__play_win_flags,
+                                  target=__play_winsound_flags,
                                   args=(sound_path, play_flags),
                                   daemon=True)
         sound_thread.start()
@@ -111,12 +111,12 @@ def __play_win(sound_path, async_mode=False, loop=False):
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        __play_win_flags(sound_path, play_flags)
+        __play_winsound_flags(sound_path, play_flags)
 
 
-def __play_win_flags(sound_path, flags):
+def __play_winsound_flags(sound_path, flags):
     """
-    Play sound in Windows using different flags.
+    Play sound in Windows using different flags (winsound).
 
     :param sound_path: sound path
     :type sound_path: str
@@ -263,7 +263,7 @@ def __play_auto(sound_path, async_mode=False, loop=False):
     """
     sys_platform = sys.platform
     if sys_platform == "win32":
-        return __play_win(sound_path, async_mode, loop)
+        return __play_winsound(sound_path, async_mode, loop)
     elif sys_platform == "darwin":
         return __play_mac(sound_path, async_mode, loop)
     else:
@@ -289,6 +289,8 @@ def play(sound_path, async_mode=False, loop=False, engine=Engine.AUTO):
     try:
         if engine == Engine.AUTO:
             return __play_auto(sound_path=sound_path, async_mode=async_mode, loop=loop)
+        elif engine == Engine.WINSOUND:
+            return __play_winsound(sound_path=sound_path, async_mode=async_mode, loop=loop)
     except Exception:  # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
