@@ -84,7 +84,7 @@ def quote(func):
 
 def __play_winsound(sound_path, async_mode=False, loop=False):
     """
-    Play sound in Windows using the winsound library.
+    Play sound using the winsound library.
 
     :param sound_path: sound path
     :type sound_path: str
@@ -116,7 +116,7 @@ def __play_winsound(sound_path, async_mode=False, loop=False):
 
 def __play_winsound_flags(sound_path, flags):
     """
-    Play sound in Windows using different flags (winsound).
+    Play sound in winsound using different flags.
 
     :param sound_path: sound path
     :type sound_path: str
@@ -131,7 +131,7 @@ def __play_winsound_flags(sound_path, flags):
 @quote
 def __play_alsa(sound_path, async_mode=False, loop=False):
     """
-    Play sound in Linux using ALSA.
+    Play sound using ALSA.
 
     :param sound_path: sound path to be played
     :type sound_path: str
@@ -160,7 +160,7 @@ def __play_alsa(sound_path, async_mode=False, loop=False):
 
 def __play_proc_alsa(sound_path):
     """
-    Create sound playing process in ALSA.
+    Create sound playing process using ALSA.
 
     :param sound_path: sound path to be played
     :type sound_path: str
@@ -178,7 +178,7 @@ def __play_proc_alsa(sound_path):
 @quote
 def __play_afplay(sound_path, async_mode=False, loop=False):
     """
-    Play sound in macOS using afplay.
+    Play sound using afplay.
 
     :param sound_path: sound path
     :type sound_path: str
@@ -207,7 +207,7 @@ def __play_afplay(sound_path, async_mode=False, loop=False):
 
 def __play_proc_afplay(sound_path):
     """
-    Create sound playing process in afplay.
+    Create sound playing process using afplay.
 
     :param sound_path: sound path to be played
     :type sound_path: str
