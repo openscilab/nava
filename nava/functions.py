@@ -251,7 +251,7 @@ def path_check(func):
 
 def __play_auto(sound_path, async_mode=False, loop=False):
     """
-    Play sound in automataic mode.
+    Play sound in automatic mode.
 
     :param sound_path: sound path
     :type sound_path: str
