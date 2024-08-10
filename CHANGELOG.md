@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- `engine` parameter added to `play` function
+- `README.md` modified
+- `__play_win` function renamed to `__play_winsound`
+- `__play_mac` function renamed to `__play_afplay`
+- `__play_linux` function renamed to `__play_alsa`
 ## [0.6] - 2024-06-05
 ### Added
 - `play_cli` function
