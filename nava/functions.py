@@ -7,7 +7,7 @@ import shlex
 from functools import wraps
 from .thread import NavaThread
 from .params import OVERVIEW, Engine
-from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
+from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, ENGINE_TYPE_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR, LOOP_ASYNC_ERROR
 from .errors import NavaBaseError
 from . import params
@@ -284,6 +284,8 @@ def play(sound_path, async_mode=False, loop=False, engine=Engine.AUTO):
     :type engine: Engine enum
     :return: None or sound id
     """
+    if not isinstance(engine, Engine):
+        raise NavaBaseError(ENGINE_TYPE_ERROR)
     if loop and not async_mode:
         raise NavaBaseError(LOOP_ASYNC_ERROR)
     try:
