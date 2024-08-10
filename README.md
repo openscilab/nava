@@ -144,27 +144,31 @@ sound_id = play("alarm.wav", async_mode=True, engine=Engine.AFPLAY)
 $ nava [--file FILE_PATH] [--loop] FILE_PATH
 ```
 
-## Engine list
+## Engines list
 
 List of different platforms and the corresponding engines that are used for sound playing.
 
 <table>
 	<tr> 
-		<th align="center">Platform</th>
 		<th align="center">Engine</th>
+		<th align="center">Platform</th>
+		<th align="center">References</th>
 		<th align="center">Supported Formats</th>
 	</tr>
     <tr>
+		<td align="center"><code>ALSA</code></td>
 		<td align="center">Linux</td>
 		<td align="center"><a href="https://www.alsa-project.org/wiki/Main_Page">Advanced Linux Sound Architecture</a></td>
 		<td align="center"><code>.wav</code></td>
 	</tr>
     <tr>
+		<td align="center"><code>WINSOUND</code></td>
 		<td align="center">Windows</td>
 		<td align="center"><a href="https://docs.python.org/3/library/winsound.html">Winsound</a></td>
 		<td align="center"><code>.wav</code></td>
 	</tr>
     <tr>
+		<td align="center"><code>AFPLAY</code></td>
 		<td align="center">macOS</td>
 		<td align="center"><a href="https://ss64.com/mac/afplay.html">Audio File Play</a></td>
 		<td align="center"><code>.wav</code>,<code>.mp3</code></td>
