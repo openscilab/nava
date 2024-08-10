@@ -130,12 +130,21 @@ except NavaBaseError as e:
     print(str(e))
 ```
 
+### Engine
+
+⚠️ The `engine` parameter has a default value of `AUTO` 
+
+```python
+from nava import play, Engine
+sound_id = play("alarm.wav", async_mode=True, engine=Engine.AFPLAY)
+```
+
 ### CLI
 ```bash
 $ nava [--file FILE_PATH] [--loop] FILE_PATH
 ```
 
-## Engine
+## Engine list
 
 List of different platforms and the corresponding engines that are used for sound playing.
 
