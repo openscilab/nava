@@ -27,6 +27,13 @@ True
 True
 >>> nava.params._play_threads_counter == 44
 True
+>>> sys_platform = sys.platform
+>>> if sys_platform == "win32":
+...     sound_id = nava.play(os.path.join("others", "test.wav"), async_mode=True, engine=nava.Engine.WINSOUND)
+>>> elif sys_platform == "darwin":
+...     sound_id = nava.play(os.path.join("others", "test.wav"), async_mode=True, engine=nava.Engine.AFPLAY)
+>>> else:
+...     sound_id = nava.play(os.path.join("others", "test.wav"), async_mode=True, engine=nava.Engine.ALSA)
 >>> nava.functions.play_cli(os.path.join("others", "test.wav"))
 >>> nava.functions.nava_help()
 <BLANKLINE>
