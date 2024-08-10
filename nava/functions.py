@@ -6,7 +6,7 @@ import os
 import shlex
 from functools import wraps
 from .thread import NavaThread
-from .params import OVERVIEW
+from .params import OVERVIEW, Engine
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR, LOOP_ASYNC_ERROR
 from .errors import NavaBaseError
@@ -249,11 +249,9 @@ def path_check(func):
         return func(sound_path, *args, **kwargs)
     return path_checker
 
-
-@path_check
-def play(sound_path, async_mode=False, loop=False):
+def __play_auto(sound_path, async_mode=False, loop=False):
     """
-    Play sound.
+    Play sound in automataic mode.
 
     :param sound_path: sound path
     :type sound_path: str
@@ -263,16 +261,34 @@ def play(sound_path, async_mode=False, loop=False):
     :type loop: bool
     :return: None or sound id
     """
+    sys_platform = sys.platform
+    if sys_platform == "win32":
+        return __play_win(sound_path, async_mode, loop)
+    elif sys_platform == "darwin":
+        return __play_mac(sound_path, async_mode, loop)
+    else:
+        return __play_linux(sound_path, async_mode, loop)
+
+@path_check
+def play(sound_path, async_mode=False, loop=False, engine=Engine.AUTO):
+    """
+    Play sound.
+
+    :param sound_path: sound path
+    :type sound_path: str
+    :param async_mode: async mode flag
+    :type async_mode: bool
+    :param loop: sound loop flag
+    :type loop: bool
+    :param engine: play engine
+    :type engine: Engine enum
+    :return: None or sound id
+    """
     if loop and not async_mode:
         raise NavaBaseError(LOOP_ASYNC_ERROR)
     try:
-        sys_platform = sys.platform
-        if sys_platform == "win32":
-            return __play_win(sound_path, async_mode, loop)
-        elif sys_platform == "darwin":
-            return __play_mac(sound_path, async_mode, loop)
-        else:
-            return __play_linux(sound_path, async_mode, loop)
+        if engine == Engine.AUTO:
+            return __play_auto(sound_path=sound_path, async_mode=async_mode, loop=loop)
     except Exception:  # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
