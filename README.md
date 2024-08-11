@@ -136,7 +136,7 @@ except NavaBaseError as e:
 
 ```python
 from nava import play, Engine
-sound_id = play("alarm.wav", async_mode=True, engine=Engine.AFPLAY)
+sound_id = play("alarm.wav", engine=Engine.AFPLAY)
 ```
 
 ### CLI
