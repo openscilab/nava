@@ -1,28 +1,29 @@
 # -*- coding: utf-8 -*-
 """Nava thread."""
 
-import sys
 import threading
-
+from .params import Engine
 
 class NavaThread(threading.Thread):
     """Nava custom thread."""
 
-    def __init__(self, loop, *args, **kwargs):
+    def __init__(self, loop, engine, *args, **kwargs):
         """
         Init method.
 
         :param loop: sound thread loop flag
         :type loop: bool
+        :param engine: play engine
+        :type engine: Engine enum
         :param args: arguments
         :type args: list
         :param kwargs: keyword arguments
         :type kwargs: dict
         """
         super(NavaThread, self).__init__(*args, **kwargs)
-        self._sys_platform = sys.platform
         self._play_process = None
         self._loop = loop
+        self._engine = engine
 
     def run(self):
         """
@@ -31,7 +32,7 @@ class NavaThread(threading.Thread):
         :return: None
         """
         if self._target is not None:
-            if self._sys_platform == "win32":
+            if self._engine == Engine.WINSOUND:
                 self._play_process = self._target(*self._args, **self._kwargs)
             else:
                 while True:
@@ -47,7 +48,7 @@ class NavaThread(threading.Thread):
         :return: None
         """
         self._loop = False
-        if self._sys_platform == "win32":
+        if self._engine == Engine.WINSOUND:
             import winsound
             winsound.PlaySound(None, winsound.SND_PURGE)
         else:
