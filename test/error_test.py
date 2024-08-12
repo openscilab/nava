@@ -18,6 +18,10 @@ nava.errors.NavaBaseError: Given sound id doesn't exist.
 Traceback (most recent call last):
     ...
 nava.errors.NavaBaseError: `loop` can not be set True when `async_mode` is False.
+>>> play(os.path.join("others", "test.wav"), async_mode=True, loop=True, engine=2)
+Traceback (most recent call last):
+    ...
+nava.errors.NavaBaseError: `engine` type must be `Engine` enum.
 >>> import nava
 >>> nava.functions.play_cli("test2.wav")
 Error: Given sound file doesn't exist.

@@ -6,8 +6,8 @@ import os
 import shlex
 from functools import wraps
 from .thread import NavaThread
-from .params import OVERVIEW
-from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR
+from .params import OVERVIEW, Engine
+from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, ENGINE_TYPE_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR, LOOP_ASYNC_ERROR
 from .errors import NavaBaseError
 from . import params
@@ -82,9 +82,9 @@ def quote(func):
     return quoter
 
 
-def __play_win(sound_path, async_mode=False, loop=False):
+def __play_winsound(sound_path, async_mode=False, loop=False):
     """
-    Play sound in Windows.
+    Play sound using the winsound library.
 
     :param sound_path: sound path
     :type sound_path: str
@@ -103,7 +103,7 @@ def __play_win(sound_path, async_mode=False, loop=False):
 
     if async_mode:
         sound_thread = NavaThread(loop,
-                                  target=__play_win_flags,
+                                  target=__play_winsound_flags,
                                   args=(sound_path, play_flags),
                                   daemon=True)
         sound_thread.start()
@@ -111,12 +111,12 @@ def __play_win(sound_path, async_mode=False, loop=False):
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        __play_win_flags(sound_path, play_flags)
+        __play_winsound_flags(sound_path, play_flags)
 
 
-def __play_win_flags(sound_path, flags):
+def __play_winsound_flags(sound_path, flags):
     """
-    Play sound in Windows using different flags.
+    Play sound in winsound using different flags.
 
     :param sound_path: sound path
     :type sound_path: str
@@ -129,9 +129,9 @@ def __play_win_flags(sound_path, flags):
 
 
 @quote
-def __play_linux(sound_path, async_mode=False, loop=False):
+def __play_alsa(sound_path, async_mode=False, loop=False):
     """
-    Play sound in Linux.
+    Play sound using ALSA.
 
     :param sound_path: sound path to be played
     :type sound_path: str
@@ -143,7 +143,7 @@ def __play_linux(sound_path, async_mode=False, loop=False):
     """
     if async_mode:
         sound_thread = NavaThread(loop,
-                                  target=__play_proc_linux,
+                                  target=__play_proc_alsa,
                                   args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
@@ -152,15 +152,15 @@ def __play_linux(sound_path, async_mode=False, loop=False):
         return sound_id
     else:
         while True:
-            proc = __play_proc_linux(sound_path)
+            proc = __play_proc_alsa(sound_path)
             proc.wait()
             if not loop:
                 break
 
 
-def __play_proc_linux(sound_path):
+def __play_proc_alsa(sound_path):
     """
-    Create sound playing process in Linux.
+    Create sound playing process using ALSA.
 
     :param sound_path: sound path to be played
     :type sound_path: str
@@ -176,9 +176,9 @@ def __play_proc_linux(sound_path):
 
 
 @quote
-def __play_mac(sound_path, async_mode=False, loop=False):
+def __play_afplay(sound_path, async_mode=False, loop=False):
     """
-    Play sound in macOS.
+    Play sound using afplay.
 
     :param sound_path: sound path
     :type sound_path: str
@@ -190,7 +190,7 @@ def __play_mac(sound_path, async_mode=False, loop=False):
     """
     if async_mode:
         sound_thread = NavaThread(loop,
-                                  target=__play_proc_mac,
+                                  target=__play_proc_afplay,
                                   args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
@@ -199,15 +199,15 @@ def __play_mac(sound_path, async_mode=False, loop=False):
         return sound_id
     else:
         while True:
-            proc = __play_proc_mac(sound_path)
+            proc = __play_proc_afplay(sound_path)
             proc.wait()
             if not loop:
                 break
 
 
-def __play_proc_mac(sound_path):
+def __play_proc_afplay(sound_path):
     """
-    Create sound playing process in macOS.
+    Create sound playing process using afplay.
 
     :param sound_path: sound path to be played
     :type sound_path: str
@@ -249,11 +249,9 @@ def path_check(func):
         return func(sound_path, *args, **kwargs)
     return path_checker
 
-
-@path_check
-def play(sound_path, async_mode=False, loop=False):
+def __play_auto(sound_path, async_mode=False, loop=False):
     """
-    Play sound.
+    Play sound in automatic mode.
 
     :param sound_path: sound path
     :type sound_path: str
@@ -263,16 +261,42 @@ def play(sound_path, async_mode=False, loop=False):
     :type loop: bool
     :return: None or sound id
     """
+    sys_platform = sys.platform
+    if sys_platform == "win32":
+        return __play_winsound(sound_path, async_mode, loop)
+    elif sys_platform == "darwin":
+        return __play_afplay(sound_path, async_mode, loop)
+    else:
+        return __play_alsa(sound_path, async_mode, loop)
+
+@path_check
+def play(sound_path, async_mode=False, loop=False, engine=Engine.AUTO):
+    """
+    Play sound.
+
+    :param sound_path: sound path
+    :type sound_path: str
+    :param async_mode: async mode flag
+    :type async_mode: bool
+    :param loop: sound loop flag
+    :type loop: bool
+    :param engine: play engine
+    :type engine: Engine enum
+    :return: None or sound id
+    """
+    if not isinstance(engine, Engine):
+        raise NavaBaseError(ENGINE_TYPE_ERROR)
     if loop and not async_mode:
         raise NavaBaseError(LOOP_ASYNC_ERROR)
     try:
-        sys_platform = sys.platform
-        if sys_platform == "win32":
-            return __play_win(sound_path, async_mode, loop)
-        elif sys_platform == "darwin":
-            return __play_mac(sound_path, async_mode, loop)
-        else:
-            return __play_linux(sound_path, async_mode, loop)
+        if engine == Engine.AUTO:
+            return __play_auto(sound_path=sound_path, async_mode=async_mode, loop=loop)
+        elif engine == Engine.WINSOUND:
+            return __play_winsound(sound_path=sound_path, async_mode=async_mode, loop=loop)
+        elif engine == Engine.AFPLAY:
+            return __play_afplay(sound_path=sound_path, async_mode=async_mode, loop=loop)
+        elif engine == Engine.ALSA:
+            return __play_alsa(sound_path=sound_path, async_mode=async_mode, loop=loop)
     except Exception:  # pragma: no cover
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
