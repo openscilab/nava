@@ -252,6 +252,7 @@ def path_check(func):
         return func(sound_path, *args, **kwargs)
     return path_checker
 
+
 def __play_auto(sound_path, async_mode=False, loop=False):
     """
     Play sound in automatic mode.
@@ -271,6 +272,7 @@ def __play_auto(sound_path, async_mode=False, loop=False):
         return __play_afplay(sound_path, async_mode, loop)
     else:
         return __play_alsa(sound_path, async_mode, loop)
+
 
 @path_check
 def play(sound_path, async_mode=False, loop=False, engine=Engine.AUTO):

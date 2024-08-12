@@ -9,6 +9,7 @@ A Python library for playing sound everywhere natively and securely.
 
 """
 
+
 class Engine(Enum):
     """
     Nava engine class.
@@ -21,6 +22,7 @@ class Engine(Enum):
     WINSOUND = "winsound"
     ALSA = "alsa"
     AFPLAY = "afplay"
+
 
 SOUND_FILE_PLAY_ERROR = "Sound can not play due to some issues."
 SOUND_FILE_EXIST_ERROR = "Given sound file doesn't exist."

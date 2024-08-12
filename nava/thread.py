@@ -4,6 +4,7 @@
 import threading
 from .params import Engine
 
+
 class NavaThread(threading.Thread):
     """Nava custom thread."""
 
