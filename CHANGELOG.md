@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - `engine` parameter added to `play` function
+- `engine` parameter added to `NavaThread` class
 - `README.md` modified
 - `__play_win` function renamed to `__play_winsound`
 - `__play_mac` function renamed to `__play_afplay`

@@ -103,6 +103,7 @@ def __play_winsound(sound_path, async_mode=False, loop=False):
 
     if async_mode:
         sound_thread = NavaThread(loop,
+                                  engine=Engine.WINSOUND,
                                   target=__play_winsound_flags,
                                   args=(sound_path, play_flags),
                                   daemon=True)
@@ -143,6 +144,7 @@ def __play_alsa(sound_path, async_mode=False, loop=False):
     """
     if async_mode:
         sound_thread = NavaThread(loop,
+                                  engine=Engine.ALSA,
                                   target=__play_proc_alsa,
                                   args=(sound_path,),
                                   daemon=True)
@@ -190,6 +192,7 @@ def __play_afplay(sound_path, async_mode=False, loop=False):
     """
     if async_mode:
         sound_thread = NavaThread(loop,
+                                  engine=Engine.AFPLAY,
                                   target=__play_proc_afplay,
                                   args=(sound_path,),
                                   daemon=True)
@@ -249,6 +252,7 @@ def path_check(func):
         return func(sound_path, *args, **kwargs)
     return path_checker
 
+
 def __play_auto(sound_path, async_mode=False, loop=False):
     """
     Play sound in automatic mode.
@@ -268,6 +272,7 @@ def __play_auto(sound_path, async_mode=False, loop=False):
         return __play_afplay(sound_path, async_mode, loop)
     else:
         return __play_alsa(sound_path, async_mode, loop)
+
 
 @path_check
 def play(sound_path, async_mode=False, loop=False, engine=Engine.AUTO):
