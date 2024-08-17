@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 >>> import os
+>>> import sys
 >>> from nava import play, stop
 >>> test_sound_path = os.path.join("others", "test.wav")
 >>> play("test.wav")
@@ -23,6 +24,25 @@ nava.errors.NavaBaseError: `loop` can not be set True when `async_mode` is False
 Traceback (most recent call last):
     ...
 nava.errors.NavaBaseError: `engine` type must be `Engine` enum.
+>>> sys_platform = sys.platform
+>>> if sys_platform == "win32":
+...     sound_id = nava.play(test_sound_path, async_mode=False, engine=nava.Engine.AFPLAY)
+... elif sys_platform == "darwin":
+...     sound_id = nava.play(test_sound_path, async_mode=False, engine=nava.Engine.WINSOUND)
+... else:
+...     sound_id = nava.play(test_sound_path, async_mode=False, engine=nava.Engine.WINSOUND)
+Traceback (most recent call last):
+    ...
+nava.errors.NavaBaseError: Sound can not play due to some issues.
+>>> if sys_platform == "win32":
+...     sound_id = nava.play(test_sound_path, async_mode=True, engine=nava.Engine.AFPLAY)
+... elif sys_platform == "darwin":
+...     sound_id = nava.play(test_sound_path, async_mode=True, engine=nava.Engine.WINSOUND)
+... else:
+...     sound_id = nava.play(test_sound_path, async_mode=True, engine=nava.Engine.WINSOUND)
+Traceback (most recent call last):
+    ...
+nava.errors.NavaBaseError: Sound can not play due to some issues.
 >>> import nava
 >>> nava.functions.play_cli("test2.wav")
 Error: Given sound file doesn't exist.
