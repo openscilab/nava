@@ -41,10 +41,10 @@ nava.errors.NavaBaseError: Sound can not play due to some issues.
 ...     sound_id = play(test_sound_path, async_mode=True, engine=Engine.WINSOUND)
 ... else:
 ...     sound_id = play(test_sound_path, async_mode=True, engine=Engine.WINSOUND)
+>>> import nava
 >>> time.sleep(2)
 >>> nava.params._play_threads_map[sound_id]._nava_exception
-Sound can not play due to some issues.
->>> import nava
+'Sound can not play due to some issues.'
 >>> nava.functions.play_cli("test2.wav")
 Error: Given sound file doesn't exist.
 >>> nava.params._play_threads_map = dict()
