@@ -45,7 +45,7 @@ class NavaThread(threading.Thread):
                         self._play_process.wait()
                         if not self._loop:
                             break
-        except Exception:
+        except Exception: # pragma: no cover
             self._nava_exception = SOUND_FILE_PLAY_ERROR
             raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 

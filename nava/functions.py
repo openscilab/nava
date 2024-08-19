@@ -302,7 +302,7 @@ def play(sound_path, async_mode=False, loop=False, engine=Engine.AUTO):
             return __play_afplay(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.ALSA:
             return __play_alsa(sound_path=sound_path, async_mode=async_mode, loop=loop)
-    except Exception:  # pragma: no cover
+    except Exception:
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
 
