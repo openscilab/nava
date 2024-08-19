@@ -26,6 +26,8 @@ class NavaThread(threading.Thread):
         self._play_process = None
         self._loop = loop
         self._engine = engine
+        self._nava_exception = None
+
 
     def run(self):
         """
@@ -44,6 +46,7 @@ class NavaThread(threading.Thread):
                         if not self._loop:
                             break
         except Exception:
+            self._nava_exception = SOUND_FILE_PLAY_ERROR
             raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
     def stop(self):
