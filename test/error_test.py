@@ -2,6 +2,7 @@
 """
 >>> import os
 >>> import sys
+>>> import time
 >>> from nava import play, stop, Engine
 >>> test_sound_path = os.path.join("others", "test.wav")
 >>> play("test.wav")
@@ -34,7 +35,18 @@ nava.errors.NavaBaseError: `engine` type must be `Engine` enum.
 Traceback (most recent call last):
     ...
 nava.errors.NavaBaseError: Sound can not play due to some issues.
+>>> if sys_platform == "win32":
+...     sound_id = play(test_sound_path, async_mode=True, engine=Engine.AFPLAY)
+... elif sys_platform == "darwin":
+...     sound_id = play(test_sound_path, async_mode=True, engine=Engine.WINSOUND)
+... else:
+...     sound_id = play(test_sound_path, async_mode=True, engine=Engine.WINSOUND)
+>>> time.sleep(2)
+>>> nava.params._play_threads_map[sound_id]._nava_exception
+Sound can not play due to some issues.
 >>> import nava
 >>> nava.functions.play_cli("test2.wav")
 Error: Given sound file doesn't exist.
+>>> nava.params._play_threads_map = dict()
+>>> nava.params._play_threads_counter = 0
 """
