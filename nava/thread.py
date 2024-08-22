@@ -2,7 +2,8 @@
 """Nava thread."""
 
 import threading
-from .params import Engine
+from .params import Engine, SOUND_FILE_PLAY_ERROR
+from .errors import NavaBaseError
 
 
 class NavaThread(threading.Thread):
@@ -25,6 +26,7 @@ class NavaThread(threading.Thread):
         self._play_process = None
         self._loop = loop
         self._engine = engine
+        self._nava_exception = None
 
     def run(self):
         """
@@ -32,15 +34,19 @@ class NavaThread(threading.Thread):
 
         :return: None
         """
-        if self._target is not None:
-            if self._engine == Engine.WINSOUND:
-                self._play_process = self._target(*self._args, **self._kwargs)
-            else:
-                while True:
+        try:
+            if self._target is not None:
+                if self._engine == Engine.WINSOUND:
                     self._play_process = self._target(*self._args, **self._kwargs)
-                    self._play_process.wait()
-                    if not self._loop:
-                        break
+                else:
+                    while True:
+                        self._play_process = self._target(*self._args, **self._kwargs)
+                        self._play_process.wait()
+                        if not self._loop:
+                            break
+        except Exception:  # pragma: no cover
+            self._nava_exception = SOUND_FILE_PLAY_ERROR
+            raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
     def stop(self):
         """
