@@ -46,7 +46,6 @@ class NavaThread(threading.Thread):
             finally:
                 self._play_process.wait()
 
-
     def run(self):
         """
         Run target function.
