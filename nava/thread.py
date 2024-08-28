@@ -28,6 +28,25 @@ class NavaThread(threading.Thread):
         self._engine = engine
         self._nava_exception = None
 
+    def _kill_play_process(self):
+        """
+        Kill play process.
+
+        :return: None
+        """
+        if self._play_process is not None:
+            try:
+                self._play_process.stdout.close()
+                self._play_process.stdin.close()
+                self._play_process.stderr.close()
+                self._play_process.kill()
+                self._play_process.terminate()
+            except ProcessLookupError:
+                pass
+            finally:
+                self._play_process.wait()
+
+
     def run(self):
         """
         Run target function.
@@ -46,6 +65,7 @@ class NavaThread(threading.Thread):
                             break
         except Exception:  # pragma: no cover
             self._nava_exception = SOUND_FILE_PLAY_ERROR
+            self._kill_play_process()
             raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
     def stop(self):
@@ -59,14 +79,4 @@ class NavaThread(threading.Thread):
             import winsound
             winsound.PlaySound(None, winsound.SND_PURGE)
         else:
-            if self._play_process is not None:
-                try:
-                    self._play_process.stdout.close()
-                    self._play_process.stdin.close()
-                    self._play_process.stderr.close()
-                    self._play_process.kill()
-                    self._play_process.terminate()
-                except ProcessLookupError:
-                    pass
-                finally:
-                    self._play_process.wait()
+            self._kill_play_process()
