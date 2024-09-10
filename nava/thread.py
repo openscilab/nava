@@ -28,10 +28,12 @@ class NavaThread(threading.Thread):
         self._engine = engine
         self._nava_exception = None
 
-    def _kill_play_process(self):
+    def _kill_play_process(self, wait=True):
         """
         Kill play process.
 
+        :param wait: wait flag
+        :type wait: bool
         :return: None
         """
         if self._play_process is not None:
@@ -44,7 +46,8 @@ class NavaThread(threading.Thread):
             except ProcessLookupError:
                 pass
             finally:
-                self._play_process.wait()
+                if wait:
+                    self._play_process.wait()
 
     def run(self):
         """
@@ -64,7 +67,7 @@ class NavaThread(threading.Thread):
                             break
         except Exception:  # pragma: no cover
             self._nava_exception = SOUND_FILE_PLAY_ERROR
-            self._kill_play_process()
+            self._kill_play_process(wait=False)
             raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
     def stop(self):
