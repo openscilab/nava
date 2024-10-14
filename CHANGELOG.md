@@ -6,11 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- `Python 3.13` added to `linux_test.yml`
-- `Python 3.13` added to `macOS_test.yml`
-- `Python 3.13` added to `windows_test.yml`
-- `Python 3.13` added to `setup.py`
-- `Python 3.13` added to `bug_report.yml`
+- `Python 3.13` added to tests
 - `engine` parameter added to `play` function
 - `engine` parameter added to `NavaThread` class
 - `README.md` modified
