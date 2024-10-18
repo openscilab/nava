@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.7] - 2024-10-23
 ### Changed
 - `Python 3.13` added to tests
 - `engine` parameter added to `play` function
@@ -68,7 +69,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `play` function
 
 
-[Unreleased]: https://github.com/openscilab/nava/compare/v0.6...dev
+[Unreleased]: https://github.com/openscilab/nava/compare/v0.7...dev
+[0.7]: https://github.com/openscilab/nava/compare/v0.6...v0.7
 [0.6]: https://github.com/openscilab/nava/compare/v0.5...v0.6
 [0.5]: https://github.com/openscilab/nava/compare/v0.4...v0.5
 [0.4]: https://github.com/openscilab/nava/compare/v0.3...v0.4
