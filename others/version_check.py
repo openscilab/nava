@@ -4,7 +4,7 @@ import os
 import sys
 import codecs
 Failed = 0
-NAVA_VERSION = "0.6"
+NAVA_VERSION = "0.7"
 
 
 SETUP_ITEMS = [
