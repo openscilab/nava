@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+### Changed
+- GitHub actions are limited to the `dev` and `main` branches
 ## [0.7] - 2024-10-23
 ### Changed
 - `Python 3.13` added to tests
