@@ -19,10 +19,10 @@ Nava is a Python library that allows users to play sound in Python without any d
 	<tr>
 		<td align="center">PyPI Counter</td>
 		<td align="center">
-            <a href="http://pepy.tech/project/nava">
-                <img src="http://pepy.tech/badge/nava">
-            </a>
-        </td>
+		    <a href="https://pepy.tech/projects/nava">
+			<img src="https://static.pepy.tech/badge/nava" alt="PyPI Downloads">
+		    </a>
+   	       </td>
 	</tr>
 	<tr>
 		<td align="center">Github Stars</td>
