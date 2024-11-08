@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 ### Changed
+- `README.md` updated
 - GitHub actions are limited to the `dev` and `main` branches
 ## [0.7] - 2024-10-23
 ### Changed
