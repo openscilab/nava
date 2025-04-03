@@ -199,3 +199,7 @@ Give a ⭐️ if this project helped you!
 If you do like our project and we hope that you do, can you please support us? Our project is not and is never going to be working for profit. We need the money just so we can continue doing what we do ;-) .
 
 <a href="https://openscilab.com/#donation" target="_blank"><img src="https://github.com/openscilab/nava/raw/main/others/donation.png" height="90px" width="270px" alt="Nava Donation"></a>
+
+[Python Software Foundation (PSF)](https://www.python.org/psf/) grants Nava library from version **0.8** to **0.9**. [PSF](https://www.python.org/psf/) is the organization behind Python. Their mission is to promote, protect, and advance the Python programming language and to support and facilitate the growth of a diverse and international community of Python programmers.
+
+<a href="https://www.python.org/psf/"><img src="https://wiki.python.org/psf/PSF%20Press%20Kit?action=AttachFile&do=get&target=psf-logo-narrow-256x84-alpha.png" height="55px" alt="Python Software Foundation"></a>
