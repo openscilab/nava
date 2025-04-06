@@ -188,6 +188,12 @@ You can also join our discord server
   <img src="https://img.shields.io/discord/1064533716615049236.svg?style=for-the-badge" alt="Discord Channel">
 </a>
 
+## Acknowledgments
+
+[Python Software Foundation (PSF)](https://www.python.org/psf/) grants Nava library from version **0.8** to **0.9**. [PSF](https://www.python.org/psf/) is the organization behind Python. Their mission is to promote, protect, and advance the Python programming language and to support and facilitate the growth of a diverse and international community of Python programmers.
+
+<a href="https://www.python.org/psf/"><img src="https://wiki.python.org/psf/PSF%20Press%20Kit?action=AttachFile&do=get&target=psf-logo-narrow-256x84-alpha.png" height="55px" alt="Python Software Foundation"></a>
+
 ## Show your support
 
 <h3>Star this repo</h3>
