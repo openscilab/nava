@@ -11,4 +11,4 @@
 - [ ] Windows
     - [ ] Windows 11
 - [ ] Linux
-    - [ ] Ubuntu 20.04
+    - [ ] Ubuntu 22.04
