@@ -49,7 +49,6 @@ jobs:
         sudo apt-get install alsa-oss
         sudo apt-get install -y software-properties-common
         sudo apt-get install linux-modules-extra-$(uname -r)
-        sudo modprobe snd-dummy
     - name: Test requirements Installation
       run: |
         sudo python others/requirements-splitter.py
