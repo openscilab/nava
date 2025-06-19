@@ -129,6 +129,21 @@ def __play_winsound_flags(sound_path, flags):
     winsound.PlaySound(sound_path, flags)
 
 
+def __play_google_colab(sound_path):
+    """
+    Play sound in Google Colab Notebook.
+
+    :param sound_path: sound path
+    :type sound_path: str
+    :param loop: sound loop flag
+    :type loop: bool
+    :return: None
+    """
+    from IPython.display import Audio, display
+    audio = Audio(sound_path, autoplay=True)
+    display(audio)
+
+
 @quote
 def __play_alsa(sound_path, async_mode=False, loop=False):
     """
