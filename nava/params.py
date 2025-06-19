@@ -44,7 +44,6 @@ VSCODE_ENV_VARS = [
 # Shell type identifiers
 SHELL_TYPE_ZMQ = "zmqinteractiveshell"           # Jupyter Notebook/Lab
 SHELL_TYPE_TERMINAL = "terminalinteractiveshell" # IPython Terminal
-SHELL_TYPE_COLAB = "shell"                       # Fallback seen in Colab
 
 SOUND_FILE_PLAY_ERROR = "Sound can not play due to some issues."
 SOUND_FILE_EXIST_ERROR = "Given sound file doesn't exist."
