@@ -25,6 +25,8 @@ class Engine(Enum):
 
 
 class PythonEnvironment(Enum):
+    """Python environment class."""
+
     COLAB = "Google Colab"
     LOCAL_JUPYTER = "Local Jupyter Notebook or JupyterLab"
     VSCODE = "VS Code Notebook"
