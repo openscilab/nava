@@ -351,7 +351,9 @@ def play_cli(sound_path, loop=False):
 
 def detect_environment():
     """
-    Detects the current Python execution environment:
+    Detect the current Python execution environment.
+
+    Supported environments:
     - Google Colab
     - Local Jupyter Notebook/Lab
     - VS Code Notebook
