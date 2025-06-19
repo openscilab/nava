@@ -110,6 +110,39 @@ def __play_winmm(sound_path, async_mode=False, loop=False):
         __play_winmm_flags(sound_path, async_mode, loop)
 
 
+    def play_sound(alias):
+        """
+        Open and play a sound using the specified alias.
+
+        :param alias: MCI alias to assign to the sound.
+        :type alias: str
+        :return: None
+        """
+        windll.winmm.mciSendStringW(f'open "{sound_path}" type mpegvideo alias {alias}', None, 0, None)
+        do_block = " wait" if not async_mode else ""
+        windll.winmm.mciSendStringW(f"play {alias}" + do_block, None, 0, None)
+    def stop_sound(alias):
+        """
+        Stop and close the sound associated with the specified alias.
+
+        :param alias: MCI alias of the sound to stop.
+        :type alias: str
+        :return: None
+        """
+        windll.winmm.mciSendStringW(f"stop {alias}", None, 0, None)
+        windll.winmm.mciSendStringW(f"close {alias}", None, 0, None)
+    def status_sound(alias):
+        """
+        Get the current playback status of the specified alias.
+
+        :param alias: MCI alias to query.
+        :type alias: str
+        :return: Current status (e.g., 'playing', 'stopped', '').
+        :rtype: str
+        """
+        status_buf = create_unicode_buffer(128)
+        windll.winmm.mciSendStringW(f"status {alias} mode", status_buf, 128, None)
+        return status_buf.value.lower()
 
 def __play_winsound(sound_path, async_mode=False, loop=False):
     """
