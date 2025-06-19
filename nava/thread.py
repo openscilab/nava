@@ -25,6 +25,7 @@ class NavaThread(threading.Thread):
         super(NavaThread, self).__init__(*args, **kwargs)
         self._play_process = None
         self._loop = loop
+        self._force_stop = False
         self._engine = engine
         self._nava_exception = None
 
