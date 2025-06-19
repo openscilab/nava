@@ -362,7 +362,7 @@ def detect_environment():
     
     :return: PythonEnvironment Enum value indicating the environment.
     """
-    ip = None 
+    ip = None
     try:
         from IPython import get_ipython
         ip = get_ipython()
