@@ -359,8 +359,12 @@ def detect_environment():
     
     :return: PythonEnvironment Enum value indicating the environment.
     """
-    from IPython import get_ipython
-    ip = get_ipython()
+    ip = None 
+    try:
+        from IPython import get_ipython
+        ip = get_ipython()
+    except ImportError:
+        return PythonEnvironment.PLAIN_PYTHON
     if ip is None:
         return PythonEnvironment.PLAIN_PYTHON
 
