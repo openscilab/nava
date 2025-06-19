@@ -158,7 +158,7 @@ def __play_winmm_flags(sound_path, async_mode=False, loop=False):
 
     import time
     from ctypes import windll, create_unicode_buffer
-    sound_hash = sha256(sound_path.encode()).hexdigest()
+    sound_hash = sha256(sound_path.encode()).hexdigest()[-7:]
     alias = f"nava_sound_{sound_hash}"
     play_sound(alias)
     try:
