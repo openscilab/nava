@@ -22,6 +22,7 @@ class Engine(Enum):
     WINSOUND = "winsound"
     ALSA = "alsa"
     AFPLAY = "afplay"
+    WINMM = "winmm"
 
 
 SOUND_FILE_PLAY_ERROR = "Sound can not play due to some issues."
