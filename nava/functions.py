@@ -345,3 +345,40 @@ def play_cli(sound_path, loop=False):
         print("Error: {0}".format(e))
     finally:
         stop_all()
+
+
+def detect_environment():
+    """
+    Detects the current Python execution environment:
+    - Google Colab
+    - Local Jupyter Notebook/Lab
+    - VS Code Notebook
+    - IPython Terminal
+    - Plain Python script
+    
+    :return: PythonEnvironment Enum value indicating the environment.
+    """
+    from IPython import get_ipython
+    ip = get_ipython()
+    if ip is None:
+        return PythonEnvironment.PLAIN_PYTHON
+
+    shell_name = ip.__class__.__name__.lower()
+    # Explicit Google Colab check (most reliable)
+    try:
+        import google.colab
+        return PythonEnvironment.COLAB
+    except ImportError:
+        pass
+
+    # VS Code check via known env vars
+    if any(var in os.environ for var in VSCODE_ENV_VARS):
+        return PythonEnvironment.VSCODE
+
+    if shell_name == SHELL_TYPE_ZMQ:
+        return PythonEnvironment.LOCAL_JUPYTER
+
+    if shell_name == SHELL_TYPE_TERMINAL:
+        return PythonEnvironment.IPYTHON_TERMINAL
+
+    return PythonEnvironment.UNKNOWN
