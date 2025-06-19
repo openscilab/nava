@@ -82,6 +82,35 @@ def quote(func):
     return quoter
 
 
+def __play_winmm(sound_path, async_mode=False, loop=False):
+    """
+    Play sound using the winmm MCI interface.
+
+    :param sound_path: Path to the sound file.
+    :type sound_path: str
+    :param async_mode: async mode flag
+    :type async_mode: bool
+    :param loop: sound loop flag
+    :type loop: bool
+    :return: None or sound_id if async.
+    """
+    if async_mode:
+        sound_thread = NavaThread(
+            loop,
+            engine=Engine.WINMM,
+            target=__play_winmm_flags,
+            args=(sound_path, async_mode, loop),
+            daemon=True
+        )
+        sound_thread.start()
+        sound_id = sound_id_gen()
+        params._play_threads_map[sound_id] = sound_thread
+        return sound_id
+    else:
+        __play_winmm_flags(sound_path, async_mode, loop)
+
+
+
 def __play_winsound(sound_path, async_mode=False, loop=False):
     """
     Play sound using the winsound library.
