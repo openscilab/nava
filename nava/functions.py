@@ -280,6 +280,11 @@ def __play_auto(sound_path, async_mode=False, loop=False):
     :type loop: bool
     :return: None or sound id
     """
+    env = detect_environment()
+    if env == PythonEnvironment.COLAB:
+        return __play_google_colab(sound_path)
+    # we will add other notebook environment handlers in the future
+
     sys_platform = sys.platform
     if sys_platform == "win32":
         return __play_winsound(sound_path, async_mode, loop)
