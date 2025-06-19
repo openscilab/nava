@@ -59,6 +59,10 @@ class NavaThread(threading.Thread):
         if self._engine == Engine.WINSOUND:
             import winsound
             winsound.PlaySound(None, winsound.SND_PURGE)
+        elif self._engine == Engine.WINMM:
+            self._force_stop = True
+            # The alias is scoped to the MCI (Media Control Interface) context of the thread that created it.
+            # So the main thread can’t “see” the alias created in the worker thread.
         else:
             if self._play_process is not None:
                 try:
