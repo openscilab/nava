@@ -5,6 +5,7 @@ import subprocess
 import os
 import shlex
 from functools import wraps
+import importlib.util
 from .thread import NavaThread
 from .params import OVERVIEW, Engine
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, ENGINE_TYPE_ERROR
@@ -369,12 +370,10 @@ def detect_environment():
         return PythonEnvironment.PLAIN_PYTHON
 
     shell_name = ip.__class__.__name__.lower()
+
     # Explicit Google Colab check (most reliable)
-    try:
-        import google.colab
+    if importlib.util.find_spec("google.colab") is not None:
         return PythonEnvironment.COLAB
-    except ImportError:
-        pass
 
     # VS Code check via known env vars
     if any(var in os.environ for var in VSCODE_ENV_VARS):
