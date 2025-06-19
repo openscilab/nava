@@ -167,11 +167,17 @@ List of different platforms and the corresponding engines that are used for soun
 		<td align="center"><a href="https://docs.python.org/3/library/winsound.html">Winsound</a></td>
 		<td align="center"><code>.wav</code></td>
 	</tr>
+	    <tr>
+		<td align="center"><code>WINMM</code></td>
+		<td align="center">Windows</td>
+		<td align="center"><a href="https://learn.microsoft.com/en-us/windows/win32/multimedia/mci-reference">Windows MCI (Media Control Interface)</a></td>
+		<td align="center"><code>.wav</code>, <code>.mp3</code>, <code>.avi</code></td>
+	</tr>
     <tr>
 		<td align="center"><code>AFPLAY</code></td>
 		<td align="center">macOS</td>
 		<td align="center"><a href="https://ss64.com/mac/afplay.html">Audio File Play</a></td>
-		<td align="center"><code>.wav</code>,<code>.mp3</code></td>
+		<td align="center"><code>.wav</code>, <code>.mp3</code></td>
 	</tr>
 </table>
 
