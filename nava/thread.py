@@ -37,8 +37,8 @@ class NavaThread(threading.Thread):
         """
         try:
             if self._target is not None:
-                if self._engine == Engine.WINSOUND:
-                    self._play_process = self._target(*self._args, **self._kwargs)
+                if self._engine == Engine.WINSOUND or self._engine == Engine.WINMM:
+                    _ = self._target(*self._args, **self._kwargs)
                 else:
                     while True:
                         self._play_process = self._target(*self._args, **self._kwargs)
