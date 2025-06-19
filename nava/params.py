@@ -33,6 +33,14 @@ class PythonEnvironment(Enum):
     UNKNOWN = "Unknown Environment"
 
 
+# Environment variables typically set by VS Code
+VSCODE_ENV_VARS = [
+    "VSCODE_PID", # this is often set when running in VS Code
+    "VSCODE_CWD", # this is often set when running in VS Code
+    "VSCODE_IPC_HOOK_CLI",
+    "TERM_PROGRAM",  # often set to "vscode"
+]
+
 
 SOUND_FILE_PLAY_ERROR = "Sound can not play due to some issues."
 SOUND_FILE_EXIST_ERROR = "Given sound file doesn't exist."
