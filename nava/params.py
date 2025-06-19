@@ -24,6 +24,16 @@ class Engine(Enum):
     AFPLAY = "afplay"
 
 
+class PythonEnvironment(Enum):
+    COLAB = "Google Colab"
+    LOCAL_JUPYTER = "Local Jupyter Notebook or JupyterLab"
+    VSCODE = "VS Code Notebook"
+    IPYTHON_TERMINAL = "IPython Terminal"
+    PLAIN_PYTHON = "Plain Python (.py script)"
+    UNKNOWN = "Unknown Environment"
+
+
+
 SOUND_FILE_PLAY_ERROR = "Sound can not play due to some issues."
 SOUND_FILE_EXIST_ERROR = "Given sound file doesn't exist."
 SOUND_FILE_PATH_TYPE_ERROR = "Sound file's path should be a string."
