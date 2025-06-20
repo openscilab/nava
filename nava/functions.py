@@ -145,7 +145,7 @@ def __play_winmm_flags(sound_path, async_mode=False, loop=False):
         windll.winmm.mciSendStringW(f"stop {alias}", None, 0, None)
         windll.winmm.mciSendStringW(f"close {alias}", None, 0, None)
 
-    def status_sound(alias):
+    def get_sound_status(alias):
         """
         Get the current playback status of the specified alias.
 
@@ -171,7 +171,7 @@ def __play_winmm_flags(sound_path, async_mode=False, loop=False):
             # So the main thread can’t “see” the alias created in the worker thread.
             if getattr(current_thread, "_force_stop", False):
                 break
-            status = status_sound(alias)
+            status = get_sound_status (alias)
             if status != "playing":
                 if getattr(current_thread, "_loop", loop):
                     stop_sound(alias)
