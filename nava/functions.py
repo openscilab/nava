@@ -88,13 +88,13 @@ def __play_winmm(sound_path, async_mode=False, loop=False):
     """
     Play sound using the winmm MCI interface.
 
-    :param sound_path: Path to the sound file.
+    :param sound_path: sound path
     :type sound_path: str
     :param async_mode: async mode flag
     :type async_mode: bool
     :param loop: sound loop flag
     :type loop: bool
-    :return: None or sound_id if async.
+    :return: None or sound id
     """
     if async_mode:
         sound_thread = NavaThread(
@@ -116,9 +116,9 @@ def __play_winmm_flags(sound_path, async_mode=False, loop=False):
     """
     Play a sound using winmm with optional looping.
 
-    :param sound_path: Path to the sound file.
+    :param sound_path: sound path
     :type sound_path: str
-    :param loop: Whether to loop the sound.
+    :param loop: sound loop flag
     :type loop: bool
     :return: None
     """
@@ -126,7 +126,7 @@ def __play_winmm_flags(sound_path, async_mode=False, loop=False):
         """
         Open and play a sound using the specified alias.
 
-        :param alias: MCI alias to assign to the sound.
+        :param alias: MCI alias to assign to the sound
         :type alias: str
         :return: None
         """
@@ -138,7 +138,7 @@ def __play_winmm_flags(sound_path, async_mode=False, loop=False):
         """
         Stop and close the sound associated with the specified alias.
 
-        :param alias: MCI alias of the sound to stop.
+        :param alias: MCI alias of the sound to stop
         :type alias: str
         :return: None
         """
@@ -149,10 +149,9 @@ def __play_winmm_flags(sound_path, async_mode=False, loop=False):
         """
         Get the current playback status of the specified alias.
 
-        :param alias: MCI alias to query.
+        :param alias: MCI alias to query
         :type alias: str
-        :return: Current status (e.g., 'playing', 'stopped', '').
-        :rtype: str
+        :return: Current status (e.g., 'playing', 'stopped', '') as str
         """
         status_buf = create_unicode_buffer(128)
         windll.winmm.mciSendStringW(f"status {alias} mode", status_buf, 128, None)
