@@ -25,6 +25,7 @@ class NavaThread(threading.Thread):
         super(NavaThread, self).__init__(*args, **kwargs)
         self._play_process = None
         self._loop = loop
+        self._force_stop = False
         self._engine = engine
         self._nava_exception = None
 
@@ -36,8 +37,8 @@ class NavaThread(threading.Thread):
         """
         try:
             if self._target is not None:
-                if self._engine == Engine.WINSOUND:
-                    self._play_process = self._target(*self._args, **self._kwargs)
+                if self._engine == Engine.WINSOUND or self._engine == Engine.WINMM:
+                    _ = self._target(*self._args, **self._kwargs)
                 else:
                     while True:
                         self._play_process = self._target(*self._args, **self._kwargs)
@@ -58,6 +59,10 @@ class NavaThread(threading.Thread):
         if self._engine == Engine.WINSOUND:
             import winsound
             winsound.PlaySound(None, winsound.SND_PURGE)
+        elif self._engine == Engine.WINMM:
+            self._force_stop = True
+            # The alias is scoped to the MCI (Media Control Interface) context of the thread that created it.
+            # So the main thread can’t “see” the alias created in the worker thread.
         else:
             if self._play_process is not None:
                 try:

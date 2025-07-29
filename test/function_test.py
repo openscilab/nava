@@ -32,6 +32,13 @@ True
 >>> sys_platform = sys.platform
 >>> if sys_platform == "win32":
 ...     sound_id = nava.play(test_sound_path, async_mode=True, engine=nava.Engine.WINSOUND)
+...     sound_id = nava.play(test_sound_path, engine=nava.Engine.WINMM)
+...     sound_id = nava.play(test_sound_path, async_mode=True, engine=nava.Engine.WINMM)
+...     time.sleep(1)
+...     nava.stop(sound_id)
+...     sound_id = nava.play(test_sound_path, async_mode=True, engine=nava.Engine.WINMM, loop=True)
+...     time.sleep(30)
+...     nava.stop(sound_id)
 ... elif sys_platform == "darwin":
 ...     sound_id = nava.play(test_sound_path, async_mode=True, engine=nava.Engine.AFPLAY)
 ... else:
