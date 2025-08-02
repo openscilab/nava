@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://github.com/openscilab/nava/raw/main/others/logo.png" width="300" height="300">
+    <img src="https://github.com/openscilab/nava/raw/main/others/logo.png" width="300">
     <h1>Nava</h1>
     <br/>
     <a href="https://www.python.org/"><img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"></a>
@@ -209,4 +209,4 @@ Give a ⭐️ if this project helped you!
 
 If you do like our project and we hope that you do, can you please support us? Our project is not and is never going to be working for profit. We need the money just so we can continue doing what we do ;-) .
 
-<a href="https://openscilab.com/#donation" target="_blank"><img src="https://github.com/openscilab/nava/raw/main/others/donation.png" height="90px" width="270px" alt="Nava Donation"></a>
+<a href="https://openscilab.com/#donation" target="_blank"><img src="https://github.com/openscilab/nava/raw/main/others/donation.png" width="270" alt="Nava Donation"></a>
