@@ -64,14 +64,23 @@ class NavaThread(threading.Thread):
             # The alias is scoped to the MCI (Media Control Interface) context of the thread that created it.
             # So the main thread can’t “see” the alias created in the worker thread.
         else:
-            if self._play_process is not None:
+            if self._play_process:
+                # Best-effort: close all standard streams
                 try:
                     self._play_process.stdout.close()
                     self._play_process.stdin.close()
                     self._play_process.stderr.close()
-                    self._play_process.kill()
-                    self._play_process.terminate()
-                except ProcessLookupError:
+                except Exception:
                     pass
-                finally:
-                    self._play_process.wait()
+
+                # Try graceful termination
+                try:
+                    self._play_process.terminate()
+                    self._play_process.wait(timeout=1)
+                except Exception:
+                    # Fallback to force kill
+                    try:
+                        self._play_process.kill()
+                        self._play_process.wait()
+                    except Exception:
+                        pass
