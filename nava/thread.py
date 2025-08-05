@@ -70,17 +70,18 @@ class NavaThread(threading.Thread):
                     self._play_process.stdout.close()
                     self._play_process.stdin.close()
                     self._play_process.stderr.close()
-                except Exception:
+                except AttributeError:
+                    # One of the streams may be None or already detached
                     pass
 
                 # Try graceful termination
                 try:
                     self._play_process.terminate()
                     self._play_process.wait(timeout=1)
-                except Exception:
+                except (TimeoutError, ProcessLookupError):
                     # Fallback to force kill
                     try:
                         self._play_process.kill()
                         self._play_process.wait()
-                    except Exception:
+                    except (ProcessLookupError, ValueError):
                         pass
