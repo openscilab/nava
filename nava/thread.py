@@ -70,7 +70,7 @@ class NavaThread(threading.Thread):
                     self._play_process.stdout.close()
                     self._play_process.stdin.close()
                     self._play_process.stderr.close()
-                except Exception:
+                except Exception:  # nosec B110 - Best effort cleanup, ignore all errors
                     # Streams may be None, already closed, or OS-specific issues
                     pass
 
@@ -83,7 +83,7 @@ class NavaThread(threading.Thread):
                     try:
                         self._play_process.kill()
                         self._play_process.wait()
-                    except Exception:
+                    except Exception:  # nosec B110 - Best effort cleanup, ignore all errors
                         # Process already terminated or any other issues
                         pass
                 finally:
