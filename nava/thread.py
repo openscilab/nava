@@ -62,7 +62,7 @@ class NavaThread(threading.Thread):
         elif self._engine == Engine.WINMM:
             self._force_stop = True
             # The alias is scoped to the MCI (Media Control Interface) context of the thread that created it.
-            # So the main thread can’t “see” the alias created in the worker thread.
+            # So the main thread can't "see" the alias created in the worker thread.
         else:
             if self._play_process:
                 # Best-effort: close all standard streams
@@ -70,18 +70,21 @@ class NavaThread(threading.Thread):
                     self._play_process.stdout.close()
                     self._play_process.stdin.close()
                     self._play_process.stderr.close()
-                except AttributeError:
-                    # One of the streams may be None or already detached
+                except Exception:
+                    # Streams may be None, already closed, or OS-specific issues
                     pass
 
                 # Try graceful termination
                 try:
                     self._play_process.terminate()
                     self._play_process.wait(timeout=1)
-                except (TimeoutError, ProcessLookupError):
-                    # Fallback to force kill
+                except Exception:
+                    # Fallback to force kill - catch any process-related errors
                     try:
                         self._play_process.kill()
                         self._play_process.wait()
-                    except (ProcessLookupError, ValueError):
+                    except Exception:
+                        # Process already terminated or any other issues
                         pass
+                finally:
+                    self._play_process = None
