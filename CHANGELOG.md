@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `WinMM` engine
 ### Changed
-- `run` function in NavaThread
-- `stop` function in NavaThread
+- `Python 3.14` added to tests
+- `run` function in `NavaThread` updated
+- `stop` function in `NavaThread` updated
 - `README.md` updated
 - Test system modified
 - `Python 3.6` support dropped
