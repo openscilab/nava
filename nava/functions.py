@@ -7,10 +7,12 @@ import os
 import shlex
 from hashlib import sha256
 from functools import wraps
+import importlib.util
 from .thread import NavaThread
 from .params import OVERVIEW, Engine
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, ENGINE_TYPE_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR, LOOP_ASYNC_ERROR
+from .params import PythonEnvironment, SHELL_TYPE_ZMQ, SHELL_TYPE_TERMINAL, VSCODE_ENV_VARS
 from .errors import NavaBaseError
 from . import params
 
@@ -229,6 +231,21 @@ def __play_winsound_flags(sound_path, flags):
     winsound.PlaySound(sound_path, flags)
 
 
+def __play_google_colab(sound_path):
+    """
+    Play sound in Google Colab Notebook.
+
+    :param sound_path: sound path
+    :type sound_path: str
+    :param loop: sound loop flag
+    :type loop: bool
+    :return: None
+    """
+    from IPython.display import Audio, display
+    audio = Audio(sound_path, autoplay=True)
+    display(audio)
+
+
 @quote
 def __play_alsa(sound_path, async_mode=False, loop=False):
     """
@@ -365,6 +382,11 @@ def __play_auto(sound_path, async_mode=False, loop=False):
     :type loop: bool
     :return: None or sound id
     """
+    env = detect_environment()
+    if env == PythonEnvironment.COLAB:
+        return __play_google_colab(sound_path)
+    # we will add other notebook environment handlers in the future
+
     sys_platform = sys.platform
     if sys_platform == "win32":
         return __play_winsound(sound_path, async_mode, loop)
@@ -427,3 +449,44 @@ def play_cli(sound_path, loop=False):
         print("Error: {0}".format(e))
     finally:
         stop_all()
+
+
+def detect_environment():
+    """
+    Detect the current Python execution environment.
+
+    Supported environments:
+    - Google Colab
+    - Local Jupyter Notebook/Lab
+    - VS Code Notebook
+    - IPython Terminal
+    - Plain Python script
+    
+    :return: PythonEnvironment Enum value indicating the environment.
+    """
+    ip = None
+    try:
+        from IPython import get_ipython
+        ip = get_ipython()
+    except ImportError:
+        return PythonEnvironment.PLAIN_PYTHON
+    if ip is None:
+        return PythonEnvironment.PLAIN_PYTHON
+
+    shell_name = ip.__class__.__name__.lower()
+
+    # Explicit Google Colab check (most reliable)
+    if importlib.util.find_spec("google.colab") is not None:
+        return PythonEnvironment.COLAB
+
+    # VS Code check via known env vars
+    if any(var in os.environ for var in VSCODE_ENV_VARS):
+        return PythonEnvironment.VSCODE
+
+    if shell_name == SHELL_TYPE_ZMQ:
+        return PythonEnvironment.LOCAL_JUPYTER
+
+    if shell_name == SHELL_TYPE_TERMINAL:
+        return PythonEnvironment.IPYTHON_TERMINAL
+
+    return PythonEnvironment.UNKNOWN
