@@ -10,26 +10,21 @@ TEST_FILE_PATH = os.path.join("others", "test.wav")
 SYS_PLATFORM = sys.platform
 
 
-def print_line(length=80, char="#"):
+def print_line(length: int = 80, char: str = "#") -> None:
     """
     Print line.
 
     :param length: length of line
-    :type length: int
     :param char: character
-    :type char: str
-    :return: None
     """
     print(char * length)
 
 
-def wait(seconds=10):
+def wait(seconds: int = 10) -> None:
     """
     Wait for seconds.
 
     :param seconds: seconds
-    :type seconds: int
-    :return: None
     """
     print("Please wait for {0} seconds".format(seconds))
     time.sleep(seconds)
