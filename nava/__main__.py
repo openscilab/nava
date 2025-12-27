@@ -6,12 +6,8 @@ from .params import NAVA_VERSION
 from .functions import nava_help, play_cli
 
 
-def main():
-    """
-    CLI main function.
-
-    :return: None
-    """
+def main() -> None:
+    """CLI main function."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
         'filename',
