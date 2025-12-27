@@ -215,7 +215,7 @@ def __play_alsa(sound_path: str, async_mode: bool = False, loop: bool = False) -
                 break
 
 
-def __play_proc_alsa(sound_path: str) -> subprocess.Popen[bytes]:
+def __play_proc_alsa(sound_path: str) -> subprocess.Popen:
     """
     Create sound playing process using ALSA.
 
@@ -257,7 +257,7 @@ def __play_afplay(sound_path: str, async_mode: bool = False, loop: bool = False)
                 break
 
 
-def __play_proc_afplay(sound_path: str) -> subprocess.Popen[bytes]:
+def __play_proc_afplay(sound_path: str) -> subprocess.Popen:
     """
     Create sound playing process using afplay.
 
