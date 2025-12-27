@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-+ Python typing features added to all modules
+- Python typing features added to all modules
 ## [0.8] - 2025-12-17
 ### Added
 - `WinMM` engine
