@@ -48,7 +48,11 @@ def nava_help() -> None:
 
 
 def quote(func: Callable) -> Callable:
-    """Quote the given shell string."""
+    """
+    Quote the given shell string.
+    
+    :param func: function to wrap
+    """
     @wraps(func)
     def quoter(sound_path: str, *args: List[Any], **kwargs: Dict[str, Any]) -> Callable:
         """
@@ -92,6 +96,7 @@ def __play_winmm_flags(sound_path: str, async_mode: bool = False, loop: bool = F
     Play a sound using winmm with optional looping.
 
     :param sound_path: sound path
+    :param async_mode: async mode flag
     :param loop: sound loop flag
     """
     def play_sound(alias: str) -> None:
@@ -273,7 +278,11 @@ def __play_proc_afplay(sound_path: str) -> subprocess.Popen:
 
 
 def path_check(func: Callable) -> Callable:
-    """Check the given path to be a string and a valid file directory."""
+    """
+    Check the given path to be a string and a valid file directory.
+    
+    :param func: function to wrap
+    """
     @wraps(func)
     def path_checker(sound_path: str, *args: List[Any], **kwargs: Dict[str, Any]) -> Callable:
         """
