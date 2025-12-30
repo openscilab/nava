@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Nava thread."""
 
+from typing import List, Dict, Any
 import threading
 from .params import Engine, SOUND_FILE_PLAY_ERROR
 from .errors import NavaBaseError
@@ -9,18 +10,14 @@ from .errors import NavaBaseError
 class NavaThread(threading.Thread):
     """Nava custom thread."""
 
-    def __init__(self, loop, engine, *args, **kwargs):
+    def __init__(self, loop: bool, engine: Engine, *args: List[Any], **kwargs: Dict[str, Any]) -> None:
         """
         Init method.
 
         :param loop: sound thread loop flag
-        :type loop: bool
         :param engine: play engine
-        :type engine: Engine enum
         :param args: arguments
-        :type args: list
         :param kwargs: keyword arguments
-        :type kwargs: dict
         """
         super(NavaThread, self).__init__(*args, **kwargs)
         self._play_process = None
@@ -29,12 +26,8 @@ class NavaThread(threading.Thread):
         self._engine = engine
         self._nava_exception = None
 
-    def run(self):
-        """
-        Run target function.
-
-        :return: None
-        """
+    def run(self) -> None:
+        """Run target function."""
         try:
             if self._target is not None:
                 if self._engine == Engine.WINSOUND or self._engine == Engine.WINMM:
@@ -49,12 +42,8 @@ class NavaThread(threading.Thread):
             self._nava_exception = SOUND_FILE_PLAY_ERROR
             raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
-    def stop(self):
-        """
-        Stop sound.
-
-        :return: None
-        """
+    def stop(self) -> None:
+        """Stop sound."""
         self._loop = False
         if self._engine == Engine.WINSOUND:
             import winsound
