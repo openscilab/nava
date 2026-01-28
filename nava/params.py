@@ -2,7 +2,7 @@
 """Nava parameters."""
 from enum import Enum
 
-NAVA_VERSION = "0.7"
+NAVA_VERSION = "0.8"
 
 OVERVIEW = """
 A Python library for playing sound everywhere natively and securely.
@@ -22,6 +22,7 @@ class Engine(Enum):
     WINSOUND = "winsound"
     ALSA = "alsa"
     AFPLAY = "afplay"
+    WINMM = "winmm"
 
 
 class PythonEnvironment(Enum):

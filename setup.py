@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
 """Setup module."""
+from typing import List
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
 
-def get_requires():
+def get_requires() -> List[str]:
     """Read requirements.txt."""
     requirements = open("requirements.txt", "r").read()
     return list(filter(lambda x: x != "", requirements.split()))
 
 
-def read_description():
+def read_description() -> str:
     """Read README.md and CHANGELOG.md."""
     try:
         with open("README.md") as r:
@@ -32,14 +33,14 @@ def read_description():
 setup(
     name='nava',
     packages=['nava'],
-    version='0.7',
+    version='0.8',
     description='A Python library for playing sound everywhere natively and securely.',
     long_description=read_description(),
     long_description_content_type='text/markdown',
     author='Nava Development Team',
     author_email='nava@openscilab.com',
     url='https://github.com/openscilab/nava',
-    download_url='https://github.com/openscilab/nava/tarball/v0.7',
+    download_url='https://github.com/openscilab/nava/tarball/v0.8',
     keywords="sound wav music mp3 player audio",
     project_urls={
         'Webpage': 'https://openscilab.com/',
@@ -61,6 +62,7 @@ setup(
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
         'Programming Language :: Python :: 3.13',
+        'Programming Language :: Python :: 3.14',
         'Intended Audience :: Developers',
         'Intended Audience :: End Users/Desktop',
         'Intended Audience :: Manufacturing',

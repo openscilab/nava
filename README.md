@@ -1,9 +1,9 @@
 <div align="center">
-    <img src="https://github.com/openscilab/nava/raw/main/others/logo.png" width="300" height="300">
+    <img src="https://github.com/openscilab/nava/raw/main/others/logo.png" width="300">
     <h1>Nava</h1>
     <br/>
     <a href="https://www.python.org/"><img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"></a>
-    <a href="https://badge.fury.io/py/nava"><img src="https://badge.fury.io/py/nava.svg" alt="PyPI version" height="18"></a>
+    <a href="https://badge.fury.io/py/nava"><img src="https://badge.fury.io/py/nava.svg" alt="PyPI version"></a>
     <a href="https://anaconda.org/openscilab/nava"><img src="https://anaconda.org/openscilab/nava/badges/version.svg"></a>
     <a href="https://codecov.io/gh/openscilab/nava"><img src="https://codecov.io/gh/openscilab/nava/branch/main/graph/badge.svg" alt="Codecov"></a>
     <a href="https://discord.gg/MCbPKCFBs3"><img src="https://img.shields.io/discord/1064533716615049236.svg" alt="Discord Channel"></a>
@@ -64,7 +64,6 @@ Nava is a Python library that allows users to play sound in Python without any d
 		<td align="center">Code Quality</td>
 		<td align="center"><a href="https://app.codacy.com/gh/openscilab/nava/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade"><img src="https://app.codacy.com/project/badge/Grade/9c384b4e400340ae94772c1d7e1842d0"></a></td>
 		<td align="center"><a href="https://www.codefactor.io/repository/github/openscilab/nava"><img src="https://www.codefactor.io/repository/github/openscilab/nava/badge" alt="CodeFactor"></a></td>
-		<td align="center"><a href="https://codebeat.co/projects/github-com-openscilab-nava-dev"><img alt="codebeat badge" src="https://codebeat.co/badges/75df9d9c-af95-4038-8a1d-9f3618856871"></a></td>
 	</tr>
 </table>
 
@@ -73,10 +72,10 @@ Nava is a Python library that allows users to play sound in Python without any d
 ### PyPI
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install nava==0.7`
+- Run `pip install nava==0.8`
 
 ### Source code
-- Download [Version 0.7](https://github.com/openscilab/nava/archive/v0.7.zip) or [Latest Source](https://github.com/openscilab/nava/archive/dev.zip)
+- Download [Version 0.8](https://github.com/openscilab/nava/archive/v0.8.zip) or [Latest Source](https://github.com/openscilab/nava/archive/dev.zip)
 - Run `pip install .`
 
 ### Conda
@@ -167,11 +166,17 @@ List of different platforms and the corresponding engines that are used for soun
 		<td align="center"><a href="https://docs.python.org/3/library/winsound.html">Winsound</a></td>
 		<td align="center"><code>.wav</code></td>
 	</tr>
+	    <tr>
+		<td align="center"><code>WINMM</code></td>
+		<td align="center">Windows</td>
+		<td align="center"><a href="https://learn.microsoft.com/en-us/windows/win32/multimedia/mci-reference">Windows MCI (Media Control Interface)</a></td>
+		<td align="center"><code>.wav</code>, <code>.mp3</code>, <code>.avi</code></td>
+	</tr>
     <tr>
 		<td align="center"><code>AFPLAY</code></td>
 		<td align="center">macOS</td>
 		<td align="center"><a href="https://ss64.com/mac/afplay.html">Audio File Play</a></td>
-		<td align="center"><code>.wav</code>,<code>.mp3</code></td>
+		<td align="center"><code>.wav</code>, <code>.mp3</code></td>
 	</tr>
 </table>
 
@@ -204,4 +209,4 @@ Give a ⭐️ if this project helped you!
 
 If you do like our project and we hope that you do, can you please support us? Our project is not and is never going to be working for profit. We need the money just so we can continue doing what we do ;-) .
 
-<a href="https://openscilab.com/#donation" target="_blank"><img src="https://github.com/openscilab/nava/raw/main/others/donation.png" height="90px" width="270px" alt="Nava Donation"></a>
+<a href="https://openscilab.com/#donation" target="_blank"><img src="https://github.com/openscilab/nava/raw/main/others/donation.png" width="270" alt="Nava Donation"></a>

@@ -4,7 +4,7 @@ import os
 import sys
 import codecs
 Failed = 0
-NAVA_VERSION = "0.7"
+NAVA_VERSION = "0.8"
 
 
 SETUP_ITEMS = [
@@ -35,13 +35,11 @@ FILES = {
 TEST_NUMBER = len(FILES.keys())
 
 
-def print_result(failed=False):
+def print_result(failed: bool = False) -> None:
     """
     Print final result.
 
     :param failed: failed flag
-    :type failed: bool
-    :return: None
     """
     message = "Version tag tests "
     if not failed:
