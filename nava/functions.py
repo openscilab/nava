@@ -393,8 +393,9 @@ def detect_environment():
     - VS Code Notebook
     - IPython Terminal
     - Plain Python script
-    
-    :return: PythonEnvironment Enum value indicating the environment.
+
+    :return: Enum value indicating the environment.
+    :rtype: PythonEnvironment
     """
     ip = None
     try:
