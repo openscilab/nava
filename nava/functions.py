@@ -383,7 +383,7 @@ def play_cli(sound_path: str, loop: bool = False) -> None:
         stop_all()
 
 
-def detect_environment():
+def detect_environment() -> PythonEnvironment:
     """
     Detect the current Python execution environment.
 
@@ -393,9 +393,6 @@ def detect_environment():
     - VS Code Notebook
     - IPython Terminal
     - Plain Python script
-
-    :return: Enum value indicating the environment.
-    :rtype: PythonEnvironment
     """
     ip = None
     try:
