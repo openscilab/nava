@@ -25,6 +25,29 @@ class Engine(Enum):
     WINMM = "winmm"
 
 
+class PythonEnvironment(Enum):
+    """Python environment class."""
+
+    COLAB = "Google Colab"
+    LOCAL_JUPYTER = "Local Jupyter Notebook or JupyterLab"
+    VSCODE = "VS Code Notebook"
+    IPYTHON_TERMINAL = "IPython Terminal"
+    PLAIN_PYTHON = "Plain Python (.py script)"
+    UNKNOWN = "Unknown Environment"
+
+
+# Environment variables typically set by VS Code
+VSCODE_ENV_VARS = [
+    "VSCODE_PID", # this is often set when running in VS Code
+    "VSCODE_CWD", # this is often set when running in VS Code
+    "VSCODE_IPC_HOOK_CLI",
+    "TERM_PROGRAM",  # often set to "vscode"
+]
+
+# Shell type identifiers
+SHELL_TYPE_ZMQ = "zmqinteractiveshell"           # Jupyter Notebook/Lab
+SHELL_TYPE_TERMINAL = "terminalinteractiveshell" # IPython Terminal
+
 SOUND_FILE_PLAY_ERROR = "Sound can not play due to some issues."
 SOUND_FILE_EXIST_ERROR = "Given sound file doesn't exist."
 SOUND_FILE_PATH_TYPE_ERROR = "Sound file's path should be a string."
