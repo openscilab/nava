@@ -55,5 +55,7 @@ SOUND_ID_EXIST_ERROR = "Given sound id doesn't exist."
 LOOP_ASYNC_ERROR = "`loop` can not be set True when `async_mode` is False."
 ENGINE_TYPE_ERROR = "`engine` type must be `Engine` enum."
 
+EXIT_MESSAGE = "See you. Bye!"
+
 _play_threads_map = dict()
 _play_threads_counter = 0

@@ -2,12 +2,11 @@
 """Nava main."""
 import argparse
 from art import tprint
-from .params import NAVA_VERSION
+from .params import NAVA_VERSION, EXIT_MESSAGE
 from .functions import nava_help, play_cli
 
-
-def main() -> None:
-    """CLI main function."""
+def parse_args() -> argparse.Namespace:
+    """Parse arguments."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
         'filename',
@@ -27,6 +26,15 @@ def main() -> None:
     parser.add_argument('--version', help="version", action='store_true', default=False)
     parser.add_argument('-v', help="version", action='store_true', default=False)
     args = parser.parse_known_args()[0]
+    return args
+
+
+def run(args: argparse.Namespace) -> None:
+    """
+    Run nava CLI.
+
+    :param args: arguments
+    """
     if args.version or args.v:
         print(NAVA_VERSION)
     elif args.filename or args.file:
@@ -39,8 +47,16 @@ def main() -> None:
         tprint("Nava")
         tprint("V:" + NAVA_VERSION)
         nava_help()
-        parser.print_help()
 
+
+def main() -> None:
+    """CLI main function."""
+    try:
+        args = parse_args()
+        run(args)
+    except (KeyboardInterrupt, EOFError):
+        print(EXIT_MESSAGE)
+    
 
 if __name__ == "__main__":
     main()
