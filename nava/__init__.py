@@ -8,3 +8,5 @@ import atexit
 atexit.register(stop_all)
 
 __version__ = NAVA_VERSION
+
+__all__ = ["Engine", "NavaBaseError", "play", "stop", "stop_all"]
