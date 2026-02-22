@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Nava cli."""
+import sys
 import argparse
 from art import tprint
 from .params import NAVA_VERSION, EXIT_MESSAGE
@@ -57,3 +58,4 @@ def main() -> None:
         run(args)
     except (KeyboardInterrupt, EOFError):
         print(EXIT_MESSAGE)
+        sys.exit(1)
