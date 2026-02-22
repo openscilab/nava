@@ -38,15 +38,15 @@ class PythonEnvironment(Enum):
 
 # Environment variables typically set by VS Code
 VSCODE_ENV_VARS = [
-    "VSCODE_PID", # this is often set when running in VS Code
-    "VSCODE_CWD", # this is often set when running in VS Code
+    "VSCODE_PID",  # this is often set when running in VS Code
+    "VSCODE_CWD",  # this is often set when running in VS Code
     "VSCODE_IPC_HOOK_CLI",
     "TERM_PROGRAM",  # often set to "vscode"
 ]
 
 # Shell type identifiers
 SHELL_TYPE_ZMQ = "zmqinteractiveshell"           # Jupyter Notebook/Lab
-SHELL_TYPE_TERMINAL = "terminalinteractiveshell" # IPython Terminal
+SHELL_TYPE_TERMINAL = "terminalinteractiveshell"  # IPython Terminal
 
 SOUND_FILE_PLAY_ERROR = "Sound can not play due to some issues."
 SOUND_FILE_EXIST_ERROR = "Given sound file doesn't exist."

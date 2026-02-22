@@ -5,6 +5,7 @@ from art import tprint
 from .params import NAVA_VERSION, EXIT_MESSAGE
 from .functions import nava_help, play_cli
 
+
 def parse_args() -> argparse.Namespace:
     """Parse arguments."""
     parser = argparse.ArgumentParser()

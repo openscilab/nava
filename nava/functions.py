@@ -52,7 +52,7 @@ def nava_help() -> None:
 def quote(func: Callable) -> Callable:
     """
     Quote the given shell string.
-    
+
     :param func: function to wrap
     """
     @wraps(func)
@@ -143,7 +143,7 @@ def __play_winmm_flags(sound_path: str, async_mode: bool = False, loop: bool = F
             # So the main thread can’t “see” the alias created in the worker thread.
             if getattr(current_thread, "_force_stop", False):
                 break
-            status = get_sound_status (alias)
+            status = get_sound_status(alias)
             if status != "playing":
                 if getattr(current_thread, "_loop", loop):
                     stop_sound(alias)
@@ -293,7 +293,7 @@ def __play_proc_afplay(sound_path: str) -> subprocess.Popen:
 def path_check(func: Callable) -> Callable:
     """
     Check the given path to be a string and a valid file directory.
-    
+
     :param func: function to wrap
     """
     @wraps(func)
