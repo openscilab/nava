@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-"""
+r"""
 >>> import os
 >>> import sys
+>>> import nava.cli as cli
 >>> from nava.cli import parse_args, run, main
 >>> from nava.params import NAVA_VERSION
 >>> test_sound_path = os.path.join("others", "test.wav")
@@ -72,4 +73,18 @@ Error: Given sound file doesn't exist.
 >>> # Test main with valid file (plays sound)
 >>> sys.argv = ['nava', test_sound_path]
 >>> main()
+>>> sys.argv = ['nava', '--file', test_sound_path]
+>>> main()
+>>> original_parse_args = cli.parse_args
+>>> def raise_keyboard_interrupt():
+...     raise KeyboardInterrupt
+>>> cli.parse_args = raise_keyboard_interrupt
+>>> try:
+...     cli.main()
+... except SystemExit as e:
+...     print("EXIT_CODE", e.code)
+... finally:
+...     cli.parse_args = original_parse_args
+See you. Bye!
+EXIT_CODE 1
 """
