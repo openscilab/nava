@@ -11,6 +11,7 @@
 	4. `others/version_check.py`
 	5. `others/meta.yaml`
 	6. `nava/params.py`
+	7. `test/cli_test.py`
 3. Update `CHANGELOG.md`
 4. Update `.github/ISSUE_TEMPLATE/bug_report.yml`
    1. Add new version tag to `Nava version` dropbox options
