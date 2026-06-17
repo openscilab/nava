@@ -76,19 +76,19 @@ jobs:
       if: matrix.python-version == env.TEST_PYTHON_VERSION
     - name: Build package
       run: |
-        python -m build
+        sudo python -m build
     - name: Check package metadata
       run: |
-        twine check dist/*
+        sudo twine check dist/*
     - name: Wheel smoke test
       shell: bash
       run: |
-        pip uninstall -y nava
-        pip install dist/*.whl
-        mkdir wheel_test
-        cd wheel_test
-        python -c "from nava import *"
-        python -m nava
-        python -m nava --version
-        nava
-        nava --version
+        sudo pip uninstall -y nava
+        sudo pip install dist/*.whl
+        sudo mkdir wheel_test
+        sudo cd wheel_test
+        sudo python -c "from nava import *"
+        sudo python -m nava
+        sudo python -m nava --version
+        sudo nava
+        sudo nava --version
