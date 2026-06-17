@@ -1,17 +1,6 @@
 # -*- coding: utf-8 -*-
 """Setup module."""
-from typing import List
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
-
-def get_requires() -> List[str]:
-    """Read requirements.txt."""
-    requirements = open("requirements.txt", "r").read()
-    return list(filter(lambda x: x != "", requirements.split()))
-
+from setuptools import setup
 
 def read_description() -> str:
     """Read README.md and CHANGELOG.md."""
@@ -41,13 +30,13 @@ setup(
     author_email='nava@openscilab.com',
     url='https://github.com/openscilab/nava',
     download_url='https://github.com/openscilab/nava/tarball/v0.8',
-    keywords="sound wav music mp3 player audio",
+    keywords='sound wav music mp3 player audio',
     project_urls={
         'Webpage': 'https://openscilab.com/',
         'Source': 'https://github.com/openscilab/nava',
         'Discord': 'https://discord.gg/MCbPKCFBs3',
     },
-    install_requires=get_requires(),
+    install_requires=['art>=1.8'],
     python_requires='>=3.7',
     classifiers=[
         'Development Status :: 4 - Beta',

@@ -40,10 +40,9 @@ jobs:
       run: |
         nava
         nava --version
-    - name: Test requirements Installation
+    - name: Dev requirements Installation
       run: |
-        python others/requirements-splitter.py
-        pip install --upgrade --upgrade-strategy=only-if-needed -r test-requirements.txt
+        pip install --upgrade --upgrade-strategy=only-if-needed -r requirements-dev.txt
     - name: Test with pytest
       run: |
         python -m pytest --cov=nava --cov-report=term
