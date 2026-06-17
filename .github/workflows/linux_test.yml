@@ -36,8 +36,11 @@ jobs:
       run: |
         sudo python -m pip install --upgrade pip
         sudo pip install .
-    - name: First test
+    - name: Smoke test
       run: |
+        sudo python -c "from nava import *"
+        sudo python -m nava
+        sudo python -m nava --version
         sudo nava
         sudo nava --version
     - name: Install ALSA
@@ -71,3 +74,21 @@ jobs:
       run: |
         python others/version_check.py
       if: matrix.python-version == env.TEST_PYTHON_VERSION
+    - name: Build package
+      run: |
+        python -m build
+    - name: Check package metadata
+      run: |
+        twine check dist/*
+    - name: Wheel smoke test
+      shell: bash
+      run: |
+        pip uninstall -y nava
+        pip install dist/*.whl
+        mkdir wheel_test
+        cd wheel_test
+        python -c "from nava import *"
+        python -m nava
+        python -m nava --version
+        nava
+        nava --version
