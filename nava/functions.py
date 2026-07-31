@@ -314,7 +314,7 @@ def path_check(func: Callable) -> Callable:
     return path_checker
 
 
-def __play_auto(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
+def _play_auto(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
     """
     Play sound in automatic mode.
 
@@ -352,7 +352,7 @@ def play(sound_path: str, async_mode: bool = False, loop: bool = False, engine: 
         raise NavaBaseError(LOOP_ASYNC_ERROR)
     try:
         if engine == Engine.AUTO:
-            return __play_auto(sound_path=sound_path, async_mode=async_mode, loop=loop)
+            return _play_auto(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.WINSOUND:
             return _play_winsound(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.WINMM:
