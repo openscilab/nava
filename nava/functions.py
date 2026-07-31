@@ -249,7 +249,7 @@ def _play_proc_alsa(sound_path: str) -> subprocess.Popen:
 
 
 @quote
-def __play_afplay(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
+def _play_afplay(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
     """
     Play sound using afplay.
 
@@ -331,7 +331,7 @@ def __play_auto(sound_path: str, async_mode: bool = False, loop: bool = False) -
     if sys_platform == "win32":
         return _play_winsound(sound_path, async_mode, loop)
     elif sys_platform == "darwin":
-        return __play_afplay(sound_path, async_mode, loop)
+        return _play_afplay(sound_path, async_mode, loop)
     else:
         return _play_alsa(sound_path, async_mode, loop)
 
@@ -358,7 +358,7 @@ def play(sound_path: str, async_mode: bool = False, loop: bool = False, engine: 
         elif engine == Engine.WINMM:
             return _play_winmm(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.AFPLAY:
-            return __play_afplay(sound_path=sound_path, async_mode=async_mode, loop=loop)
+            return _play_afplay(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.ALSA:
             return _play_alsa(sound_path=sound_path, async_mode=async_mode, loop=loop)
     except Exception:
