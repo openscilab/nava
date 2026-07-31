@@ -173,7 +173,7 @@ def _play_winsound(sound_path: str, async_mode: bool = False, loop: bool = False
     if async_mode:
         sound_thread = NavaThread(loop,
                                   engine=Engine.WINSOUND,
-                                  target=__play_winsound_flags,
+                                  target=_play_winsound_flags,
                                   args=(sound_path, play_flags),
                                   daemon=True)
         sound_thread.start()
@@ -181,10 +181,10 @@ def _play_winsound(sound_path: str, async_mode: bool = False, loop: bool = False
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        __play_winsound_flags(sound_path, play_flags)
+        _play_winsound_flags(sound_path, play_flags)
 
 
-def __play_winsound_flags(sound_path: str, flags: int) -> None:
+def _play_winsound_flags(sound_path: str, flags: int) -> None:
     """
     Play sound in winsound using different flags.
 
