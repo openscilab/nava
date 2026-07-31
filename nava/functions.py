@@ -218,7 +218,7 @@ def _play_alsa(sound_path: str, async_mode: bool = False, loop: bool = False) ->
     if async_mode:
         sound_thread = NavaThread(loop,
                                   engine=Engine.ALSA,
-                                  target=__play_proc_alsa,
+                                  target=_play_proc_alsa,
                                   args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
@@ -227,13 +227,13 @@ def _play_alsa(sound_path: str, async_mode: bool = False, loop: bool = False) ->
         return sound_id
     else:
         while True:
-            proc = __play_proc_alsa(sound_path)
+            proc = _play_proc_alsa(sound_path)
             proc.wait()
             if not loop:
                 break
 
 
-def __play_proc_alsa(sound_path: str) -> subprocess.Popen:
+def _play_proc_alsa(sound_path: str) -> subprocess.Popen:
     """
     Create sound playing process using ALSA.
 
