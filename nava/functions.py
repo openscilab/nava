@@ -69,7 +69,7 @@ def quote(func: Callable) -> Callable:
     return quoter
 
 
-def __play_winmm(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
+def _play_winmm(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
     """
     Play sound using the winmm MCI interface.
 
@@ -356,7 +356,7 @@ def play(sound_path: str, async_mode: bool = False, loop: bool = False, engine: 
         elif engine == Engine.WINSOUND:
             return __play_winsound(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.WINMM:
-            return __play_winmm(sound_path=sound_path, async_mode=async_mode, loop=loop)
+            return _play_winmm(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.AFPLAY:
             return __play_afplay(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.ALSA:
