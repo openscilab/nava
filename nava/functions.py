@@ -155,7 +155,7 @@ def _play_winmm_flags(sound_path: str, async_mode: bool = False, loop: bool = Fa
         stop_sound(alias)
 
 
-def __play_winsound(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
+def _play_winsound(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
     """
     Play sound using the winsound library.
 
@@ -329,7 +329,7 @@ def __play_auto(sound_path: str, async_mode: bool = False, loop: bool = False) -
 
     sys_platform = sys.platform
     if sys_platform == "win32":
-        return __play_winsound(sound_path, async_mode, loop)
+        return _play_winsound(sound_path, async_mode, loop)
     elif sys_platform == "darwin":
         return __play_afplay(sound_path, async_mode, loop)
     else:
@@ -354,7 +354,7 @@ def play(sound_path: str, async_mode: bool = False, loop: bool = False, engine: 
         if engine == Engine.AUTO:
             return __play_auto(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.WINSOUND:
-            return __play_winsound(sound_path=sound_path, async_mode=async_mode, loop=loop)
+            return _play_winsound(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.WINMM:
             return _play_winmm(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.AFPLAY:
