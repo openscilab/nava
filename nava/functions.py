@@ -81,7 +81,7 @@ def _play_winmm(sound_path: str, async_mode: bool = False, loop: bool = False) -
         sound_thread = NavaThread(
             loop,
             engine=Engine.WINMM,
-            target=__play_winmm_flags,
+            target=_play_winmm_flags,
             args=(sound_path, async_mode, loop),
             daemon=True
         )
@@ -90,10 +90,10 @@ def _play_winmm(sound_path: str, async_mode: bool = False, loop: bool = False) -
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        __play_winmm_flags(sound_path, async_mode, loop)
+        _play_winmm_flags(sound_path, async_mode, loop)
 
 
-def __play_winmm_flags(sound_path: str, async_mode: bool = False, loop: bool = False) -> None:
+def _play_winmm_flags(sound_path: str, async_mode: bool = False, loop: bool = False) -> None:
     """
     Play a sound using winmm with optional looping.
 
