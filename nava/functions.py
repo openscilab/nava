@@ -195,7 +195,7 @@ def _play_winsound_flags(sound_path: str, flags: int) -> None:
     winsound.PlaySound(sound_path, flags)
 
 
-def __play_google_colab(sound_path: str) -> None:
+def _play_google_colab(sound_path: str) -> None:
     """
     Play sound in Google Colab Notebook.
 
@@ -324,7 +324,7 @@ def __play_auto(sound_path: str, async_mode: bool = False, loop: bool = False) -
     """
     env = detect_environment()
     if env == PythonEnvironment.COLAB:
-        return __play_google_colab(sound_path)
+        return _play_google_colab(sound_path)
     # we will add other notebook environment handlers in the future
 
     sys_platform = sys.platform
