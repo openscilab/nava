@@ -207,7 +207,7 @@ def _play_google_colab(sound_path: str) -> None:
 
 
 @quote
-def __play_alsa(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
+def _play_alsa(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
     """
     Play sound using ALSA.
 
@@ -333,7 +333,7 @@ def __play_auto(sound_path: str, async_mode: bool = False, loop: bool = False) -
     elif sys_platform == "darwin":
         return __play_afplay(sound_path, async_mode, loop)
     else:
-        return __play_alsa(sound_path, async_mode, loop)
+        return _play_alsa(sound_path, async_mode, loop)
 
 
 @path_check
@@ -360,7 +360,7 @@ def play(sound_path: str, async_mode: bool = False, loop: bool = False, engine: 
         elif engine == Engine.AFPLAY:
             return __play_afplay(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.ALSA:
-            return __play_alsa(sound_path=sound_path, async_mode=async_mode, loop=loop)
+            return _play_alsa(sound_path=sound_path, async_mode=async_mode, loop=loop)
     except Exception:
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
