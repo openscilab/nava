@@ -69,7 +69,7 @@ def quote(func: Callable) -> Callable:
     return quoter
 
 
-def __play_winmm(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
+def _play_winmm(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
     """
     Play sound using the winmm MCI interface.
 
@@ -81,7 +81,7 @@ def __play_winmm(sound_path: str, async_mode: bool = False, loop: bool = False) 
         sound_thread = NavaThread(
             loop,
             engine=Engine.WINMM,
-            target=__play_winmm_flags,
+            target=_play_winmm_flags,
             args=(sound_path, async_mode, loop),
             daemon=True
         )
@@ -90,10 +90,10 @@ def __play_winmm(sound_path: str, async_mode: bool = False, loop: bool = False) 
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        __play_winmm_flags(sound_path, async_mode, loop)
+        _play_winmm_flags(sound_path, async_mode, loop)
 
 
-def __play_winmm_flags(sound_path: str, async_mode: bool = False, loop: bool = False) -> None:
+def _play_winmm_flags(sound_path: str, async_mode: bool = False, loop: bool = False) -> None:
     """
     Play a sound using winmm with optional looping.
 
@@ -155,7 +155,7 @@ def __play_winmm_flags(sound_path: str, async_mode: bool = False, loop: bool = F
         stop_sound(alias)
 
 
-def __play_winsound(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
+def _play_winsound(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
     """
     Play sound using the winsound library.
 
@@ -173,7 +173,7 @@ def __play_winsound(sound_path: str, async_mode: bool = False, loop: bool = Fals
     if async_mode:
         sound_thread = NavaThread(loop,
                                   engine=Engine.WINSOUND,
-                                  target=__play_winsound_flags,
+                                  target=_play_winsound_flags,
                                   args=(sound_path, play_flags),
                                   daemon=True)
         sound_thread.start()
@@ -181,10 +181,10 @@ def __play_winsound(sound_path: str, async_mode: bool = False, loop: bool = Fals
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
-        __play_winsound_flags(sound_path, play_flags)
+        _play_winsound_flags(sound_path, play_flags)
 
 
-def __play_winsound_flags(sound_path: str, flags: int) -> None:
+def _play_winsound_flags(sound_path: str, flags: int) -> None:
     """
     Play sound in winsound using different flags.
 
@@ -195,7 +195,7 @@ def __play_winsound_flags(sound_path: str, flags: int) -> None:
     winsound.PlaySound(sound_path, flags)
 
 
-def __play_google_colab(sound_path: str) -> None:
+def _play_google_colab(sound_path: str) -> None:
     """
     Play sound in Google Colab Notebook.
 
@@ -207,7 +207,7 @@ def __play_google_colab(sound_path: str) -> None:
 
 
 @quote
-def __play_alsa(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
+def _play_alsa(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
     """
     Play sound using ALSA.
 
@@ -218,7 +218,7 @@ def __play_alsa(sound_path: str, async_mode: bool = False, loop: bool = False) -
     if async_mode:
         sound_thread = NavaThread(loop,
                                   engine=Engine.ALSA,
-                                  target=__play_proc_alsa,
+                                  target=_play_proc_alsa,
                                   args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
@@ -227,13 +227,13 @@ def __play_alsa(sound_path: str, async_mode: bool = False, loop: bool = False) -
         return sound_id
     else:
         while True:
-            proc = __play_proc_alsa(sound_path)
+            proc = _play_proc_alsa(sound_path)
             proc.wait()
             if not loop:
                 break
 
 
-def __play_proc_alsa(sound_path: str) -> subprocess.Popen:
+def _play_proc_alsa(sound_path: str) -> subprocess.Popen:
     """
     Create sound playing process using ALSA.
 
@@ -249,7 +249,7 @@ def __play_proc_alsa(sound_path: str) -> subprocess.Popen:
 
 
 @quote
-def __play_afplay(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
+def _play_afplay(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
     """
     Play sound using afplay.
 
@@ -260,7 +260,7 @@ def __play_afplay(sound_path: str, async_mode: bool = False, loop: bool = False)
     if async_mode:
         sound_thread = NavaThread(loop,
                                   engine=Engine.AFPLAY,
-                                  target=__play_proc_afplay,
+                                  target=_play_proc_afplay,
                                   args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
@@ -269,13 +269,13 @@ def __play_afplay(sound_path: str, async_mode: bool = False, loop: bool = False)
         return sound_id
     else:
         while True:
-            proc = __play_proc_afplay(sound_path)
+            proc = _play_proc_afplay(sound_path)
             proc.wait()
             if not loop:
                 break
 
 
-def __play_proc_afplay(sound_path: str) -> subprocess.Popen:
+def _play_proc_afplay(sound_path: str) -> subprocess.Popen:
     """
     Create sound playing process using afplay.
 
@@ -314,7 +314,7 @@ def path_check(func: Callable) -> Callable:
     return path_checker
 
 
-def __play_auto(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
+def _play_auto(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
     """
     Play sound in automatic mode.
 
@@ -324,16 +324,16 @@ def __play_auto(sound_path: str, async_mode: bool = False, loop: bool = False) -
     """
     env = detect_environment()
     if env == PythonEnvironment.COLAB:
-        return __play_google_colab(sound_path)
+        return _play_google_colab(sound_path)
     # we will add other notebook environment handlers in the future
 
     sys_platform = sys.platform
     if sys_platform == "win32":
-        return __play_winsound(sound_path, async_mode, loop)
+        return _play_winsound(sound_path, async_mode, loop)
     elif sys_platform == "darwin":
-        return __play_afplay(sound_path, async_mode, loop)
+        return _play_afplay(sound_path, async_mode, loop)
     else:
-        return __play_alsa(sound_path, async_mode, loop)
+        return _play_alsa(sound_path, async_mode, loop)
 
 
 @path_check
@@ -352,15 +352,15 @@ def play(sound_path: str, async_mode: bool = False, loop: bool = False, engine: 
         raise NavaBaseError(LOOP_ASYNC_ERROR)
     try:
         if engine == Engine.AUTO:
-            return __play_auto(sound_path=sound_path, async_mode=async_mode, loop=loop)
+            return _play_auto(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.WINSOUND:
-            return __play_winsound(sound_path=sound_path, async_mode=async_mode, loop=loop)
+            return _play_winsound(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.WINMM:
-            return __play_winmm(sound_path=sound_path, async_mode=async_mode, loop=loop)
+            return _play_winmm(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.AFPLAY:
-            return __play_afplay(sound_path=sound_path, async_mode=async_mode, loop=loop)
+            return _play_afplay(sound_path=sound_path, async_mode=async_mode, loop=loop)
         elif engine == Engine.ALSA:
-            return __play_alsa(sound_path=sound_path, async_mode=async_mode, loop=loop)
+            return _play_alsa(sound_path=sound_path, async_mode=async_mode, loop=loop)
     except Exception:
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
