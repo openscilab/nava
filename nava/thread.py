@@ -3,8 +3,33 @@
 
 from typing import List, Dict, Any
 import threading
+import subprocess
 from .params import Engine, SOUND_FILE_PLAY_ERROR
 from .errors import NavaBaseError
+
+
+def _terminate_process(proc: subprocess.Popen) -> None:
+    """
+    Terminate a subprocess and clean up its standard streams.
+
+    :param proc: subprocess to terminate
+    """
+    try:
+        proc.stdout.close()
+        proc.stdin.close()
+        proc.stderr.close()
+    except Exception:  # nosec B110 - Best effort cleanup
+        pass
+
+    try:
+        proc.terminate()
+        proc.wait(timeout=1)
+    except Exception:
+        try:
+            proc.kill()
+            proc.wait()
+        except Exception:  # nosec B110 - Best effort cleanup
+            pass
 
 
 class NavaThread(threading.Thread):
