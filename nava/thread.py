@@ -8,30 +8,6 @@ from .params import Engine, SOUND_FILE_PLAY_ERROR
 from .errors import NavaBaseError
 
 
-def _terminate_process(proc: subprocess.Popen) -> None:
-    """
-    Terminate a subprocess and clean up its standard streams.
-
-    :param proc: subprocess to terminate
-    """
-    try:
-        proc.stdout.close()
-        proc.stdin.close()
-        proc.stderr.close()
-    except Exception:  # nosec B110 - Best effort cleanup
-        pass
-
-    try:
-        proc.terminate()
-        proc.wait(timeout=1)
-    except Exception:
-        try:
-            proc.kill()
-            proc.wait()
-        except Exception:  # nosec B110 - Best effort cleanup
-            pass
-
-
 class NavaThread(threading.Thread):
     """Nava custom thread."""
 
@@ -50,6 +26,26 @@ class NavaThread(threading.Thread):
         self._force_stop = False
         self._engine = engine
         self._nava_exception = None
+    
+
+    def _terminate_process(self) -> None:
+        """Terminate play process and clean up its standard streams."""
+        try:
+            self._play_process.stdout.close()
+            self._play_process.stdin.close()
+            self._play_process.stderr.close()
+        except Exception:  # nosec B110 - Best effort cleanup
+            pass
+
+        try:
+            self._play_process.terminate()
+            self._play_process.wait(timeout=1)
+        except Exception:
+            try:
+                self._play_process.kill()
+                self._play_process.wait()
+            except Exception:  # nosec B110 - Best effort cleanup
+                pass
 
     def run(self) -> None:
         """Run target function."""
@@ -79,5 +75,5 @@ class NavaThread(threading.Thread):
             # So the main thread can't "see" the alias created in the worker thread.
         else:
             if self._play_process:
-                _terminate_process(self._play_process)
+                self._terminate_process()
                 self._play_process = None
