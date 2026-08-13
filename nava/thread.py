@@ -76,4 +76,3 @@ class NavaThread(threading.Thread):
         else:
             if self._play_process:
                 self._terminate_process()
-                self._play_process = None
