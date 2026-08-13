@@ -45,6 +45,8 @@ class NavaThread(threading.Thread):
                 self._play_process.wait()
             except Exception:  # nosec B110 - Best effort cleanup
                 pass
+        finally:
+            self._play_process = None
 
     def run(self) -> None:
         """Run target function."""
