@@ -3,7 +3,6 @@
 
 from typing import List, Dict, Any
 import threading
-import subprocess
 from .params import Engine, SOUND_FILE_PLAY_ERROR
 from .errors import NavaBaseError
 
