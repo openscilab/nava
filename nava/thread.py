@@ -25,7 +25,6 @@ class NavaThread(threading.Thread):
         self._force_stop = False
         self._engine = engine
         self._nava_exception = None
-    
 
     def _terminate_process(self) -> None:
         """Terminate play process and clean up its standard streams."""
