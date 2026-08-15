@@ -3,7 +3,7 @@
 import sys
 import argparse
 from art import tprint
-from .params import NAVA_VERSION, EXIT_MESSAGE
+from .params import NAVA_VERSION, EXIT_MESSAGE, Engine
 from .functions import nava_help, play_cli
 
 
@@ -23,6 +23,13 @@ def parse_args() -> argparse.Namespace:
         type=str,
         metavar='FILE_PATH',
         help='path to audio file',
+    )
+    parser.add_argument(
+        '--engine',
+        choices=[engine.value for engine in Engine],
+        type=str.lower,
+        default=Engine.AUTO.value,
+        help='audio playback engine'
     )
     parser.add_argument('--loop', help='sound play in loop', action='store_true', default=False)
     parser.add_argument('--version', help="version", action='store_true', default=False)
