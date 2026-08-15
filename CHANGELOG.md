@@ -8,9 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - CLI tests
 - `NavaThread._terminate_process` method
+- `--engine` CLI argument
 ### Changed
 - Python typing features added to all modules
 - CLI functions moved to `cli.py`
+- `play_cli` function modified
 - `NavaThread.stop` method updated
 - Dependencies structure modified
 - Test system modified
