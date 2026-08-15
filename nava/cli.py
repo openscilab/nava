@@ -51,7 +51,8 @@ def run(args: argparse.Namespace) -> None:
         if args.file:
             file_name = args.file
         loop = args.loop
-        play_cli(file_name, loop=loop)
+        engine = Engine(args.engine)
+        play_cli(file_name, loop=loop, engine=engine)
     else:
         tprint("Nava")
         tprint("V:" + NAVA_VERSION)
