@@ -140,7 +140,7 @@ sound_id = play("alarm.wav", engine=Engine.AFPLAY)
 
 ### CLI
 ```bash
-$ nava [--file FILE_PATH] [--loop] FILE_PATH
+$ nava [--file FILE_PATH] [--loop] [--engine ENGINE] FILE_PATH
 ```
 
 ## Engines list
