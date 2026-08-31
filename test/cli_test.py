@@ -40,7 +40,7 @@ True
 >>> # Test main with --version
 >>> sys.argv = ['nava', '--version']
 >>> main()
-0.8
+0.9
 >>> # Test main with no args (help)
 >>> sys.argv = ['nava']
 >>> main()
@@ -52,10 +52,10 @@ True
 <BLANKLINE>
 <BLANKLINE>
 __     __     ___       ___  
-\ \   / / _  / _ \     ( _ ) 
- \ \ / / (_)| | | |    / _ \ 
-  \ V /   _ | |_| | _ | (_) |
-   \_/   (_) \___/ (_) \___/ 
+\ \   / / _  / _ \     / _ \ 
+ \ \ / / (_)| | | |   | (_) |
+  \ V /   _ | |_| | _  \__, |
+   \_/   (_) \___/ (_)   /_/ 
 <BLANKLINE>
 <BLANKLINE>
 <BLANKLINE>

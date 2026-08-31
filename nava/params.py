@@ -2,7 +2,7 @@
 """Nava parameters."""
 from enum import Enum
 
-NAVA_VERSION = "0.8"
+NAVA_VERSION = "0.9"
 
 OVERVIEW = """
 A Python library for playing sound everywhere natively and securely.
