@@ -9,7 +9,7 @@ from hashlib import sha256
 from functools import wraps
 import importlib.util
 from typing import Callable, List, Dict, Any, Optional
-from typio import type_print
+from typio import type_print, TypeMode
 from .thread import NavaThread
 from .params import OVERVIEW, Engine
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, ENGINE_TYPE_ERROR
