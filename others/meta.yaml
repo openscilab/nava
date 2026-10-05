@@ -15,10 +15,11 @@ requirements:
     host:
         - pip
         - setuptools
-        - python >=3.7
+        - python >=3.8
     run:
         - art >=1.8
-        - python >=3.7
+        - typio >=0.4
+        - python >=3.8
 about:
     home: https://github.com/openscilab/nava
     license: MIT
