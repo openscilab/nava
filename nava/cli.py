@@ -2,7 +2,7 @@
 """Nava cli."""
 import sys
 import argparse
-from art import tprint, text2art
+from art import text2art
 from typio import type_print, TypeMode
 from .params import NAVA_VERSION, EXIT_MESSAGE, Engine
 from .functions import nava_help, play_cli
