@@ -44,9 +44,9 @@ def sound_id_gen() -> int:
 
 def nava_help() -> None:
     """Print nava details."""
-    print(OVERVIEW)
-    print("Repo : https://github.com/openscilab/nava")
-    print("Webpage : https://openscilab.com/\n")
+    type_print(OVERVIEW, mode=TypeMode.CHAR, delay=0.05)
+    type_print("Repo : https://github.com/openscilab/nava", mode=TypeMode.CHAR, delay=0.05)
+    type_print("Webpage : https://openscilab.com/\n", mode=TypeMode.CHAR, delay=0.05)
 
 
 def quote(func: Callable) -> Callable:
