@@ -37,7 +37,7 @@ setup(
         'Source': 'https://github.com/openscilab/nava',
         'Discord': 'https://discord.gg/MCbPKCFBs3',
     },
-    install_requires=['art>=1.8'],
+    install_requires=['art>=1.8', 'typio>=0.4'],
     python_requires='>=3.7',
     classifiers=[
         'Development Status :: 4 - Beta',
