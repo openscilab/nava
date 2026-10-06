@@ -2,7 +2,8 @@
 """Nava cli."""
 import sys
 import argparse
-from art import tprint
+from art import text2art
+from typio import type_print, TypeMode
 from .params import NAVA_VERSION, EXIT_MESSAGE, Engine
 from .functions import nava_help, play_cli
 
@@ -54,8 +55,8 @@ def run(args: argparse.Namespace) -> None:
         engine = Engine(args.engine)
         play_cli(file_name, loop=loop, engine=engine)
     else:
-        tprint("Nava")
-        tprint("V:" + NAVA_VERSION)
+        type_print(text2art("Nava"), mode=TypeMode.LINE, delay=0.1)
+        type_print(text2art("V:" + NAVA_VERSION), mode=TypeMode.LINE, delay=0.1)
         nava_help()
 
 

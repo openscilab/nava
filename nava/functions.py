@@ -9,6 +9,7 @@ from hashlib import sha256
 from functools import wraps
 import importlib.util
 from typing import Callable, List, Dict, Any, Optional
+from typio import type_print, TypeMode
 from .thread import NavaThread
 from .params import OVERVIEW, Engine
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, ENGINE_TYPE_ERROR
@@ -44,9 +45,9 @@ def sound_id_gen() -> int:
 
 def nava_help() -> None:
     """Print nava details."""
-    print(OVERVIEW)
-    print("Repo : https://github.com/openscilab/nava")
-    print("Webpage : https://openscilab.com/\n")
+    type_print(OVERVIEW, mode=TypeMode.CHAR, delay=0.05)
+    type_print("Repo : https://github.com/openscilab/nava", mode=TypeMode.CHAR, delay=0.05)
+    type_print("Webpage : https://openscilab.com/\n", mode=TypeMode.CHAR, delay=0.05)
 
 
 def quote(func: Callable) -> Callable:
