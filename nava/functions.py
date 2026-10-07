@@ -10,7 +10,7 @@ from functools import wraps
 import importlib.util
 from typing import Callable, List, Dict, Any, Optional
 from .thread import NavaThread
-from .params import OVERVIEW, Engine
+from .params import Engine
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, ENGINE_TYPE_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR, LOOP_ASYNC_ERROR
 from .params import PythonEnvironment, SHELL_TYPE_ZMQ, SHELL_TYPE_TERMINAL, VSCODE_ENV_VARS
