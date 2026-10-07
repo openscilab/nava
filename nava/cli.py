@@ -8,7 +8,7 @@ from .params import NAVA_VERSION, EXIT_MESSAGE, Engine
 from .functions import play_cli
 
 
-def nava_help() -> None:
+def print_nava_help() -> None:
     """Print nava details."""
     type_print(text2art("Nava"), mode=TypeMode.LINE, delay=0.1)
     type_print(text2art("V:" + NAVA_VERSION), mode=TypeMode.LINE, delay=0.1)
@@ -64,7 +64,7 @@ def run(args: argparse.Namespace) -> None:
         engine = Engine(args.engine)
         play_cli(file_name, loop=loop, engine=engine)
     else:
-        nava_help()
+        print_nava_help()
 
 
 def main() -> None:
