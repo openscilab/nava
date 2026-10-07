@@ -65,7 +65,6 @@ A Python library for playing sound everywhere natively and securely.
 Repo : https://github.com/openscilab/nava
 Webpage : https://openscilab.com/
 <BLANKLINE>
-
 >>> # Test main with invalid file
 >>> sys.argv = ['nava', 'nonexistent.wav']
 >>> main()
