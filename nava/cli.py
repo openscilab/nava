@@ -4,8 +4,17 @@ import sys
 import argparse
 from art import text2art
 from typio import type_print, TypeMode
-from .params import NAVA_VERSION, EXIT_MESSAGE, Engine
-from .functions import nava_help, play_cli
+from .params import NAVA_VERSION, OVERVIEW, EXIT_MESSAGE, Engine
+from .functions import play_cli
+
+
+def print_nava_help() -> None:
+    """Print nava details."""
+    type_print(text2art("Nava"), mode=TypeMode.LINE, delay=0.1)
+    type_print(text2art("V:" + NAVA_VERSION), mode=TypeMode.LINE, delay=0.1)
+    type_print(OVERVIEW, mode=TypeMode.CHAR, delay=0.05)
+    type_print("Repo : https://github.com/openscilab/nava", mode=TypeMode.CHAR, delay=0.05)
+    type_print("Webpage : https://openscilab.com/\n", mode=TypeMode.CHAR, delay=0.05)
 
 
 def parse_args() -> argparse.Namespace:
@@ -55,9 +64,7 @@ def run(args: argparse.Namespace) -> None:
         engine = Engine(args.engine)
         play_cli(file_name, loop=loop, engine=engine)
     else:
-        type_print(text2art("Nava"), mode=TypeMode.LINE, delay=0.1)
-        type_print(text2art("V:" + NAVA_VERSION), mode=TypeMode.LINE, delay=0.1)
-        nava_help()
+        print_nava_help()
 
 
 def main() -> None:

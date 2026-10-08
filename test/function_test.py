@@ -44,11 +44,4 @@ True
 ... else:
 ...     sound_id = nava.play(test_sound_path, async_mode=True, engine=nava.Engine.ALSA)
 >>> nava.functions.play_cli(test_sound_path)
->>> nava.functions.nava_help()
-<BLANKLINE>
-A Python library for playing sound everywhere natively and securely.
-<BLANKLINE>
-<BLANKLINE>
-Repo : https://github.com/openscilab/nava
-Webpage : https://openscilab.com/
 """

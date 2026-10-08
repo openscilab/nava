@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - CLI style modified
 - `nava_help` function modified
+- `nava_help` function moved to `cli.py`
+- `nava_help` function renamed to `print_nava_help`
+- Test system modified
 - `Python 3.7` support dropped
 ## [0.9] - 2026-09-02
 ### Added
