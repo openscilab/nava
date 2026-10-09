@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Nava functions."""
+"""Nava core."""
 import sys
 import threading
 import subprocess

@@ -5,7 +5,7 @@ import argparse
 from art import text2art
 from typio import type_print, TypeMode
 from .params import NAVA_VERSION, OVERVIEW, EXIT_MESSAGE, Engine
-from .functions import play_cli
+from .core import play_cli
 
 
 def print_nava_help() -> None:
