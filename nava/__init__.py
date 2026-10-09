@@ -2,7 +2,7 @@
 """Nava modules."""
 from .params import NAVA_VERSION, Engine
 from .errors import NavaBaseError
-from .functions import play, stop, stop_all
+from .core import play, stop, stop_all
 import atexit
 
 atexit.register(stop_all)
