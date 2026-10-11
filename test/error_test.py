@@ -35,6 +35,6 @@ Traceback (most recent call last):
     ...
 nava.errors.NavaBaseError: Sound can not play due to some issues.
 >>> import nava
->>> nava.functions.play_cli("test2.wav")
+>>> nava.core.play_cli("test2.wav")
 Error: Given sound file doesn't exist.
 """
