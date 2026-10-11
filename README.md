@@ -95,7 +95,8 @@ play("alarm.wav")
 
 ### Async mode
 
-⚠️ The `async_mode` parameter has a default value of `False`
+> [!NOTE]
+> The `async_mode` parameter has a default value of `False`
 
 ```python
 import time
@@ -107,9 +108,11 @@ stop(sound_id)
 
 ### Loop mode
 
-⚠️ The `loop` parameter has a default value of `False` 
+> [!NOTE]
+> The `loop` parameter has a default value of `False` 
 
-⚠️ You should always set `async_mode` flag when you are using `loop`
+> [!WARNING]
+> You should always set `async_mode` flag when you are using `loop`
 
 ```python
 from nava import play, stop
@@ -131,7 +134,8 @@ except NavaBaseError as e:
 
 ### Engine
 
-⚠️ The `engine` parameter has a default value of `AUTO` 
+> [!NOTE]
+> The `engine` parameter has a default value of `AUTO` 
 
 ```python
 from nava import play, Engine
