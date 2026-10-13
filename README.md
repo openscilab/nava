@@ -95,7 +95,8 @@ play("alarm.wav")
 
 ### Async mode
 
-⚠️ The `async_mode` parameter has a default value of `False`
+> [!NOTE]
+> The `async_mode` parameter has a default value of `False`
 
 ```python
 import time
@@ -107,9 +108,11 @@ stop(sound_id)
 
 ### Loop mode
 
-⚠️ The `loop` parameter has a default value of `False` 
+> [!NOTE]
+> The `loop` parameter has a default value of `False` 
 
-⚠️ You should always set `async_mode` flag when you are using `loop`
+> [!WARNING]
+> You should always set `async_mode` flag when you are using `loop`
 
 ```python
 from nava import play, stop
@@ -131,7 +134,8 @@ except NavaBaseError as e:
 
 ### Engine
 
-⚠️ The `engine` parameter has a default value of `AUTO` 
+> [!NOTE]
+> The `engine` parameter has a default value of `AUTO` 
 
 ```python
 from nava import play, Engine
@@ -197,7 +201,7 @@ You can also join our discord server
 
 [Python Software Foundation (PSF)](https://www.python.org/psf/) grants Nava library from version **0.8** to **0.9**. [PSF](https://www.python.org/psf/) is the organization behind Python. Their mission is to promote, protect, and advance the Python programming language and to support and facilitate the growth of a diverse and international community of Python programmers.
 
-<a href="https://www.python.org/psf/"><img src="https://wiki.python.org/psf/PSF%20Press%20Kit?action=AttachFile&do=get&target=psf-logo-narrow-256x84-alpha.png" height="55px" alt="Python Software Foundation"></a>
+<a href="https://www.python.org/psf/"><img src="https://github.com/openscilab/nava/raw/main/others/PSF.png" height="55px" alt="Python Software Foundation"></a>
 
 ## Show your support
 
