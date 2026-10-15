@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `README.md` updated
 - Test system modified
 - `Python 3.7` support dropped
-- `Python 3.15` added to `test.yml`
+- `Python 3.15` added to workflows
 ## [0.9] - 2026-09-02
 ### Added
 - CLI tests
