@@ -35,14 +35,14 @@ def stop_all() -> None:
         thread.stop()
 
 
-def sound_id_gen() -> int:
+def _sound_id_gen() -> int:
     """Sound id generator."""
     params._play_threads_counter += 1
     sound_id = params._play_threads_counter + 1000
     return sound_id
 
 
-def quote(func: Callable) -> Callable:
+def _quote(func: Callable) -> Callable:
     """
     Quote the given shell string.
 
@@ -79,7 +79,7 @@ def _play_winmm(sound_path: str, async_mode: bool = False, loop: bool = False) -
             daemon=True
         )
         sound_thread.start()
-        sound_id = sound_id_gen()
+        sound_id = _sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
@@ -170,7 +170,7 @@ def _play_winsound(sound_path: str, async_mode: bool = False, loop: bool = False
                                   args=(sound_path, play_flags),
                                   daemon=True)
         sound_thread.start()
-        sound_id = sound_id_gen()
+        sound_id = _sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
@@ -199,7 +199,7 @@ def _play_google_colab(sound_path: str) -> None:
     display(audio)
 
 
-@quote
+@_quote
 def _play_alsa(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
     """
     Play sound using ALSA.
@@ -215,7 +215,7 @@ def _play_alsa(sound_path: str, async_mode: bool = False, loop: bool = False) ->
                                   args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
-        sound_id = sound_id_gen()
+        sound_id = _sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
@@ -241,7 +241,7 @@ def _play_proc_alsa(sound_path: str) -> subprocess.Popen:
     return proc
 
 
-@quote
+@_quote
 def _play_afplay(sound_path: str, async_mode: bool = False, loop: bool = False) -> Optional[int]:
     """
     Play sound using afplay.
@@ -257,7 +257,7 @@ def _play_afplay(sound_path: str, async_mode: bool = False, loop: bool = False) 
                                   args=(sound_path,),
                                   daemon=True)
         sound_thread.start()
-        sound_id = sound_id_gen()
+        sound_id = _sound_id_gen()
         params._play_threads_map[sound_id] = sound_thread
         return sound_id
     else:
@@ -283,7 +283,7 @@ def _play_proc_afplay(sound_path: str) -> subprocess.Popen:
     return proc
 
 
-def path_check(func: Callable) -> Callable:
+def _path_check(func: Callable) -> Callable:
     """
     Check the given path to be a string and a valid file directory.
 
@@ -315,7 +315,7 @@ def _play_auto(sound_path: str, async_mode: bool = False, loop: bool = False) ->
     :param async_mode: async mode flag
     :param loop: sound loop flag
     """
-    env = detect_environment()
+    env = _detect_environment()
     if env == PythonEnvironment.COLAB:
         return _play_google_colab(sound_path)
     # we will add other notebook environment handlers in the future
@@ -329,7 +329,7 @@ def _play_auto(sound_path: str, async_mode: bool = False, loop: bool = False) ->
         return _play_alsa(sound_path, async_mode, loop)
 
 
-@path_check
+@_path_check
 def play(sound_path: str, async_mode: bool = False, loop: bool = False, engine: Engine = Engine.AUTO) -> Optional[int]:
     """
     Play sound.
@@ -358,7 +358,7 @@ def play(sound_path: str, async_mode: bool = False, loop: bool = False, engine: 
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
 
-def play_cli(sound_path: str, loop: bool = False, engine: Engine = Engine.AUTO) -> None:
+def _play_cli(sound_path: str, loop: bool = False, engine: Engine = Engine.AUTO) -> None:
     """
     Play sound from CLI.
 
@@ -377,7 +377,7 @@ def play_cli(sound_path: str, loop: bool = False, engine: Engine = Engine.AUTO) 
         stop_all()
 
 
-def detect_environment() -> PythonEnvironment:
+def _detect_environment() -> PythonEnvironment:
     """
     Detect the current Python execution environment.
 

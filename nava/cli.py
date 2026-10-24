@@ -5,7 +5,7 @@ import argparse
 from art import text2art
 from typio import type_print, TypeMode
 from .params import NAVA_VERSION, OVERVIEW, EXIT_MESSAGE, Engine
-from .core import play_cli
+from .core import _play_cli
 
 
 def print_nava_help() -> None:
@@ -62,7 +62,7 @@ def run(args: argparse.Namespace) -> None:
             file_name = args.file
         loop = args.loop
         engine = Engine(args.engine)
-        play_cli(file_name, loop=loop, engine=engine)
+        _play_cli(file_name, loop=loop, engine=engine)
     else:
         print_nava_help()
 
