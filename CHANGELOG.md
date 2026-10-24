@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Build system modified
 - `Python 3.7` support dropped
 - `Python 3.15` added to workflows
-- Internal core functions renamed
+- Internal functions renamed
 ## [0.9] - 2026-09-02
 ### Added
 - CLI tests
