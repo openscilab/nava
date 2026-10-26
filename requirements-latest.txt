@@ -1,2 +1,2 @@
 art==6.5
-typio==1.3
+typio==1.4
