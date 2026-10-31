@@ -5,10 +5,10 @@ import argparse
 from art import text2art
 from typio import type_print, TypeMode
 from .params import NAVA_VERSION, OVERVIEW, EXIT_MESSAGE, Engine
-from .core import play_cli
+from .core import _play_cli
 
 
-def print_nava_help() -> None:
+def _print_nava_help() -> None:
     """Print nava details."""
     type_print(text2art("Nava"), mode=TypeMode.LINE, delay=0.1)
     type_print(text2art("V:" + NAVA_VERSION), mode=TypeMode.LINE, delay=0.1)
@@ -17,7 +17,7 @@ def print_nava_help() -> None:
     type_print("Webpage : https://openscilab.com/\n", mode=TypeMode.CHAR, delay=0.05)
 
 
-def parse_args() -> argparse.Namespace:
+def _parse_args() -> argparse.Namespace:
     """Parse arguments."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -48,7 +48,7 @@ def parse_args() -> argparse.Namespace:
     return args
 
 
-def run(args: argparse.Namespace) -> None:
+def _run(args: argparse.Namespace) -> None:
     """
     Run nava CLI.
 
@@ -62,16 +62,16 @@ def run(args: argparse.Namespace) -> None:
             file_name = args.file
         loop = args.loop
         engine = Engine(args.engine)
-        play_cli(file_name, loop=loop, engine=engine)
+        _play_cli(file_name, loop=loop, engine=engine)
     else:
-        print_nava_help()
+        _print_nava_help()
 
 
 def main() -> None:
     """CLI main function."""
     try:
-        args = parse_args()
-        run(args)
+        args = _parse_args()
+        _run(args)
     except (KeyboardInterrupt, EOFError):
         print(EXIT_MESSAGE)
         sys.exit(1)

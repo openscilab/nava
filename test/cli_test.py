@@ -3,12 +3,12 @@ r"""
 >>> import os
 >>> import sys
 >>> import nava.cli as cli
->>> from nava.cli import parse_args, run, main
+>>> from nava.cli import _parse_args, main
 >>> from nava.params import NAVA_VERSION
 >>> test_sound_path = os.path.join("others", "test.wav")
->>> # Test parse_args with no args
+>>> # Test _parse_args with no args
 >>> sys.argv = ['nava']
->>> args = parse_args()
+>>> args = _parse_args()
 >>> args.filename
 >>> args.file
 >>> args.loop
@@ -17,24 +17,24 @@ False
 False
 >>> args.v
 False
->>> # Test parse_args with filename
+>>> # Test _parse_args with filename
 >>> sys.argv = ['nava', 'test.wav']
->>> args = parse_args()
+>>> args = _parse_args()
 >>> args.filename
 'test.wav'
->>> # Test parse_args with --file
+>>> # Test _parse_args with --file
 >>> sys.argv = ['nava', '--file', 'test.wav']
->>> args = parse_args()
+>>> args = _parse_args()
 >>> args.file
 'test.wav'
->>> # Test parse_args with --version
+>>> # Test _parse_args with --version
 >>> sys.argv = ['nava', '--version']
->>> args = parse_args()
+>>> args = _parse_args()
 >>> args.version
 True
->>> # Test parse_args with --loop
+>>> # Test _parse_args with --loop
 >>> sys.argv = ['nava', '--loop', 'test.wav']
->>> args = parse_args()
+>>> args = _parse_args()
 >>> args.loop
 True
 >>> # Test main with --version
@@ -74,16 +74,16 @@ Error: Given sound file doesn't exist.
 >>> main()
 >>> sys.argv = ['nava', '--file', test_sound_path]
 >>> main()
->>> original_parse_args = cli.parse_args
+>>> original_parse_args = cli._parse_args
 >>> def raise_keyboard_interrupt():
 ...     raise KeyboardInterrupt
->>> cli.parse_args = raise_keyboard_interrupt
+>>> cli._parse_args = raise_keyboard_interrupt
 >>> try:
 ...     cli.main()
 ... except SystemExit as e:
 ...     print("EXIT_CODE", e.code)
 ... finally:
-...     cli.parse_args = original_parse_args
+...     cli._parse_args = original_parse_args
 See you. Bye!
 EXIT_CODE 1
 """
