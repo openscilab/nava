@@ -297,7 +297,7 @@ def _path_check(func: Callable) -> Callable:
         """
         if not isinstance(sound_path, str):
             raise NavaBaseError(SOUND_FILE_PATH_TYPE_ERROR)
-        
+
         if not os.path.isfile(sound_path):
             raise NavaBaseError(SOUND_FILE_EXIST_ERROR)
         return func(sound_path, *args, **kwargs)
