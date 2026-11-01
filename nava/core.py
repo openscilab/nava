@@ -131,9 +131,6 @@ def _play_winmm_flags(sound_path: str, async_mode: bool = False, loop: bool = Fa
     try:
         while True:
             current_thread = threading.current_thread()
-            # Immediate stop (forced from stop method of the associated thread)
-            # The alias is scoped to the MCI context of the thread that created it.
-            # So the main thread can’t “see” the alias created in the worker thread.
             if getattr(current_thread, "_force_stop", False):
                 break
             status = get_sound_status(alias)
@@ -300,7 +297,7 @@ def _path_check(func: Callable) -> Callable:
         """
         if not isinstance(sound_path, str):
             raise NavaBaseError(SOUND_FILE_PATH_TYPE_ERROR)
-        # check sound file existance
+        
         if not os.path.isfile(sound_path):
             raise NavaBaseError(SOUND_FILE_EXIST_ERROR)
         return func(sound_path, *args, **kwargs)
@@ -318,7 +315,6 @@ def _play_auto(sound_path: str, async_mode: bool = False, loop: bool = False) ->
     env = _detect_environment()
     if env == PythonEnvironment.COLAB:
         return _play_google_colab(sound_path)
-    # we will add other notebook environment handlers in the future
 
     sys_platform = sys.platform
     if sys_platform == "win32":
@@ -380,11 +376,11 @@ def _detect_environment() -> PythonEnvironment:
 
     shell_name = ip.__class__.__name__.lower()
 
-    # Explicit Google Colab check (most reliable)
+    
     if importlib.util.find_spec("google.colab") is not None:
         return PythonEnvironment.COLAB
 
-    # VS Code check via known env vars
+    
     if any(var in os.environ for var in VSCODE_ENV_VARS):
         return PythonEnvironment.VSCODE
 
