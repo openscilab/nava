@@ -6,6 +6,9 @@ r"""
 >>> from nava.cli import _parse_args, main
 >>> from nava.params import NAVA_VERSION
 >>> test_sound_path = os.path.join("others", "test.wav")
+>>> cli._play_cli(test_sound_path)
+>>> cli._play_cli("test2.wav")
+Error: Given sound file doesn't exist.
 >>> # Test _parse_args with no args
 >>> sys.argv = ['nava']
 >>> args = _parse_args()
