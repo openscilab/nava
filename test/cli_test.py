@@ -62,8 +62,10 @@ __     __     ___       ___
 <BLANKLINE>
 <BLANKLINE>
 <BLANKLINE>
-A Python library for playing sound everywhere natively and securely.
-<BLANKLINE>
+Nava is a Python library that allows users to play sound in Python without any dependencies or platform restrictions.
+It is a cross-platform solution that runs on any operating system, including Windows, macOS, and Linux.
+Its lightweight and easy-to-use design makes Nava an ideal choice for developers looking to add sound 
+functionality to their Python programs.
 <BLANKLINE>
 Repo : https://github.com/openscilab/nava
 Webpage : https://openscilab.com/
