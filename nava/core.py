@@ -358,25 +358,6 @@ def play(sound_path: str, async_mode: bool = False, loop: bool = False, engine: 
         raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
 
 
-def _play_cli(sound_path: str, loop: bool = False, engine: Engine = Engine.AUTO) -> None:
-    """
-    Play sound from CLI.
-
-    :param sound_path: sound path
-    :param loop: sound loop flag
-    :param engine: play engine
-    """
-    try:
-        while True:
-            play(sound_path, engine=engine)
-            if not loop:
-                break
-    except NavaBaseError as e:
-        print("Error: {0}".format(e))
-    finally:
-        stop_all()
-
-
 def _detect_environment() -> PythonEnvironment:
     """
     Detect the current Python execution environment.

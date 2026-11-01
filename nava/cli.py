@@ -5,7 +5,27 @@ import argparse
 from art import text2art
 from typio import type_print, TypeMode
 from .params import NAVA_VERSION, OVERVIEW, EXIT_MESSAGE, Engine
-from .core import _play_cli
+from .errors import NavaBaseError
+from .core import play, stop_all
+
+
+def _play_cli(sound_path: str, loop: bool = False, engine: Engine = Engine.AUTO) -> None:
+    """
+    Play sound from CLI.
+
+    :param sound_path: sound path
+    :param loop: sound loop flag
+    :param engine: play engine
+    """
+    try:
+        while True:
+            play(sound_path, engine=engine)
+            if not loop:
+                break
+    except NavaBaseError as e:
+        print("Error: {0}".format(e))
+    finally:
+        stop_all()
 
 
 def _print_nava_help() -> None:
