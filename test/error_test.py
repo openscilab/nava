@@ -34,7 +34,4 @@ nava.errors.NavaBaseError: `engine` type must be `Engine` enum.
 Traceback (most recent call last):
     ...
 nava.errors.NavaBaseError: Sound can not play due to some issues.
->>> import nava
->>> nava.core._play_cli("test2.wav")
-Error: Given sound file doesn't exist.
 """

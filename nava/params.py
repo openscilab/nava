@@ -4,9 +4,10 @@ from enum import Enum
 
 NAVA_VERSION = "0.9"
 
-OVERVIEW = """
-A Python library for playing sound everywhere natively and securely.
-
+OVERVIEW = """Nava is a Python library that allows users to play sound in Python without any dependencies or platform restrictions.
+It is a cross-platform solution that runs on any operating system, including Windows, macOS, and Linux.
+Its lightweight and easy-to-use design makes Nava an ideal choice for developers looking to add sound 
+functionality to their Python programs.
 """
 
 

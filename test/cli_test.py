@@ -6,6 +6,9 @@ r"""
 >>> from nava.cli import _parse_args, main
 >>> from nava.params import NAVA_VERSION
 >>> test_sound_path = os.path.join("others", "test.wav")
+>>> cli._play_cli(test_sound_path)
+>>> cli._play_cli("test2.wav")
+Error: Given sound file doesn't exist.
 >>> # Test _parse_args with no args
 >>> sys.argv = ['nava']
 >>> args = _parse_args()
@@ -59,8 +62,10 @@ __     __     ___       ___
 <BLANKLINE>
 <BLANKLINE>
 <BLANKLINE>
-A Python library for playing sound everywhere natively and securely.
-<BLANKLINE>
+Nava is a Python library that allows users to play sound in Python without any dependencies or platform restrictions.
+It is a cross-platform solution that runs on any operating system, including Windows, macOS, and Linux.
+Its lightweight and easy-to-use design makes Nava an ideal choice for developers looking to add sound 
+functionality to their Python programs.
 <BLANKLINE>
 Repo : https://github.com/openscilab/nava
 Webpage : https://openscilab.com/

@@ -43,5 +43,4 @@ True
 ...     sound_id = nava.play(test_sound_path, async_mode=True, engine=nava.Engine.AFPLAY)
 ... else:
 ...     sound_id = nava.play(test_sound_path, async_mode=True, engine=nava.Engine.ALSA)
->>> nava.core._play_cli(test_sound_path)
 """
