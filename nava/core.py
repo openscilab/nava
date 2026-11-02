@@ -380,7 +380,7 @@ def _detect_environment() -> PythonEnvironment:
     if importlib.util.find_spec("google.colab") is not None:
         return PythonEnvironment.COLAB
 
-    
+
     if any(var in os.environ for var in VSCODE_ENV_VARS):
         return PythonEnvironment.VSCODE
 
