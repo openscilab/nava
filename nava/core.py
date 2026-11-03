@@ -32,8 +32,9 @@ def stop(sound_id: int) -> None:
 
 def stop_all() -> None:
     """Stop all sounds."""
-    for thread in params._play_threads_map.values():
-        thread.stop()
+    sound_ids = list(params._play_threads_map.keys())
+    for sound_id in sound_ids:
+        stop(sound_id)
 
 
 def _sound_id_gen() -> int:
