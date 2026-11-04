@@ -20,12 +20,20 @@ True
 True
 >>> nava.stop(sound_id_1)
 >>> nava.stop(sound_id_4)
+>>> sound_id_1 in nava.params._play_threads_map
+False
+>>> sound_id_4 in nava.params._play_threads_map
+False
+>>> len(nava.params._play_threads_map) == 2
+True
 >>> for i in range(40):
 ...     sound_id = nava.play(test_sound_path, async_mode=True)
 ...     time.sleep(0.2)
 >>> time.sleep(1)
+>>> len(nava.params._play_threads_map) == 42
+True
 >>> nava.stop_all()
->>> len(nava.params._play_threads_map) == 44
+>>> len(nava.params._play_threads_map) == 0
 True
 >>> nava.params._play_threads_counter == 44
 True
