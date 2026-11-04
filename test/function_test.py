@@ -30,6 +30,8 @@ True
 ...     sound_id = nava.play(test_sound_path, async_mode=True)
 ...     time.sleep(0.2)
 >>> time.sleep(1)
+>>> len(nava.params._play_threads_map) == 42
+True
 >>> nava.stop_all()
 >>> len(nava.params._play_threads_map) == 0
 True
