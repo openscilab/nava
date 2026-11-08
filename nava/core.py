@@ -27,12 +27,14 @@ def stop(sound_id: int) -> None:
     if sound_id not in params._play_threads_map:
         raise NavaBaseError(SOUND_ID_EXIST_ERROR)
     params._play_threads_map[sound_id].stop()
+    params._play_threads_map.pop(sound_id)
 
 
 def stop_all() -> None:
     """Stop all sounds."""
-    for thread in params._play_threads_map.values():
-        thread.stop()
+    sound_ids = list(params._play_threads_map.keys())
+    for sound_id in sound_ids:
+        stop(sound_id)
 
 
 def _sound_id_gen() -> int:
