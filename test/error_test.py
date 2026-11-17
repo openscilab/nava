@@ -3,6 +3,13 @@
 >>> import os
 >>> import sys
 >>> from nava import play, stop, Engine
+>>> from nava import NavaBaseError, NavaValidationError
+>>> issubclass(NavaBaseError, Exception)
+True
+>>> issubclass(NavaValidationError, NavaBaseError)
+True
+>>> issubclass(NavaValidationError, ValueError)
+True
 >>> test_sound_path = os.path.join("others", "test.wav")
 >>> play("test.wav")
 Traceback (most recent call last):
