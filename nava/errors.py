@@ -6,3 +6,9 @@ class NavaBaseError(Exception):
     """Nava base error class."""
 
     pass
+
+
+class NavaValidationError(NavaBaseError, ValueError):
+    """Nava validation error class."""
+
+    pass

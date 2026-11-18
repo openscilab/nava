@@ -14,7 +14,7 @@ from .params import Engine
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, ENGINE_TYPE_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR, LOOP_ASYNC_ERROR
 from .params import PythonEnvironment, SHELL_TYPE_ZMQ, SHELL_TYPE_TERMINAL, VSCODE_ENV_VARS
-from .errors import NavaBaseError
+from .errors import NavaBaseError, NavaValidationError
 from . import params
 
 
@@ -25,7 +25,7 @@ def stop(sound_id: int) -> None:
     :param sound_id: sound id
     """
     if sound_id not in params._play_threads_map:
-        raise NavaBaseError(SOUND_ID_EXIST_ERROR)
+        raise NavaValidationError(SOUND_ID_EXIST_ERROR)
     params._play_threads_map[sound_id].stop()
     params._play_threads_map.pop(sound_id)
 
@@ -298,10 +298,10 @@ def _path_check(func: Callable) -> Callable:
         :param kwargs: keyword arguments
         """
         if not isinstance(sound_path, str):
-            raise NavaBaseError(SOUND_FILE_PATH_TYPE_ERROR)
+            raise NavaValidationError(SOUND_FILE_PATH_TYPE_ERROR)
 
         if not os.path.isfile(sound_path):
-            raise NavaBaseError(SOUND_FILE_EXIST_ERROR)
+            raise NavaValidationError(SOUND_FILE_EXIST_ERROR)
         return func(sound_path, *args, **kwargs)
     return path_checker
 
@@ -338,9 +338,9 @@ def play(sound_path: str, async_mode: bool = False, loop: bool = False, engine: 
     :param engine: play engine
     """
     if not isinstance(engine, Engine):
-        raise NavaBaseError(ENGINE_TYPE_ERROR)
+        raise NavaValidationError(ENGINE_TYPE_ERROR)
     if loop and not async_mode:
-        raise NavaBaseError(LOOP_ASYNC_ERROR)
+        raise NavaValidationError(LOOP_ASYNC_ERROR)
     try:
         if engine == Engine.AUTO:
             return _play_auto(sound_path=sound_path, async_mode=async_mode, loop=loop)
