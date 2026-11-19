@@ -14,7 +14,7 @@ from .params import Engine
 from .params import SOUND_FILE_PLAY_ERROR, SOUND_FILE_EXIST_ERROR, ENGINE_TYPE_ERROR
 from .params import SOUND_FILE_PATH_TYPE_ERROR, SOUND_ID_EXIST_ERROR, LOOP_ASYNC_ERROR
 from .params import PythonEnvironment, SHELL_TYPE_ZMQ, SHELL_TYPE_TERMINAL, VSCODE_ENV_VARS
-from .errors import NavaBaseError, NavaValidationError
+from .errors import NavaValidationError, NavaPlayError
 from . import params
 
 
@@ -353,7 +353,7 @@ def play(sound_path: str, async_mode: bool = False, loop: bool = False, engine: 
         elif engine == Engine.ALSA:
             return _play_alsa(sound_path=sound_path, async_mode=async_mode, loop=loop)
     except Exception:
-        raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
+        raise NavaPlayError(SOUND_FILE_PLAY_ERROR)
 
 
 def _detect_environment() -> PythonEnvironment:
