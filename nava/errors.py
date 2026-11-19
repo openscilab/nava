@@ -12,3 +12,9 @@ class NavaValidationError(NavaBaseError, ValueError):
     """Nava validation error class."""
 
     pass
+
+
+class NavaPlayError(NavaBaseError, RuntimeError):
+    """Nava play error class."""
+
+    pass
