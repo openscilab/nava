@@ -82,7 +82,7 @@ Nava is a Python library that allows users to play sound in Python without any d
 
 - Check [Conda Managing Package](https://conda.io/)
 - Update Conda using `conda update conda`
-- Run `conda install -c openscilab nava`
+- Run `conda install -c openscilab -c sepandhaghighi nava`
 
 ## Usage
 
