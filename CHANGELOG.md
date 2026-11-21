@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `NavaValidationError` class
+- `NavaPlayError` class
 ### Changed
 - CLI style modified
 - `nava_help` function modified

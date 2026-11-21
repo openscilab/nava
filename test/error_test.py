@@ -3,12 +3,16 @@
 >>> import os
 >>> import sys
 >>> from nava import play, stop, Engine
->>> from nava import NavaBaseError, NavaValidationError
+>>> from nava import NavaBaseError, NavaValidationError, NavaPlayError
 >>> issubclass(NavaBaseError, Exception)
 True
 >>> issubclass(NavaValidationError, NavaBaseError)
 True
 >>> issubclass(NavaValidationError, ValueError)
+True
+>>> issubclass(NavaPlayError, NavaBaseError)
+True
+>>> issubclass(NavaPlayError, RuntimeError)
 True
 >>> test_sound_path = os.path.join("others", "test.wav")
 >>> play("test.wav")
@@ -40,5 +44,5 @@ nava.errors.NavaValidationError: `engine` type must be `Engine` enum.
 ...     sound_id = play(test_sound_path, async_mode=False, engine=Engine.WINSOUND)
 Traceback (most recent call last):
     ...
-nava.errors.NavaBaseError: Sound can not play due to some issues.
+nava.errors.NavaPlayError: Sound can not play due to some issues.
 """

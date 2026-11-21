@@ -4,7 +4,7 @@
 from typing import List, Dict, Any
 import threading
 from .params import Engine, SOUND_FILE_PLAY_ERROR
-from .errors import NavaBaseError
+from .errors import NavaPlayError
 
 
 class NavaThread(threading.Thread):
@@ -61,7 +61,7 @@ class NavaThread(threading.Thread):
                             break
         except Exception:  # pragma: no cover
             self._nava_exception = SOUND_FILE_PLAY_ERROR
-            raise NavaBaseError(SOUND_FILE_PLAY_ERROR)
+            raise NavaPlayError(SOUND_FILE_PLAY_ERROR)
 
     def stop(self) -> None:
         """Stop sound."""
